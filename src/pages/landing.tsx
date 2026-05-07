@@ -348,7 +348,6 @@ export default function LandingPage() {
       {/* INTERNAL LINKS — NARNAUL SEO PAGES */}
       <section className="py-10 bg-sky-50 border-t border-sky-100">
         <div className="max-w-6xl mx-auto px-6">
-<<<<<<< HEAD
           <p className="text-sm font-semibold text-gray-500 mb-4">EZDRY Laundry Service — Narnaul, Haryana</p>
           <div className="flex flex-wrap gap-3">
             {[
@@ -364,7 +363,13 @@ export default function LandingPage() {
                 <MapPin className="w-3.5 h-3.5" /> {area.label}
               </button>
             ))}
-=======
+          </div>
+        </div>
+      </section>
+
+      {/* FOOTER */}
+      <footer className="bg-slate-900 text-white py-12">
+        <div className="max-w-6xl mx-auto px-6">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 bg-sky-500 rounded-lg flex items-center justify-center">
@@ -401,7 +406,6 @@ export default function LandingPage() {
               <p className="text-gray-500 text-xs">Phone: {CONTACT_PHONE} • Email: {CONTACT_EMAIL}</p>
             </div>
             <p className="text-gray-500 text-sm">© 2025 {BRAND_NAME}. All rights reserved.</p>
->>>>>>> 01581df5 (dd)
             <button
               onClick={() => navigate("/blog")}
               className="flex items-center gap-1.5 text-sm text-sky-700 bg-white border border-sky-200 hover:bg-sky-50 rounded-full px-4 py-1.5 transition-colors"
@@ -410,7 +414,7 @@ export default function LandingPage() {
             </button>
           </div>
         </div>
-      </section>
+      </footer>
 
     </PublicLayout>
   );
