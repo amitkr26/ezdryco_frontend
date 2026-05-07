@@ -2,8 +2,8 @@ import { useLocation } from "wouter";
 import { motion } from "framer-motion";
 import { useEffect } from "react";
 import {
-  Shirt, Truck, Star, CheckCircle, MapPin,
-  ChevronRight, Sparkles, BookOpenText, Phone, Mail
+  Shirt, Truck, Star, CheckCircle, MapPin, Clock, Shield,
+  ChevronRight, Phone, Mail, Instagram, Facebook, Linkedin, Youtube, Sparkles, BookOpenText
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { listBlogs } from "@/lib/blogs";
@@ -348,6 +348,7 @@ export default function LandingPage() {
       {/* INTERNAL LINKS — NARNAUL SEO PAGES */}
       <section className="py-10 bg-sky-50 border-t border-sky-100">
         <div className="max-w-6xl mx-auto px-6">
+<<<<<<< HEAD
           <p className="text-sm font-semibold text-gray-500 mb-4">EZDRY Laundry Service — Narnaul, Haryana</p>
           <div className="flex flex-wrap gap-3">
             {[
@@ -363,6 +364,44 @@ export default function LandingPage() {
                 <MapPin className="w-3.5 h-3.5" /> {area.label}
               </button>
             ))}
+=======
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 bg-sky-500 rounded-lg flex items-center justify-center">
+                <Shirt className="w-5 h-5 text-white" />
+              </div>
+              <div>
+                <span className="font-bold text-lg">{BRAND_NAME}</span>
+                <p className="text-gray-400 text-xs">Cloth Spa — Wear Fresh, Every Day</p>
+              </div>
+            </div>
+
+            <div className="flex items-center gap-6 text-gray-400 text-sm">
+              <a href="#" className="hover:text-white">Privacy Policy</a>
+              <a href="#" className="hover:text-white">Terms of Use</a>
+              <a href="#" className="hover:text-white">Refund Policy</a>
+            </div>
+
+            <div className="flex items-center gap-3">
+              <a href="https://www.instagram.com/ezdryco/?hl=en" target="_blank" rel="noreferrer" aria-label="Instagram" className="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-sky-500 transition-colors">
+                <Instagram className="w-4 h-4" />
+              </a>
+              <a href="https://www.linkedin.com/in/ezdry-co-8b4363405/?isSelfProfile=true" target="_blank" rel="noreferrer" aria-label="LinkedIn" className="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-sky-500 transition-colors">
+                <Linkedin className="w-4 h-4" />
+              </a>
+              <a href="https://www.youtube.com/channel/UC1I0jxgunyc9rV9AF0feNqg" target="_blank" rel="noreferrer" aria-label="YouTube" className="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-sky-500 transition-colors">
+                <Youtube className="w-4 h-4" />
+              </a>
+            </div>
+          </div>
+
+          <div className="border-t border-gray-800 mt-8 pt-6 flex flex-col md:flex-row items-start md:items-center justify-between gap-3">
+            <div>
+              <p className="text-gray-300 text-sm font-semibold">Contact Us</p>
+              <p className="text-gray-500 text-xs">Phone: {CONTACT_PHONE} • Email: {CONTACT_EMAIL}</p>
+            </div>
+            <p className="text-gray-500 text-sm">© 2025 {BRAND_NAME}. All rights reserved.</p>
+>>>>>>> 01581df5 (dd)
             <button
               onClick={() => navigate("/blog")}
               className="flex items-center gap-1.5 text-sm text-sky-700 bg-white border border-sky-200 hover:bg-sky-50 rounded-full px-4 py-1.5 transition-colors"
