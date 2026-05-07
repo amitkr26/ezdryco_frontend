@@ -115,6 +115,9 @@ export default function BlogPost() {
           <div>
             <p className="font-bold text-gray-900">Need laundry or dry cleaning in Narnaul?</p>
             <p className="text-sm text-gray-500">Doorstep pickup with fast turnaround. Transparent prices and easy booking.</p>
+          </div>
+          <button onClick={() => navigate("/customer/book")}
+            className="h-12 bg-sky-500 hover:bg-sky-600 text-white rounded-2xl font-semibold px-5 transition-colors inline-flex items-center gap-2">
             Book Now <ChevronRight className="w-4 h-4" />
           </button>
         </div>
