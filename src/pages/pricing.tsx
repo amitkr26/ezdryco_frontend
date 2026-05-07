@@ -135,7 +135,7 @@ export default function Pricing() {
                   ))}
                 </div>
                 <Button
-                  onClick={() => navigate("/customer/register")}
+                  onClick={() => navigate("/customer/book")}
                   className={`w-full rounded-2xl font-bold h-11 ${plan.highlight ? "bg-white text-sky-600 hover:bg-sky-50" : "bg-sky-500 hover:bg-sky-600 text-white"}`}
                 >
                   {plan.cta}
@@ -188,7 +188,7 @@ export default function Pricing() {
         <div className="max-w-3xl mx-auto text-center text-white">
           <h2 className="text-3xl font-extrabold mb-4">Get ₹50 Off Your First Order</h2>
           <p className="text-sky-100 mb-8">Use code FIRST50 at checkout. Free pickup in Narnaul. No minimum subscription.</p>
-          <Button onClick={() => navigate("/customer/register")}
+          <Button onClick={() => navigate("/customer/book")}
             className="h-14 bg-white text-sky-600 hover:bg-sky-50 rounded-2xl font-bold px-10 text-base shadow-lg">
             Book Now — Free Pickup <ChevronRight className="w-4 h-4 ml-1" />
           </Button>

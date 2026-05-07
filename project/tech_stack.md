@@ -45,7 +45,7 @@ src/lib/
    - Attaches `Authorization: Bearer <token>` if configured
    - Parses JSON / text / blob responses
    - Throws typed `ApiError` on non-2xx responses
-3. Auth tokens stored in `localStorage` under `washify_session_token`
+3. Auth tokens stored in `localStorage` under `EzDry_session_token`
 4. React Query caches all GET responses, invalidates on mutations
 
 ---
@@ -54,11 +54,11 @@ src/lib/
 
 ```typescript
 // Keys in localStorage:
-"washify_current_customer"  // CustomerSession JSON
-"washify_current_business"  // BusinessSession JSON
-"washify_session_token"     // JWT bearer token
+"EzDry_current_customer"  // CustomerSession JSON
+"EzDry_current_business"  // BusinessSession JSON
+"EzDry_session_token"     // JWT bearer token
 
-// Note: keys use legacy "washify_" prefix but store EZDRY data
+// Note: keys use legacy "EzDry_" prefix but store EZDRY data
 // DO NOT change these keys — they are tied to active user sessions
 ```
 

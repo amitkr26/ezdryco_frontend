@@ -94,7 +94,7 @@ export default function Services() {
                     </div>
                   ))}
                 </div>
-                <Button onClick={() => navigate("/customer/register")}
+                <Button onClick={() => navigate("/customer/book")}
                   className="bg-sky-500 hover:bg-sky-600 text-white rounded-2xl px-7 h-12 font-semibold">
                   Book {svc.title} <ChevronRight className="w-4 h-4 ml-1" />
                 </Button>
@@ -154,7 +154,7 @@ export default function Services() {
         <div className="max-w-3xl mx-auto text-center text-white">
           <h2 className="text-3xl font-extrabold mb-4">Book Your First Pickup in Narnaul</h2>
           <p className="text-sky-100 mb-8">Free pickup. Starting ₹199. 24-hr turnaround. ₹50 off with code FIRST50.</p>
-          <Button onClick={() => navigate("/customer/register")}
+          <Button onClick={() => navigate("/customer/book")}
             className="h-14 bg-white text-sky-600 hover:bg-sky-50 rounded-2xl font-bold px-10 text-base shadow-lg">
             Book Now — Free Pickup <ChevronRight className="w-4 h-4 ml-1" />
           </Button>

@@ -25,7 +25,7 @@ ezdryco_frontend/
 │   ├── index.css                # Global styles + Tailwind directives
 │   │
 │   ├── components/
-│   │   ├── Logo.tsx             # WashifyLogo component (renders "EZDRY")
+│   │   ├── Logo.tsx             # EzDryLogo component (renders "EZDRY")
 │   │   ├── BlogCard.tsx         # Reusable blog card component
 │   │   ├── FAQAccordion.tsx     # Reusable animated FAQ accordion
 │   │   ├── NotificationPanel.tsx

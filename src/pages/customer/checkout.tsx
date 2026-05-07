@@ -5,7 +5,8 @@ import { ChevronLeft, Tag, CreditCard, Smartphone, Check, MapPin, Navigation } f
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useCreateAddress, useCreateOrder, useValidateCoupon, useListAddresses } from "@/lib/api-client-react";
-import { getCurrentCustomer, updateCustomerSession } from "@/lib/session";
+import { getCurrentCustomer, saveCustomerSession } from "@/lib/session";
+import { registerCustomer } from "@/lib/auth-api";
 
 const SELECTED_BUSINESS_STORAGE_KEY = "ezdry_selected_business";
 
@@ -16,8 +17,8 @@ const PAYMENT_METHODS = [
 
 export default function Checkout() {
   const [, navigate] = useLocation();
-  const customer = getCurrentCustomer();
-  const customerId = customer?.id ?? "";
+  const [currentCustomer, setCurrentCustomer] = useState(getCurrentCustomer());
+  const customerId = currentCustomer?.id ?? "";
   const { data: addresses, refetch: refetchAddresses } = useListAddresses(customerId, { query: { enabled: !!customerId } as any });
   const defaultAddressId = addresses?.find((address) => address.isDefault)?.id ?? addresses?.[0]?.id;
   const [couponCode, setCouponCode] = useState("");
@@ -25,13 +26,21 @@ export default function Checkout() {
   const [couponMsg, setCouponMsg] = useState("");
   const [paymentMethod, setPaymentMethod] = useState("upi");
   const [submitError, setSubmitError] = useState("");
+  const [customerError, setCustomerError] = useState("");
+  const [submitting, setSubmitting] = useState(false);
+  const [guestForm, setGuestForm] = useState({
+    name: "",
+    phone: "",
+    password: "",
+    confirmPassword: "",
+  });
   const [selectedAddressId, setSelectedAddressId] = useState<string | undefined>(defaultAddressId);
   const [addressForm, setAddressForm] = useState({
     label: "home",
-    line1: customer?.address ?? "",
+    line1: currentCustomer?.address ?? "",
     line2: "",
-    city: customer?.city ?? "Narnaul",
-    pincode: customer?.pincode ?? "",
+    city: currentCustomer?.city ?? "Narnaul",
+    pincode: currentCustomer?.pincode ?? "",
     lat: "",
     lng: "",
   });
@@ -84,15 +93,15 @@ export default function Checkout() {
     );
   };
 
-  const ensureAddress = async () => {
+  const ensureAddress = async (effectiveCustomerId: string = customerId) => {
     if (addressId) return addressId;
-    if (!customerId) throw new Error("Please login again.");
+    if (!effectiveCustomerId) throw new Error("Please login again.");
     if (!addressForm.line1.trim() || !addressForm.city.trim() || !addressForm.pincode.trim()) {
       throw new Error("Please enter pickup address or select current location.");
     }
 
     const created = await createAddress.mutateAsync({
-      customerId,
+      customerId: effectiveCustomerId,
       data: {
         label: addressForm.label as "home" | "work" | "other",
         line1: addressForm.line1.trim(),
@@ -105,13 +114,8 @@ export default function Checkout() {
       },
     });
 
-    updateCustomerSession({
-      address: addressForm.line1.trim(),
-      city: addressForm.city.trim(),
-      pincode: addressForm.pincode.trim(),
-    });
-    await refetchAddresses();
     setSelectedAddressId(created.id);
+    await refetchAddresses();
     return created.id;
   };
 
@@ -132,14 +136,39 @@ export default function Checkout() {
 
   const handlePlaceOrder = async () => {
     setSubmitError("");
+    setCustomerError("");
+    setSubmitting(true);
+
     try {
-      if (!customerId || !businessId) {
+      let effectiveCustomerId = customerId;
+      if (!effectiveCustomerId) {
+        if (!guestForm.name.trim()) throw new Error("Please enter your full name.");
+        if (guestForm.phone.replace(/\D/g, "").length < 10) throw new Error("Enter a valid 10-digit phone number.");
+        if (guestForm.password.length < 6) throw new Error("Password must be at least 6 characters.");
+        if (guestForm.password !== guestForm.confirmPassword) throw new Error("Passwords do not match.");
+
+        const registerResult = await registerCustomer({
+          name: guestForm.name.trim(),
+          phone: guestForm.phone.replace(/\D/g, "").slice(0, 10),
+          password: guestForm.password,
+          address: addressForm.line1.trim(),
+          city: addressForm.city.trim() || "Narnaul",
+          pincode: addressForm.pincode.trim(),
+        });
+
+        saveCustomerSession(registerResult.user, registerResult.token);
+        setCurrentCustomer(registerResult.user);
+        effectiveCustomerId = registerResult.user.id;
+      }
+
+      if (!effectiveCustomerId || !businessId) {
         throw new Error("Pehle laundry partner select karo.");
       }
-      const resolvedAddressId = await ensureAddress();
+
+      const resolvedAddressId = await ensureAddress(effectiveCustomerId);
       const order = await createOrder.mutateAsync({
         data: {
-          customerId,
+          customerId: effectiveCustomerId,
           businessId,
           items: cartItems,
           pickupDate: schedule.date || new Date(Date.now() + 86400000).toISOString().split("T")[0],
@@ -153,6 +182,8 @@ export default function Checkout() {
       navigate(`/customer/payment-success?orderId=${order.id}`);
     } catch (error) {
       setSubmitError(error instanceof Error ? error.message : "Unable to place order right now.");
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -172,6 +203,50 @@ export default function Checkout() {
           <div className="bg-white rounded-2xl p-4 shadow-sm">
             <p className="text-xs text-gray-500">Selected laundry partner</p>
             <p className="text-sm font-semibold text-gray-900">{selectedBusiness.name}</p>
+          </div>
+        )}
+
+        {!currentCustomer && (
+          <div className="bg-white rounded-2xl p-4 shadow-sm space-y-4">
+            <div className="flex items-center justify-between">
+              <div>
+                <h3 className="font-semibold text-gray-900">Guest details</h3>
+                <p className="text-sm text-gray-500">We will create your account and log you in automatically.</p>
+              </div>
+              <span className="text-xs uppercase font-semibold tracking-wide text-sky-600">Guest mode</span>
+            </div>
+
+            <div className="grid gap-3">
+              <Input
+                placeholder="Full name"
+                value={guestForm.name}
+                onChange={(e) => setGuestForm((prev) => ({ ...prev, name: e.target.value }))}
+              />
+              <Input
+                type="tel"
+                placeholder="Phone number"
+                value={guestForm.phone}
+                onChange={(e) => setGuestForm((prev) => ({ ...prev, phone: e.target.value.replace(/\D/g, "").slice(0, 10) }))}
+              />
+              <Input
+                type="password"
+                placeholder="Password"
+                value={guestForm.password}
+                onChange={(e) => setGuestForm((prev) => ({ ...prev, password: e.target.value }))}
+              />
+              <Input
+                type="password"
+                placeholder="Confirm password"
+                value={guestForm.confirmPassword}
+                onChange={(e) => setGuestForm((prev) => ({ ...prev, confirmPassword: e.target.value }))}
+              />
+            </div>
+
+            {customerError && (
+              <div className="rounded-2xl border border-red-100 bg-red-50 px-4 py-3 text-sm text-red-600">
+                {customerError}
+              </div>
+            )}
           </div>
         )}
 
@@ -301,10 +376,10 @@ export default function Checkout() {
         )}
         <Button
           onClick={handlePlaceOrder}
-          disabled={createOrder.isPending}
+          disabled={submitting || createOrder.isPending || createAddress.isPending}
           className="w-full h-14 bg-green-500 hover:bg-green-600 text-white rounded-2xl font-bold text-base"
         >
-          {createOrder.isPending ? "Placing Order..." : `Pay ₹${total} & Place Order`}
+          {submitting || createOrder.isPending || createAddress.isPending ? "Placing Order..." : `Pay ₹${total} & Place Order`}
         </Button>
       </div>
     </div>

@@ -156,4 +156,4 @@ Landing Page
 | Page load time | < 2s on 4G |
 | No layout inconsistency | Enforced via PublicLayout |
 | Accessibility | keyboard nav, aria-expanded |
-| Brand | EZDRY only (no "Washify" in UI) |
+| Brand | EZDRY only (no "EzDry" in UI) |

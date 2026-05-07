@@ -48,7 +48,7 @@ export default function LaundryServiceNarnaul() {
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
               <Button
-                onClick={() => navigate("/customer/register")}
+                onClick={() => navigate("/customer/book")}
                 className="h-13 bg-sky-500 hover:bg-sky-600 text-white rounded-2xl font-bold px-8 text-base shadow-lg shadow-sky-200"
               >
                 Book Narnaul Pickup <ChevronRight className="w-4 h-4 ml-1" />
@@ -190,7 +190,7 @@ export default function LaundryServiceNarnaul() {
         <div className="max-w-3xl mx-auto text-center text-white">
           <h2 className="text-3xl font-extrabold mb-4">Book Your Narnaul Laundry Pickup Today</h2>
           <p className="text-sky-100 mb-8">Join hundreds of Narnaul customers getting fresh clothes at their door. First order ₹50 off — code FIRST50.</p>
-          <Button onClick={() => navigate("/customer/register")}
+          <Button onClick={() => navigate("/customer/book")}
             className="h-14 bg-white text-sky-600 hover:bg-sky-50 rounded-2xl font-bold px-10 text-base shadow-lg">
             Book Now — Free Pickup <ChevronRight className="w-4 h-4 ml-1" />
           </Button>

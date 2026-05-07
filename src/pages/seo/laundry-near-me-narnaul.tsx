@@ -48,7 +48,7 @@ export default function LaundryNearMeNarnaul() {
               Forget searching for "laundry near me" and walking somewhere with a bag of clothes. EZDRY is the laundry service that comes to you — pickup from your door, delivery back to your door, anywhere in Narnaul.
             </p>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Button onClick={() => navigate("/customer/register")}
+              <Button onClick={() => navigate("/customer/book")}
                 className="h-13 bg-sky-500 hover:bg-sky-600 text-white rounded-2xl font-bold px-8 text-base shadow-lg shadow-sky-200">
                 Book Pickup Near You <ChevronRight className="w-4 h-4 ml-1" />
               </Button>
@@ -105,7 +105,7 @@ export default function LaundryNearMeNarnaul() {
             ))}
           </div>
           <p className="text-sm text-gray-400 mt-5">
-            Not listed above? <button className="text-sky-500 underline" onClick={() => navigate("/customer/register")}>Book and enter your address — we likely cover it.</button>
+            Not listed above? <button className="text-sky-500 underline" onClick={() => navigate("/customer/book")}>Book and enter your address — we likely cover it.</button>
           </p>
         </div>
       </section>
@@ -178,7 +178,7 @@ export default function LaundryNearMeNarnaul() {
         <div className="max-w-3xl mx-auto text-center text-white">
           <h2 className="text-3xl font-extrabold mb-4">Stop Searching — EZDRY Comes to You</h2>
           <p className="text-sky-100 mb-8">The easiest laundry in Narnaul. Book now and get ₹50 off your first order — code FIRST50.</p>
-          <Button onClick={() => navigate("/customer/register")}
+          <Button onClick={() => navigate("/customer/book")}
             className="h-14 bg-white text-sky-600 hover:bg-sky-50 rounded-2xl font-bold px-10 text-base">
             Book Pickup Now <ChevronRight className="w-4 h-4 ml-1" />
           </Button>

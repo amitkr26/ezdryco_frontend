@@ -117,7 +117,7 @@ export default function About() {
           <h2 className="text-3xl font-extrabold mb-4">Experience EZDRY in Narnaul</h2>
           <p className="text-sky-100 mb-8">Free pickup. Starting ₹199. ₹50 off your first order with code FIRST50.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button onClick={() => navigate("/customer/register")}
+            <Button onClick={() => navigate("/customer/book")}
               className="h-13 bg-white text-sky-600 hover:bg-sky-50 rounded-2xl font-bold px-8 text-base shadow-lg">
               Book Pickup <ChevronRight className="w-4 h-4 ml-1" />
             </Button>

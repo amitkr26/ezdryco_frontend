@@ -88,7 +88,7 @@ export default function BlogIndex() {
           <h2 className="text-2xl font-extrabold text-gray-900 mb-3">Ready to Try EZDRY in Narnaul?</h2>
           <p className="text-gray-500 mb-6">Professional laundry pickup across Narnaul. Starting ₹199.</p>
           <button
-            onClick={() => navigate("/customer/register")}
+            onClick={() => navigate("/customer/book")}
             className="h-12 bg-sky-500 hover:bg-sky-600 text-white rounded-2xl font-bold px-8 text-sm inline-flex items-center gap-2 transition-colors"
           >
             Book Your First Pickup <ChevronRight className="w-4 h-4" />

@@ -7,7 +7,7 @@
 ## ✅ COMPLETED TASKS
 
 ### Branding
-- [x] Replace all "Washify" UI text with "EZDRY"
+- [x] Replace all "EzDry" UI text with "EZDRY"
 - [x] Update Logo component fallback to "EZDRY"
 - [x] Update admin layout brand name
 - [x] Update notification templates
@@ -79,15 +79,15 @@ None currently — all public site tasks complete.
 
 ### P1 — Critical
 
-- [ ] **Session keys cleanup** — `washify_` localStorage keys should be renamed to `ezdry_` for brand consistency (requires coordinated change with session.ts + backend validation)
+- [ ] **Session keys cleanup** — `EzDry_` localStorage keys should be renamed to `ezdry_` for brand consistency (requires coordinated change with session.ts + backend validation)
 - [ ] **Fix business/orders.tsx TS error** — `Customer.address` property missing type
 - [ ] **Fix customer/select-items.tsx TS error** — `number` not assignable to `string | URL`
 - [ ] **Landing page FAQ section** — Not yet using FAQAccordion (landing.tsx has no FAQ currently)
 
 ### P2 — High Priority
 
-- [ ] **Customer dashboard branding** — Audit `/customer/*` pages for any remaining "Washify" text
-- [ ] **Business dashboard branding** — Audit `/business/*` pages for any remaining "Washify" text
+- [ ] **Customer dashboard branding** — Audit `/customer/*` pages for any remaining "EzDry" text
+- [ ] **Business dashboard branding** — Audit `/business/*` pages for any remaining "EzDry" text
 - [ ] **Blog content** — Add full article body content (currently blogs have single-sentence `content` field)
 - [ ] **Blog post detail page** — Render full article with proper heading structure + article body
 - [ ] **Laundry Near Me Narnaul FAQ** — Add FAQAccordion to laundry-near-me-narnaul.tsx

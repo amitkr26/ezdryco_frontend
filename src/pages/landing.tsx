@@ -86,7 +86,7 @@ export default function LandingPage() {
               </p>
               <div className="flex flex-col sm:flex-row gap-4">
                 <Button
-                  onClick={() => navigate("/customer/login")}
+                  onClick={() => navigate("/customer/book")}
                   className="h-14 bg-sky-500 hover:bg-sky-600 text-white rounded-2xl font-semibold text-base px-8 shadow-lg shadow-sky-200"
                 >
                   <Truck className="w-5 h-5 mr-2" />
@@ -214,7 +214,7 @@ export default function LandingPage() {
             ))}
           </div>
           <div className="text-center mt-12">
-            <Button onClick={() => navigate("/customer/login")} className="h-14 bg-sky-500 hover:bg-sky-600 text-white rounded-2xl font-semibold text-base px-10 shadow-lg shadow-sky-200">
+            <Button onClick={() => navigate("/customer/book")} className="h-14 bg-sky-500 hover:bg-sky-600 text-white rounded-2xl font-semibold text-base px-10 shadow-lg shadow-sky-200">
               Book Your First Pickup
               <ChevronRight className="w-5 h-5 ml-1" />
             </Button>
