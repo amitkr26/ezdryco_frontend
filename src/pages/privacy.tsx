@@ -33,7 +33,7 @@ const SECTIONS = [
   },
   {
     title: "Contact Us",
-    content: "Questions about your privacy or this policy? Reach us at: Email: dryco7718@gmail.com | Phone: +91 80533 17489 | Location: Narnaul, Mahendragarh, Haryana — 123001",
+    content: "Questions about your privacy or this policy? Reach us at: Email: dryco7718@gmail.com | Phone: +91 96718 69470 | Location: Narnaul, Mahendragarh, Haryana — 123001",
   },
 ];
 

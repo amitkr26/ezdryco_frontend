@@ -37,7 +37,7 @@ export default function Contact() {
         <div className="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
           <div className="space-y-5">
             {[
-              { icon: <Phone className="w-6 h-6" />, title: "Call or WhatsApp", value: "+91 80533 17489", note: "Mon–Sun, 8 AM – 8 PM", href: "tel:+918053317489" },
+              { icon: <Phone className="w-6 h-6" />, title: "Call or WhatsApp", value: "+91 96718 69470", note: "Mon–Sun, 8 AM – 8 PM", href: "tel:+919671869470" },
               { icon: <Mail className="w-6 h-6" />, title: "Email Us", value: "dryco7718@gmail.com", note: "Response within 24 hours", href: "mailto:dryco7718@gmail.com" },
               { icon: <MapPin className="w-6 h-6" />, title: "Service Area", value: "Narnaul, Haryana", note: "All localities within Narnaul city", href: null },
               { icon: <Clock className="w-6 h-6" />, title: "Operating Hours", value: "8 AM – 8 PM", note: "7 days a week, including holidays", href: null },

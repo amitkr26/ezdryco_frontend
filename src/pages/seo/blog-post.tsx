@@ -114,10 +114,7 @@ export default function BlogPost() {
         <div className="bg-sky-50 border border-sky-200 rounded-2xl p-5 mb-10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
           <div>
             <p className="font-bold text-gray-900">Need laundry or dry cleaning in Narnaul?</p>
-            <p className="text-sm text-gray-500">Free pickup. Starting ₹199. 24–48 hr return.</p>
-          </div>
-          <button onClick={() => navigate("/customer/book")}
-            className="bg-sky-500 hover:bg-sky-600 text-white rounded-xl px-5 py-2.5 text-sm font-semibold transition-colors whitespace-nowrap flex items-center gap-1">
+            <p className="text-sm text-gray-500">Doorstep pickup with fast turnaround. Transparent prices and easy booking.</p>
             Book Now <ChevronRight className="w-4 h-4" />
           </button>
         </div>

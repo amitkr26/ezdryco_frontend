@@ -9,7 +9,7 @@ import { FAQAccordion } from "@/components/FAQAccordion";
 const NEAR_ME_FAQS = [
   { q: "Do I need to pack my clothes before pickup?", a: "No, just keep them ready in any bag. Our rider will transfer them to a reusable EZDRY bag." },
   { q: "Can I schedule a pickup for a specific time?", a: "Yes, you can choose a convenient 2-hour time slot for pickup during booking." },
-  { q: "Is there a minimum order amount for free pickup?", a: "Yes, free pickup is available for orders above ₹199. Orders below this amount have a small convenience fee." }
+  { q: "Is there a minimum order amount for free pickup?", a: "Pickup is available throughout Narnaul. Any charges or convenience fees are shown clearly at checkout." }
 ];
 
 const LOCALITIES = [
@@ -28,7 +28,7 @@ export default function LaundryNearMeNarnaul() {
 
   useSEO({
     title: "Laundry Near Me in Narnaul | Pickup & Delivery at Your Door — EZDRY",
-    description: "Looking for laundry near you in Narnaul? EZDRY picks up from your door — no trip needed. Available across all Narnaul localities. Starting ₹199. Book now.",
+    description: "Looking for laundry near you in Narnaul? EZDRY picks up from your door — no trip needed. Available across all Narnaul localities with transparent pricing. Book now.",
     canonical: "https://ezdry.in/laundry-near-me-narnaul",
   });
 
@@ -54,7 +54,7 @@ export default function LaundryNearMeNarnaul() {
               </Button>
             </div>
             <div className="flex flex-wrap gap-5 mt-7">
-              {["No travel required", "We come to you", "Starting ₹199", "All of Narnaul covered"].map((t) => (
+              {["No travel required", "We come to you", "Transparent pricing", "All of Narnaul covered"].map((t) => (
                 <div key={t} className="flex items-center gap-1.5 text-sm text-gray-600">
                   <CheckCircle className="w-4 h-4 text-sky-500" /> {t}
                 </div>

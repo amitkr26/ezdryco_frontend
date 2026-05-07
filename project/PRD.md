@@ -8,7 +8,7 @@
 
 ## 1. Product Overview
 
-EZDRY is a laundry and dry cleaning booking platform that connects customers in Narnaul with verified local laundry service partners. Customers book a pickup online, a rider collects their clothes, the partner cleans them, and they are returned within 24–48 hours.
+EZDRY is a laundry and dry cleaning booking platform that connects customers in Narnaul with verified local laundry service partners. Customers book a pickup online, a rider collects their clothes, the partner cleans them, and they are returned with fast turnaround.
 
 The platform is a **multi-portal SaaS** with three distinct user types — Customer, Business (vendor/partner), and Admin — each with a dedicated login flow and dashboard.
 

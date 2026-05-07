@@ -24,8 +24,8 @@ const STEPS = [
   },
   {
     num: "04", icon: "🎁", title: "Delivered Fresh to Your Door",
-    desc: "Clean, folded or pressed clothes delivered back to your Narnaul address within 24–48 hours — neatly packed and sealed.",
-    detail: ["Delivered in sealed bags", "Folded or hung as requested", "24–48 hr standard turnaround", "Same-day express available"],
+    desc: "Clean, folded or pressed clothes delivered back to your Narnaul address with fast turnaround — neatly packed and sealed.",
+    detail: ["Delivered in sealed bags", "Folded or hung as requested", "Fast processing and delivery", "Same-day express available"],
   },
 ];
 
@@ -42,7 +42,7 @@ export default function HowItWorks() {
 
   useSEO({
     title: "How EZDRY Works — Laundry Pickup & Delivery in Narnaul",
-    description: "Book, pickup, clean, deliver — EZDRY's laundry service in Narnaul is 4 simple steps. Free doorstep pickup, WhatsApp tracking, 24-hr return.",
+    description: "Book, pickup, clean, deliver — EZDRY's laundry service in Narnaul is 4 simple steps. Free doorstep pickup, WhatsApp tracking, fast turnaround.",
     canonical: "https://ezdry.in/how-it-works",
   });
 

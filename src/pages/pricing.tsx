@@ -19,47 +19,11 @@ const PLANS = [
       "Dry Cleaning from ₹120/item",
       "Steam Iron from ₹10/item",
       "Free pickup above ₹299",
-      "24–48 hr turnaround",
+      "Fast turnaround",
       "WhatsApp tracking",
     ],
     cta: "Start Ordering",
-    highlight: false,
-  },
-  {
-    id: "weekly",
-    name: "Weekly Plan",
-    tagline: "Best for families",
-    badge: "Most Popular",
-    price: "₹999",
-    sub: "per month · weekly pickups",
-    features: [
-      "1 pickup per week (4/month)",
-      "Up to 5 kg per pickup",
-      "Wash & Fold included",
-      "10% discount on dry cleaning",
-      "Priority scheduling",
-      "Dedicated WhatsApp support",
-    ],
-    cta: "Get Weekly Plan",
     highlight: true,
-  },
-  {
-    id: "monthly",
-    name: "Monthly Bundle",
-    tagline: "Max savings for heavy users",
-    badge: "Best Value",
-    price: "₹1,799",
-    sub: "per month · unlimited pickups",
-    features: [
-      "Unlimited pickups",
-      "Up to 15 kg / month",
-      "Wash, dry clean & iron all included",
-      "Express same-day for free (2×/month)",
-      "Dedicated account manager",
-      "Guaranteed 24-hr turnaround",
-    ],
-    cta: "Get Monthly Bundle",
-    highlight: false,
   },
 ];
 
@@ -70,10 +34,10 @@ const PRICE_ITEMS = [
 ];
 
 const FAQS = [
-  { q: "Is there a minimum order value?", a: "Yes — ₹199 minimum. Free pickup applies on orders above ₹299." },
+  { q: "Is there a minimum order value?", a: "No. You can order anytime and pay per item. Free pickup applies on orders above ₹299." },
   { q: "How is per-kg pricing different from per-item?", a: "EZDRY charges per item, not per kg. This means light, expensive garments aren't overcharged and you always know the price upfront." },
   { q: "Are there hidden charges?", a: "No. All prices are listed here. The only add-on is Express Same-Day (+₹49 per order if booked before 10 AM)." },
-  { q: "Do plan prices include dry cleaning?", a: "The Weekly Plan covers Wash & Fold. Dry cleaning has a 10% discount on top. The Monthly Bundle includes all three services." },
+  { q: "Do plan prices include dry cleaning?", a: "Subscription plans are not shown here. All customer bookings are handled as pay-per-order services." },
 ];
 
 export default function Pricing() {

@@ -11,7 +11,6 @@ import { registerCustomer } from "@/lib/auth-api";
 const SELECTED_BUSINESS_STORAGE_KEY = "ezdry_selected_business";
 
 const PAYMENT_METHODS = [
-  { id: "upi", label: "UPI / Google Pay", icon: Smartphone, color: "text-green-600" },
   { id: "cod", label: "Cash on Delivery", icon: CreditCard, color: "text-orange-600" },
 ];
 
@@ -24,7 +23,7 @@ export default function Checkout() {
   const [couponCode, setCouponCode] = useState("");
   const [couponDiscount, setCouponDiscount] = useState(0);
   const [couponMsg, setCouponMsg] = useState("");
-  const [paymentMethod, setPaymentMethod] = useState("upi");
+  const [paymentMethod, setPaymentMethod] = useState("cod");
   const [submitError, setSubmitError] = useState("");
   const [customerError, setCustomerError] = useState("");
   const [submitting, setSubmitting] = useState(false);
@@ -379,7 +378,7 @@ export default function Checkout() {
           disabled={submitting || createOrder.isPending || createAddress.isPending}
           className="w-full h-14 bg-green-500 hover:bg-green-600 text-white rounded-2xl font-bold text-base"
         >
-          {submitting || createOrder.isPending || createAddress.isPending ? "Placing Order..." : `Pay ₹${total} & Place Order`}
+          {submitting || createOrder.isPending || createAddress.isPending ? "Placing Order..." : `Place Order • ₹${total}`}
         </Button>
       </div>
     </div>

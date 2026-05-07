@@ -86,7 +86,7 @@ export default function BlogIndex() {
       <section className="py-14 bg-sky-50">
         <div className="max-w-3xl mx-auto px-6 text-center">
           <h2 className="text-2xl font-extrabold text-gray-900 mb-3">Ready to Try EZDRY in Narnaul?</h2>
-          <p className="text-gray-500 mb-6">Professional laundry pickup across Narnaul. Starting ₹199.</p>
+          <p className="text-gray-500 mb-6">Professional laundry pickup across Narnaul with transparent pricing and fast delivery.</p>
           <button
             onClick={() => navigate("/customer/book")}
             className="h-12 bg-sky-500 hover:bg-sky-600 text-white rounded-2xl font-bold px-8 text-sm inline-flex items-center gap-2 transition-colors"

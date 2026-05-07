@@ -13,7 +13,7 @@ const SERVICES = [
     title: "Wash & Fold",
     tagline: "Everyday Laundry, Done Right",
     desc: "We pick up your everyday clothes, wash them with premium detergents, dry them perfectly, and fold them neatly. No more weekends wasted at the laundromat.",
-    features: ["Cotton, linen, synthetics", "Gentle machine wash", "Folded & bagged clean", "24–48 hr turnaround"],
+    features: ["Cotton, linen, synthetics", "Gentle machine wash", "Folded & bagged clean", "Fast pickup and delivery"],
     price: "From ₹25/item",
     items: [["Shirt / T-shirt", "₹25"], ["Trousers / Jeans", "₹35"], ["Salwar Kameez", "₹60"], ["Bedsheet", "₹70"], ["Towel", "₹30"]],
     color: "from-sky-400 to-sky-600",
@@ -130,7 +130,7 @@ export default function Services() {
       <section className="py-12 bg-gray-900">
         <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
           {[
-            { icon: <Clock className="w-6 h-6" />, label: "24–48 hr Turnaround" },
+            { icon: <Clock className="w-6 h-6" />, label: "Fast Turnaround" },
             { icon: <Shield className="w-6 h-6" />, label: "Insured Orders" },
             { icon: <Star className="w-6 h-6" />, label: "4.9★ Rated Service" },
             { icon: <CheckCircle className="w-6 h-6" />, label: "7 Days a Week" },
@@ -153,7 +153,7 @@ export default function Services() {
       <section className="py-16 px-6 bg-sky-500">
         <div className="max-w-3xl mx-auto text-center text-white">
           <h2 className="text-3xl font-extrabold mb-4">Book Your First Pickup in Narnaul</h2>
-          <p className="text-sky-100 mb-8">Free pickup. Starting ₹199. 24-hr turnaround. ₹50 off with code FIRST50.</p>
+          <p className="text-sky-100 mb-8">Free pickup available. Fast turnaround. ₹50 off with code FIRST50.</p>
           <Button onClick={() => navigate("/customer/book")}
             className="h-14 bg-white text-sky-600 hover:bg-sky-50 rounded-2xl font-bold px-10 text-base shadow-lg">
             Book Now — Free Pickup <ChevronRight className="w-4 h-4 ml-1" />

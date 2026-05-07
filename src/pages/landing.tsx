@@ -14,13 +14,13 @@ import { FAQAccordion } from "@/components/FAQAccordion";
 import PublicLayout from "@/layouts/public-layout";
 
 const LANDING_FAQS = [
-  { q: "Do you offer free pickup and delivery in Narnaul?", a: "Yes, we offer free doorstep pickup and delivery on all orders above ₹199 across Narnaul." },
-  { q: "How long does it take to get my clothes back?", a: "Standard wash and fold takes 24-48 hours. Dry cleaning may take up to 72 hours. We also offer express same-day service." },
+  { q: "Do you offer free pickup and delivery in Narnaul?", a: "Yes, we offer free doorstep pickup and delivery across Narnaul." },
+  { q: "How long does it take to get my clothes back?", a: "Most orders return the next business day. Express same-day service is available when you book early." },
   { q: "Is dry cleaning safe for expensive fabrics?", a: "Absolutely. We use professional-grade solvents and techniques suitable for silk, wool, and heavy embroidery." }
 ];
 
 const BRAND_NAME = import.meta.env.VITE_BRAND_NAME || "EZDRY";
-const CONTACT_PHONE = "+91 80533 17489";
+const CONTACT_PHONE = "+91 96718 69470";
 const CONTACT_EMAIL = "dryco7718@gmail.com";
 const SERVICE_AREA = "Narnaul";
 
@@ -50,7 +50,7 @@ export default function LandingPage() {
 
   useSEO({
     title: "Best Laundry & Dry Cleaning Service in Narnaul | Free Pickup — EZDRY",
-    description: "Book laundry, dry cleaning & ironing in Narnaul, Haryana. Free doorstep pickup. Clothes back in 24–48 hrs. Starting ₹199. EZDRY — Narnaul’s trusted laundry service.",
+    description: "Book laundry, dry cleaning & ironing in Narnaul, Haryana. Free doorstep pickup. Fast turnaround and trusted local service from EZDRY.",
   });
 
   // Auto-redirect logged in users to their home pages
@@ -106,7 +106,7 @@ export default function LandingPage() {
                   <CheckCircle className="w-4 h-4 text-sky-500" /> Free Pickup
                 </div>
                 <div className="flex items-center gap-1.5 text-sm text-gray-500">
-                  <CheckCircle className="w-4 h-4 text-sky-500" /> 24hr Delivery
+                  <CheckCircle className="w-4 h-4 text-sky-500" /> Fast Delivery
                 </div>
                 <div className="flex items-center gap-1.5 text-sm text-gray-500">
                   <CheckCircle className="w-4 h-4 text-sky-500" /> 100% Safe
@@ -152,7 +152,7 @@ export default function LandingPage() {
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-white">
             {[
-              { value: "50,000+", label: "Orders Completed" },
+              { value: "500+", label: "Orders Completed" },
               { value: "4.9★", label: "Average Rating" },
               { value: "24hrs", label: "Turnaround Time" },
               { value: "100%", label: "Satisfaction Rate" },
@@ -177,7 +177,7 @@ export default function LandingPage() {
             {SERVICES.map((s, i) => (
               <motion.div key={i} initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.1 }}
                 className="bg-sky-50 rounded-3xl p-6 text-center hover:shadow-md hover:-translate-y-1 transition-all border border-sky-100 cursor-pointer group"
-                onClick={() => navigate("/customer/login")}
+                onClick={() => navigate("/customer/book")}
               >
                 <div className="text-5xl mb-4">{s.icon}</div>
                 <h3 className="font-bold text-gray-900 text-lg mb-2">{s.title}</h3>
@@ -388,13 +388,13 @@ export default function LandingPage() {
             </div>
 
             <div className="flex items-center gap-3">
-              <a href="https://www.instagram.com/ezdryco/?hl=en" target="_blank" rel="noreferrer" aria-label="Instagram" className="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-sky-500 transition-colors">
+              <a href="https://www.instagram.com/ezdryco/" target="_blank" rel="noreferrer" aria-label="Instagram" className="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-sky-500 transition-colors">
                 <Instagram className="w-4 h-4" />
               </a>
-              <a href="https://www.linkedin.com/in/ezdry-co-8b4363405/?isSelfProfile=true" target="_blank" rel="noreferrer" aria-label="LinkedIn" className="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-sky-500 transition-colors">
+              <a href="https://www.linkedin.com/in/ezdry-co-8b4363405/" target="_blank" rel="noreferrer" aria-label="LinkedIn" className="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-sky-500 transition-colors">
                 <Linkedin className="w-4 h-4" />
               </a>
-              <a href="https://www.youtube.com/channel/UC1I0jxgunyc9rV9AF0feNqg" target="_blank" rel="noreferrer" aria-label="YouTube" className="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-sky-500 transition-colors">
+              <a href="https://www.youtube.com/@Dryco-h8i" target="_blank" rel="noreferrer" aria-label="YouTube" className="w-8 h-8 bg-gray-800 rounded-lg flex items-center justify-center hover:bg-sky-500 transition-colors">
                 <Youtube className="w-4 h-4" />
               </a>
             </div>

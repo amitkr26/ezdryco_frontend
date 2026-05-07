@@ -82,7 +82,7 @@ export default function About() {
               { icon: "🛡️", title: "Insured Orders", desc: "If anything is lost or damaged, we cover it. Every garment gets a unique tag. You're protected on every order." },
               { icon: "📱", title: "Real-Time Tracking", desc: "WhatsApp updates at pickup, during cleaning, and out for delivery. You always know where your clothes are." },
               { icon: "📍", title: "Local First", desc: "We serve Narnaul — not Delhi, not Gurgaon. Our partners are local businesses we've hand-selected in your area." },
-              { icon: "⚡", title: "Fast Turnaround", desc: "24–48 hour standard return. Same-day express available on weekdays if booked before 10 AM." },
+              { icon: "⚡", title: "Fast Turnaround", desc: "Reliable return times with same-day express available on weekdays if booked before 10 AM." },
             ].map((v) => (
               <div key={v.title} className="bg-white rounded-2xl p-6 border border-sky-100 shadow-sm">
                 <div className="text-3xl mb-4">{v.icon}</div>
@@ -115,7 +115,7 @@ export default function About() {
       <section className="py-16 px-6 bg-sky-500">
         <div className="max-w-3xl mx-auto text-center text-white">
           <h2 className="text-3xl font-extrabold mb-4">Experience EZDRY in Narnaul</h2>
-          <p className="text-sky-100 mb-8">Free pickup. Starting ₹199. ₹50 off your first order with code FIRST50.</p>
+          <p className="text-sky-100 mb-8">Free pickup available. ₹50 off your first order with code FIRST50.</p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button onClick={() => navigate("/customer/book")}
               className="h-13 bg-white text-sky-600 hover:bg-sky-50 rounded-2xl font-bold px-8 text-base shadow-lg">

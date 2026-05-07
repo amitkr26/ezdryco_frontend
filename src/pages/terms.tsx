@@ -12,7 +12,7 @@ const SECTIONS = [
   { title: "Liability Limitations", content: "EZDRY's liability for any lost, damaged, or delayed items is limited to the documented value of the garment, up to a maximum of ₹2,000 per item. Claims must be reported within 24 hours of delivery. EZDRY is not liable for pre-existing damage, color bleeding from customer's own garments mixed in loads, or damage from undisclosed fabric care requirements." },
   { title: "Prohibited Use", content: "You agree not to use EZDRY to: submit false or fraudulent orders; damage EZDRY's reputation or operations; interfere with our platform's technical functioning; or engage in any activity that violates applicable law. Violations may result in account suspension." },
   { title: "Governing Law", content: "These Terms are governed by the laws of India, specifically applicable laws in Haryana. Any disputes arising from these terms shall be subject to the jurisdiction of courts in Mahendragarh, Haryana." },
-  { title: "Contact", content: "Questions about these Terms? Contact us: Email: dryco7718@gmail.com | Phone: +91 80533 17489 | Address: Narnaul, Mahendragarh, Haryana — 123001" },
+  { title: "Contact", content: "Questions about these Terms? Contact us: Email: dryco7718@gmail.com | Phone: +91 96718 69470 | Address: Narnaul, Mahendragarh, Haryana — 123001" },
 ];
 
 export default function TermsOfUse() {

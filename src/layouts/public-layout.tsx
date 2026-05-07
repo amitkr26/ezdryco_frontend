@@ -176,13 +176,13 @@ export default function PublicLayout({ children }: PublicLayoutProps) {
             <div className="sm:col-span-2 lg:col-span-1">
               <EZDRYLogo size={34} textColor="text-white" className="mb-4" />
               <p className="text-gray-400 text-sm leading-relaxed mb-4">
-                Narnaul's professional laundry & dry cleaning service. Free doorstep pickup. Starting ₹199.
+                Narnaul's professional laundry & dry cleaning service. Free doorstep pickup and fast turnaround.
               </p>
               <p className="flex items-center gap-1.5 text-sky-400 text-sm font-medium">
                 <MapPin className="w-3.5 h-3.5 flex-shrink-0" /> Serving Narnaul, Haryana
               </p>
               <div className="mt-4 space-y-1 text-sm text-gray-500">
-                <p>📞 +91 80533 17489</p>
+                <p>📞 +91 96718 69470</p>
                 <p>✉️ dryco7718@gmail.com</p>
                 <p>🕗 Mon–Sun, 8 AM – 8 PM</p>
               </div>

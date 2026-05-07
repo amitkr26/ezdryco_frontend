@@ -8,8 +8,8 @@ import { FAQAccordion } from "@/components/FAQAccordion";
 
 const FAQS = [
   { q: "Which areas do you serve in Narnaul?", a: "We serve all localities within Narnaul including Old Narnaul, New Colony, Mandi area, Bus Stand area, and surrounding neighbourhoods in Mahendragarh district." },
-  { q: "How long does laundry take?", a: "Wash & fold: 24–48 hours. Dry cleaning: 48–72 hours. Same-day express available if booked before 10 AM." },
-  { q: "What is the minimum order?", a: "₹199. Most orders are ₹300–500 for a weekly household pickup." },
+  { q: "How long does laundry take?", a: "Wash & fold is usually ready next business day. Dry cleaning may take slightly longer. Same-day express is available if booked before 10 AM." },
+  { q: "What is the minimum order?", a: "There is no fixed minimum order amount. Prices are transparent and shown clearly during booking." },
   { q: "Is delivery free in Narnaul?", a: "Yes — delivery is free on orders above ₹299 within Narnaul." },
   { q: "Are my clothes safe?", a: "Yes. Every item is tagged with your unique order ID before processing. We've delivered hundreds of orders without a single lost-item complaint." },
   { q: "Do you operate on Sundays?", a: "Yes. We're open 7 days a week, 8 AM to 8 PM." },
@@ -27,7 +27,7 @@ export default function LaundryServiceNarnaul() {
 
   useSEO({
     title: "Best Laundry Service in Narnaul | Free Pickup & Delivery — EZDRY",
-    description: "Professional laundry, dry cleaning & ironing in Narnaul, Haryana. Free doorstep pickup. Trusted local partners. Clothes back in 24–48 hrs. Starting ₹199. Book EZDRY now.",
+    description: "Professional laundry, dry cleaning & ironing in Narnaul, Haryana. Free doorstep pickup. Trusted local partners. Fast turnaround and transparent pricing. Book EZDRY now.",
     canonical: "https://ezdry.in/laundry-service-narnaul",
   });
 
@@ -62,7 +62,7 @@ export default function LaundryServiceNarnaul() {
               </Button>
             </div>
             <div className="flex flex-wrap gap-5 mt-7">
-              {["Free pickup & delivery", "24–48 hr turnaround", "Starting ₹199", "7 days a week"].map((t) => (
+              {["Free pickup & delivery", "Fast turnaround", "Transparent pricing", "7 days a week"].map((t) => (
                 <div key={t} className="flex items-center gap-1.5 text-sm text-gray-600">
                   <CheckCircle className="w-4 h-4 text-sky-500" /> {t}
                 </div>
@@ -105,7 +105,7 @@ export default function LaundryServiceNarnaul() {
             {[
               { num: "1", icon: "📱", title: "Book Online", desc: "Pick your service and time slot on EZDRY. Takes 60 seconds — no app download needed." },
               { num: "2", icon: "🚴", title: "We Pickup From Your Door", desc: "Our Narnaul partner arrives at your address at the chosen time. Hand over clothes in any bag." },
-              { num: "3", icon: "✨", title: "Fresh Clothes Delivered", desc: "Cleaned, folded or pressed, and back at your Narnaul address within 24–48 hours." },
+              { num: "3", icon: "✨", title: "Fresh Clothes Delivered", desc: "Cleaned, folded or pressed, then returned to your Narnaul address quickly and carefully." },
             ].map((step) => (
               <div key={step.num} className="bg-white rounded-2xl p-6 shadow-sm border border-sky-100">
                 <div className="text-3xl mb-3">{step.icon}</div>
