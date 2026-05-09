@@ -46,6 +46,44 @@ export default defineConfig({
   build: {
     outDir: path.resolve(import.meta.dirname, "dist"),
     emptyOutDir: true,
+    // Performance optimizations
+    cssCodeSplit: true,
+    sourcemap: false,
+    rollupOptions: {
+      output: {
+        // Code splitting strategy
+        manualChunks: {
+          // Vendor libraries - rarely change, heavy caching
+          vendor: ["react", "react-dom", "framer-motion"],
+          // UI components - shared across routes
+          ui: ["@radix-ui/react-dialog", "@radix-ui/react-dropdown-menu", "lucide-react"],
+          // Form handling - only needed on specific routes
+          forms: ["react-hook-form", "@hookform/resolvers", "zod"],
+          // Data utilities
+          data: ["@tanstack/react-query"],
+        },
+        // Chunk naming for better debugging
+        chunkFileNames: "js/[name]-[hash].js",
+        entryFileNames: "js/[name]-[hash].js",
+        assetFileNames: (assetInfo) => {
+          const info = assetInfo.name || "";
+          if (/\.css$/.test(info)) {
+            return "css/[name]-[hash][extname]";
+          }
+          if (/\.woff2?$/.test(info) || /\.ttf$/.test(info)) {
+            return "fonts/[name]-[hash][extname]";
+          }
+          if (/\.(png|jpe?g|gif|svg|webp|avif)$/.test(info)) {
+            return "images/[name]-[hash][extname]";
+          }
+          return "assets/[name]-[hash][extname]";
+        },
+      },
+    },
+    // Optimize chunk size
+    chunkSizeWarningLimit: 500,
+    // Reduce asset inlining threshold
+    assetsInlineLimit: 4096, // 4KB
   },
   server: {
     port,

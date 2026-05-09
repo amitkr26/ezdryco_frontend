@@ -36,106 +36,103 @@ export default function LaundryNearMeNarnaul() {
     <PublicLayout>
 
       {/* HERO */}
-      <section className="bg-gradient-to-br from-sky-50 to-white py-16 px-5">
-        <div className="max-w-5xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-            <p className="text-sky-600 text-sm font-semibold mb-3">📍 Narnaul, Haryana — We Come to You</p>
-            <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 leading-tight mb-5">
-              Laundry Near Me<br />
-              <span className="text-sky-500">in Narnaul</span>
-            </h1>
-            <p className="text-gray-500 text-lg max-w-2xl mb-8">
-              Forget searching for "laundry near me" and walking somewhere with a bag of clothes. EZDRY is the laundry service that comes to you — pickup from your door, delivery back to your door, anywhere in Narnaul.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4">
-              <Button onClick={() => navigate("/customer/book")}
-                className="h-13 bg-sky-500 hover:bg-sky-600 text-white rounded-2xl font-bold px-8 text-base shadow-lg shadow-sky-200">
-                Book Pickup Near You <ChevronRight className="w-4 h-4 ml-1" />
-              </Button>
+      <section className="bg-gradient-to-br from-indigo-50/50 to-white py-24 px-6 overflow-hidden relative">
+        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-indigo-100/30 rounded-full blur-[100px] -z-0" />
+        <div className="max-w-7xl mx-auto relative z-10">
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}>
+             <div className="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm border border-indigo-100 mb-8">
+               <MapPin className="w-4 h-4 text-indigo-600" />
+               <span className="text-[10px] font-black uppercase tracking-widest text-gray-500">Service Coverage: All of Narnaul</span>
             </div>
-            <div className="flex flex-wrap gap-5 mt-7">
-              {["No travel required", "We come to you", "Transparent pricing", "All of Narnaul covered"].map((t) => (
-                <div key={t} className="flex items-center gap-1.5 text-sm text-gray-600">
-                  <CheckCircle className="w-4 h-4 text-sky-500" /> {t}
-                </div>
-              ))}
+            <h1 className="text-5xl md:text-7xl font-black text-gray-900 leading-[0.95] mb-8 tracking-tighter">
+              Laundry Near <br />
+              <span className="text-indigo-600">Me in Narnaul</span>
+            </h1>
+            <p className="text-gray-500 text-xl max-w-2xl mb-12 leading-relaxed font-medium">
+              The search for "laundry near me" ends here. We don't just exist in your neighborhood — we exist at your doorstep. 
+              Pickup, clean, and deliver — anywhere in Narnaul.
+            </p>
+            <div className="flex flex-col sm:flex-row gap-6">
+              <Button onClick={() => navigate("/customer/register")}
+                className="h-16 bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl font-black px-10 text-lg shadow-xl shadow-indigo-200">
+                Book Pickup Near You <ChevronRight className="w-4 h-4 ml-2" />
+              </Button>
             </div>
           </motion.div>
         </div>
       </section>
 
       {/* THE PROBLEM WE SOLVE */}
-      <section className="py-16 px-5 bg-white">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-extrabold text-gray-900 mb-5">The Problem With "Laundry Near Me" in Narnaul</h2>
-          <div className="grid md:grid-cols-3 gap-6">
+      <section className="py-24 px-6 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-4xl font-black text-gray-900 tracking-tight mb-16 text-center">Beyond the Local Dhobi</h2>
+          <div className="grid md:grid-cols-3 gap-8">
             {[
-              { icon: "😤", title: "Walk + Wait", desc: "Local dhobis require you to carry clothes there, wait days, and carry them back. Your time is worth more than that." },
-              { icon: "❓", title: "Inconsistent Quality", desc: "The quality and care varies day to day. There's no accountability when something goes wrong." },
-              { icon: "📵", title: "No Tracking", desc: "You don't know when it'll be ready. You call, you wait, you walk back — sometimes for nothing." },
+              { icon: "😫", title: "The Lugging Stress", desc: "No more carrying heavy bags through Narnaul's busy streets. We handle the heavy lifting." },
+              { icon: "🛡️", title: "Zero Quality Risk", desc: "Traditional dhobis lack accountability. We provide insured care and professional solvents." },
+              { icon: "📱", title: "Digital Visibility", desc: "Know exactly where your clothes are. From pickup to delivery, track it all on WhatsApp." },
             ].map((p) => (
-              <div key={p.title} className="bg-sky-50 rounded-2xl p-5 border border-sky-100">
-                <div className="text-3xl mb-3">{p.icon}</div>
-                <h3 className="font-bold text-gray-900 mb-2">{p.title}</h3>
-                <p className="text-sm text-gray-500">{p.desc}</p>
+              <div key={p.title} className="bg-neutral-50 rounded-[2.5rem] p-10 border border-transparent hover:border-indigo-100 transition-all group">
+                <div className="text-5xl mb-8 group-hover:scale-110 transition-transform">{p.icon}</div>
+                <h3 className="text-xl font-black text-gray-900 mb-4 tracking-tight">{p.title}</h3>
+                <p className="text-sm text-gray-400 font-bold leading-relaxed">{p.desc}</p>
               </div>
             ))}
           </div>
-          <div className="mt-8 bg-sky-500 rounded-2xl p-6 text-white text-center">
-            <p className="font-bold text-xl mb-2">EZDRY solves all three.</p>
-            <p className="text-sky-100 text-sm">We pick up from your door, clean professionally, and deliver back — with WhatsApp updates every step of the way.</p>
+          <div className="mt-16 bg-indigo-600 rounded-[3rem] p-12 text-white text-center shadow-2xl relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -mr-16 -mt-16 blur-2xl" />
+            <p className="text-3xl font-black mb-4 tracking-tight">The Modern Way to Laundry</p>
+            <p className="text-indigo-100 text-lg font-medium max-w-2xl mx-auto">Narnaul's families are switching to EZDRY for a stress-free experience. 7 days a week, 8 AM to 8 PM.</p>
           </div>
         </div>
       </section>
 
       {/* LOCALITIES */}
-      <section className="py-16 px-5 bg-sky-50">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-extrabold text-gray-900 mb-2">We Cover All of Narnaul</h2>
-          <p className="text-gray-500 mb-8">Wherever you are in Narnaul — we come to you.</p>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <section className="py-24 px-6 bg-neutral-50 rounded-[4rem] mx-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-black text-gray-900 tracking-tight">Serving Every Sector</h2>
+            <p className="text-gray-500 mt-2 text-lg font-medium">Our riders are active across all major Narnaul zones.</p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
             {LOCALITIES.map((loc) => (
-              <div key={loc.name} className="bg-white rounded-2xl p-4 border border-sky-100 shadow-sm">
-                <div className="flex items-center gap-2 mb-1">
-                  <MapPin className="w-4 h-4 text-sky-500 flex-shrink-0" />
-                  <p className="font-semibold text-gray-900 text-sm">{loc.name}</p>
+              <div key={loc.name} className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:border-indigo-600 transition-all group">
+                <div className="flex items-center gap-3 mb-2">
+                  <MapPin className="w-4 h-4 text-indigo-600 group-hover:scale-110 transition-transform" />
+                  <p className="font-black text-gray-900 text-sm tracking-tight">{loc.name}</p>
                 </div>
-                <p className="text-xs text-gray-500 pl-6">{loc.detail}</p>
+                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest pl-7">{loc.detail}</p>
               </div>
             ))}
           </div>
-          <p className="text-sm text-gray-400 mt-5">
-            Not listed above? <button className="text-sky-500 underline" onClick={() => navigate("/customer/book")}>Book and enter your address — we likely cover it.</button>
-          </p>
         </div>
       </section>
 
       {/* COMPARE */}
-      <section className="py-16 px-5 bg-white">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-extrabold text-gray-900 mb-8">EZDRY vs. Local Dhobi in Narnaul</h2>
-          <div className="overflow-x-auto rounded-2xl border border-sky-100 shadow-sm">
+      <section className="py-24 px-6 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-4xl font-black text-gray-900 mb-16 tracking-tight text-center">How We Compare</h2>
+          <div className="overflow-x-auto rounded-[2.5rem] border border-gray-100 shadow-2xl shadow-gray-200/50">
             <table className="w-full bg-white text-sm">
-              <thead className="bg-sky-500 text-white">
+              <thead className="bg-gray-900 text-white">
                 <tr>
-                  <th className="text-left px-5 py-3 font-semibold">Factor</th>
-                  <th className="text-center px-5 py-3 font-semibold">Local Dhobi</th>
-                  <th className="text-center px-5 py-3 font-semibold">EZDRY</th>
+                  <th className="text-left px-8 py-6 font-black uppercase tracking-widest text-[10px]">Factor</th>
+                  <th className="text-center px-8 py-6 font-black uppercase tracking-widest text-[10px] opacity-60">Traditional Dhobi</th>
+                  <th className="text-center px-8 py-6 font-black uppercase tracking-widest text-[10px] text-indigo-400">EZDRY Premium</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-sky-50">
+              <tbody className="divide-y divide-gray-100">
                 {[
-                  ["Travel Required", "Yes — you carry clothes", "No — we come to you"],
-                  ["Fixed Pricing", "Negotiated each time", "Listed publicly, fixed"],
-                  ["Dry Cleaning", "Usually not available", "Yes — professional"],
-                  ["Tracking", "None", "WhatsApp updates"],
-                  ["Availability", "Closed on festivals/randomly", "7 days a week"],
-                  ["Accountability", "None if clothes lost", "Fully insured orders"],
+                  ["Travel Logistics", "You carry the load", "We pickup from door"],
+                  ["Pricing Model", "Negotiation-based", "Fixed, public rates"],
+                  ["Service Scope", "Basic washing only", "Professional Dry Cleaning"],
+                  ["Order Tracking", "None (Call & Ask)", "WhatsApp Real-time"],
+                  ["Safety Net", "No guarantee", "Fully Insured"],
                 ].map(([factor, dhobi, ezdry]) => (
-                  <tr key={factor} className="hover:bg-sky-50">
-                    <td className="px-5 py-3 font-medium text-gray-900">{factor}</td>
-                    <td className="px-5 py-3 text-center text-gray-500">{dhobi}</td>
-                    <td className="px-5 py-3 text-center text-sky-600 font-medium">{ezdry}</td>
+                  <tr key={factor} className="hover:bg-indigo-50/30 transition-colors">
+                    <td className="px-8 py-6 font-black text-gray-900 tracking-tight">{factor}</td>
+                    <td className="px-8 py-6 text-center text-gray-400 font-bold">{dhobi}</td>
+                    <td className="px-8 py-6 text-center text-indigo-600 font-black italic">{ezdry}</td>
                   </tr>
                 ))}
               </tbody>
@@ -145,43 +142,43 @@ export default function LaundryNearMeNarnaul() {
       </section>
 
       {/* HOW TO BOOK */}
-      <section className="py-16 px-5 bg-sky-50">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-extrabold text-gray-900 mb-8">How to Book Laundry Near You in Narnaul</h2>
-          <div className="grid sm:grid-cols-4 gap-6">
+      <section className="py-24 px-6 bg-neutral-50 border-t border-gray-100">
+        <div className="max-w-7xl mx-auto">
+          <h2 className="text-4xl font-black text-gray-900 mb-20 tracking-tight text-center">Fast-Track Your Booking</h2>
+          <div className="grid sm:grid-cols-4 gap-12">
             {[
-              { num: "1", icon: "📱", title: "Open EZDRY", desc: "Go to ezdry.in or open the app." },
-              { num: "2", icon: "🏠", title: "Enter Address", desc: "Your Narnaul address — any area, any lane." },
-              { num: "3", icon: "🧺", title: "Select Service", desc: "Wash, dry clean, iron, or express." },
-              { num: "4", icon: "🎁", title: "Done!", desc: "We pickup, clean, and deliver back. You relax." },
+              { num: "01", icon: "📱", title: "Open EZDRY", desc: "No apps. Just ezdry.in on your phone." },
+              { num: "02", icon: "🏠", title: "Set Address", desc: "Enter any lane or colony in Narnaul." },
+              { num: "03", icon: "🧺", title: "Pick Service", desc: "Choose care type & time slot." },
+              { num: "04", icon: "🎁", title: "Relax", desc: "Rider arrives. Clothes cleaned. Returned." },
             ].map((step) => (
-              <div key={step.num} className="text-center">
-                <div className="text-3xl mb-2">{step.icon}</div>
-                <div className="w-7 h-7 bg-sky-500 rounded-full text-white text-sm font-bold flex items-center justify-center mx-auto mb-2">{step.num}</div>
-                <h3 className="font-bold text-gray-900 mb-1 text-sm">{step.title}</h3>
-                <p className="text-xs text-gray-500">{step.desc}</p>
+              <div key={step.num} className="text-center group">
+                <div className="text-5xl mb-8 group-hover:scale-110 transition-transform">{step.icon}</div>
+                <div className="text-xs font-black text-indigo-100 mb-2 tracking-widest">{step.num}</div>
+                <h3 className="text-lg font-black text-gray-900 mb-2 tracking-tight">{step.title}</h3>
+                <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest leading-relaxed px-4">{step.desc}</p>
               </div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* FAQ */}
       <FAQAccordion
         items={NEAR_ME_FAQS}
-        heading="Frequently Asked Questions"
+        heading="Local Logistics Intelligence"
         bg="bg-white"
       />
 
-      {/* CTA */}
-      <section className="py-16 px-5 bg-sky-500">
-        <div className="max-w-3xl mx-auto text-center text-white">
-          <h2 className="text-3xl font-extrabold mb-4">Stop Searching — EZDRY Comes to You</h2>
-          <p className="text-sky-100 mb-8">The easiest laundry in Narnaul. Book now and get ₹50 off your first order — code FIRST50.</p>
-          <Button onClick={() => navigate("/customer/book")}
-            className="h-14 bg-white text-sky-600 hover:bg-sky-50 rounded-2xl font-bold px-10 text-base">
-            Book Pickup Now <ChevronRight className="w-4 h-4 ml-1" />
-          </Button>
+      {/* FINAL CTA */}
+      <section className="py-24 px-6">
+        <div className="max-w-5xl mx-auto bg-indigo-600 rounded-[3.5rem] p-16 text-center text-white relative overflow-hidden shadow-2xl">
+           <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32 blur-3xl" />
+           <h2 className="text-4xl md:text-5xl font-black mb-8 tracking-tight">Stop Searching. Start Booking.</h2>
+           <p className="text-indigo-100 text-lg mb-12 max-w-xl mx-auto font-medium">The most convenient laundry service in Narnaul is just 60 seconds away.</p>
+           <Button onClick={() => navigate("/customer/register")}
+             className="h-20 bg-white text-indigo-600 hover:bg-indigo-50 rounded-3xl font-black px-12 text-xl shadow-2xl shadow-indigo-900/20">
+             Schedule My Pickup <ChevronRight className="w-5 h-5 ml-2" />
+           </Button>
         </div>
       </section>
 

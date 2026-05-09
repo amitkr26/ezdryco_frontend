@@ -29,42 +29,49 @@ export default function LaundryServiceNarnaul() {
     title: "Best Laundry Service in Narnaul | Free Pickup & Delivery — EZDRY",
     description: "Professional laundry, dry cleaning & ironing in Narnaul, Haryana. Free doorstep pickup. Trusted local partners. Fast turnaround and transparent pricing. Book EZDRY now.",
     canonical: "https://ezdry.in/laundry-service-narnaul",
+    // AEO/GEO: FAQ schema for AI search visibility and featured snippets
+    faqs: FAQS.map(f => ({ question: f.q, answer: f.a })),
   });
 
   return (
     <PublicLayout>
 
       {/* HERO */}
-      <section className="bg-gradient-to-br from-sky-50 to-white py-16 px-5">
-        <div className="max-w-5xl mx-auto">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-            <p className="text-sky-600 text-sm font-semibold mb-3">📍 Narnaul, Haryana — Doorstep Pickup & Delivery</p>
-            <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 leading-tight mb-5">
-              Laundry & Dry Cleaning<br />
-              <span className="text-sky-500">Service in Narnaul</span>
+      <section className="bg-gradient-to-br from-indigo-50/50 to-white py-24 px-6 overflow-hidden relative">
+        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-indigo-100/30 rounded-full blur-[100px] -z-0" />
+        <div className="max-w-7xl mx-auto relative z-10">
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}>
+            <div className="inline-flex items-center gap-2 bg-white px-4 py-2 rounded-full shadow-sm border border-indigo-100 mb-8">
+               <MapPin className="w-4 h-4 text-indigo-600" />
+               <span className="text-[10px] font-black uppercase tracking-widest text-gray-500">Narnaul, Haryana — Serving All Localities</span>
+            </div>
+            <h1 className="text-5xl md:text-7xl font-black text-gray-900 leading-[0.95] mb-8 tracking-tighter">
+              Laundry & Dry <br />
+              <span className="text-indigo-600">Cleaning Narnaul</span>
             </h1>
-            <p className="text-gray-500 text-lg max-w-2xl mb-8">
-              Narnaul's most reliable laundry service — wash & fold, dry cleaning, ironing, and same-day express. Book online, get free doorstep pickup, and receive fresh clothes within 24 hours.
+            <p className="text-gray-500 text-xl max-w-2xl mb-12 leading-relaxed font-medium">
+              Narnaul's most reliable cloth spa — wash & fold, premium dry cleaning, and expert ironing. 
+              Get free doorstep pickup and express delivery within 24 hours.
             </p>
-            <div className="flex flex-col sm:flex-row gap-4">
+            <div className="flex flex-col sm:flex-row gap-6">
               <Button
-                onClick={() => navigate("/customer/book")}
-                className="h-13 bg-sky-500 hover:bg-sky-600 text-white rounded-2xl font-bold px-8 text-base shadow-lg shadow-sky-200"
+                onClick={() => navigate("/customer/register")}
+                className="h-16 bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl font-black px-10 text-lg shadow-xl shadow-indigo-200"
               >
-                Book Narnaul Pickup <ChevronRight className="w-4 h-4 ml-1" />
+                Book Narnaul Pickup <ChevronRight className="w-4 h-4 ml-2" />
               </Button>
               <Button
                 onClick={() => navigate("/dry-cleaning-narnaul")}
                 variant="outline"
-                className="h-13 border-sky-200 text-sky-600 hover:bg-sky-50 rounded-2xl font-semibold px-8 text-base"
+                className="h-16 border-gray-200 text-gray-700 hover:bg-gray-50 rounded-2xl font-black px-10 text-lg"
               >
-                Dry Cleaning Narnaul
+                View Dry Cleaning Rates
               </Button>
             </div>
-            <div className="flex flex-wrap gap-5 mt-7">
-              {["Free pickup & delivery", "Fast turnaround", "Transparent pricing", "7 days a week"].map((t) => (
-                <div key={t} className="flex items-center gap-1.5 text-sm text-gray-600">
-                  <CheckCircle className="w-4 h-4 text-sky-500" /> {t}
+            <div className="flex flex-wrap gap-8 mt-12 border-t border-gray-100 pt-10">
+              {["Free pickup & delivery", "24hr Fast Return", "Fixed Pricing", "7 Days Open"].map((t) => (
+                <div key={t} className="flex items-center gap-2 text-[11px] font-black uppercase tracking-widest text-gray-400">
+                  <CheckCircle className="w-4 h-4 text-indigo-600" /> {t}
                 </div>
               ))}
             </div>
@@ -73,23 +80,32 @@ export default function LaundryServiceNarnaul() {
       </section>
 
       {/* SERVICES */}
-      <section className="py-16 px-5 bg-white">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-extrabold text-gray-900 mb-2">Our Services in Narnaul</h2>
-          <p className="text-gray-500 mb-10">Everything your wardrobe needs — picked up and delivered across Narnaul.</p>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+      <section className="py-24 px-6 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+            <div>
+              <h2 className="text-4xl font-black text-gray-900 tracking-tight">Professional Care for Narnaul</h2>
+              <p className="text-gray-500 mt-2 text-lg font-medium">Everything your wardrobe needs — picked up and delivered.</p>
+            </div>
+            <Button onClick={() => navigate("/pricing")} variant="ghost" className="text-indigo-600 font-black uppercase tracking-widest text-xs hover:bg-indigo-50">
+               Full Price List →
+            </Button>
+          </div>
+          
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
             {SERVICES.map((s, i) => (
               <motion.div
                 key={i}
-                initial={{ opacity: 0, y: 15 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: i * 0.08 }}
-                className="bg-sky-50 rounded-2xl p-5 border border-sky-100 hover:shadow-md transition-shadow cursor-pointer text-center"
+                transition={{ delay: i * 0.05 }}
+                className="bg-neutral-50 rounded-[2.5rem] p-10 border border-transparent hover:border-indigo-100 hover:bg-white hover:shadow-2xl transition-all cursor-pointer group"
                 onClick={() => navigate(s.href)}
               >
-                <div className="text-4xl mb-3">{s.icon}</div>
-                <h3 className="font-bold text-gray-900 mb-1">{s.title}</h3>
-                <p className="text-sm text-gray-500">{s.desc}</p>
+                <div className="text-5xl mb-8 group-hover:scale-110 transition-transform">{s.icon}</div>
+                <h3 className="text-xl font-black text-gray-900 mb-3 tracking-tight">{s.title}</h3>
+                <p className="text-sm text-gray-500 leading-relaxed font-medium mb-6">{s.desc}</p>
+                <div className="h-1.5 w-12 bg-indigo-100 rounded-full group-hover:w-full group-hover:bg-indigo-600 transition-all duration-500" />
               </motion.div>
             ))}
           </div>
@@ -97,21 +113,23 @@ export default function LaundryServiceNarnaul() {
       </section>
 
       {/* HOW IT WORKS */}
-      <section className="py-16 px-5 bg-sky-50">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-extrabold text-gray-900 mb-2">How It Works in Narnaul</h2>
-          <p className="text-gray-500 mb-10">Three steps to fresh clothes — no trip required.</p>
-          <div className="grid sm:grid-cols-3 gap-8">
+      <section className="py-24 px-6 bg-indigo-600 rounded-[4rem] mx-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-20">
+            <h2 className="text-4xl font-black text-white tracking-tight">The 3-Step Freshness Cycle</h2>
+            <p className="text-indigo-100 mt-2 text-lg font-medium">Streamlined laundry management for Narnaul residents.</p>
+          </div>
+          <div className="grid sm:grid-cols-3 gap-12">
             {[
-              { num: "1", icon: "📱", title: "Book Online", desc: "Pick your service and time slot on EZDRY. Takes 60 seconds — no app download needed." },
-              { num: "2", icon: "🚴", title: "We Pickup From Your Door", desc: "Our Narnaul partner arrives at your address at the chosen time. Hand over clothes in any bag." },
-              { num: "3", icon: "✨", title: "Fresh Clothes Delivered", desc: "Cleaned, folded or pressed, then returned to your Narnaul address quickly and carefully." },
+              { num: "01", icon: "📱", title: "Instant Booking", desc: "Select your garments and pickup time on our mobile-friendly site. No app download required." },
+              { num: "02", icon: "🚴", title: "Safe Collection", desc: "Our verified Narnaul rider collects your bag from your doorstep with contactless handoff." },
+              { num: "03", icon: "✨", title: "Premium Delivery", desc: "Cleaned, pressed, and neatly packed clothes returned to you within the promised window." },
             ].map((step) => (
-              <div key={step.num} className="bg-white rounded-2xl p-6 shadow-sm border border-sky-100">
-                <div className="text-3xl mb-3">{step.icon}</div>
-                <div className="w-7 h-7 bg-sky-500 rounded-full text-white text-sm font-bold flex items-center justify-center mb-3">{step.num}</div>
-                <h3 className="font-bold text-gray-900 mb-1">{step.title}</h3>
-                <p className="text-sm text-gray-500">{step.desc}</p>
+              <div key={step.num} className="bg-indigo-500/30 backdrop-blur-md rounded-[2.5rem] p-10 border border-white/10 relative">
+                <div className="text-indigo-100 font-black text-7xl opacity-10 absolute top-6 right-8">{step.num}</div>
+                <div className="text-4xl mb-6">{step.icon}</div>
+                <h3 className="text-xl font-black text-white mb-3 tracking-tight">{step.title}</h3>
+                <p className="text-sm text-indigo-100 font-medium leading-relaxed">{step.desc}</p>
               </div>
             ))}
           </div>
@@ -119,84 +137,110 @@ export default function LaundryServiceNarnaul() {
       </section>
 
       {/* WHY EZDRY */}
-      <section className="py-16 px-5 bg-white">
-        <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-extrabold text-gray-900 mb-5">Why Narnaul Chooses EZDRY</h2>
-          <div className="grid md:grid-cols-2 gap-10">
-            <p className="text-gray-600 leading-relaxed">
-              Narnaul's traditional dhobi network is reliable for everyday clothes — but inconsistent for valuable garments, unpredictable during festivals, and unavailable for proper dry cleaning. EZDRY brings professional laundry with fixed pricing, verified partners, and WhatsApp tracking to every home in Narnaul.
-            </p>
-            <div className="space-y-4">
-              {[
-                { title: "Transparent Pricing", desc: "Fixed rates listed publicly — ₹25/shirt wash. No surprise bills." },
-                { title: "Verified Local Partners", desc: "Every laundry shop on EZDRY passes our quality check before going live." },
-                { title: "WhatsApp Tracking", desc: "Updates at pickup, during cleaning, and out for delivery. Real humans respond." },
-                { title: "Insured Orders", desc: "If anything is lost or damaged, we cover it. Every item gets a unique tag." },
-              ].map((item) => (
-                <div key={item.title} className="flex gap-3">
-                  <CheckCircle className="w-5 h-5 text-sky-500 mt-0.5 flex-shrink-0" />
-                  <div>
-                    <p className="font-semibold text-gray-900">{item.title}</p>
-                    <p className="text-sm text-gray-500">{item.desc}</p>
+      <section className="py-24 px-6 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid lg:grid-cols-2 gap-20 items-center">
+            <div>
+              <h2 className="text-4xl font-black text-gray-900 mb-8 tracking-tight leading-none">Why Narnaul's Elite <br /> Trust EZDRY</h2>
+              <p className="text-gray-500 text-lg leading-relaxed font-medium mb-10">
+                Traditional laundry often lacks the precision delicate garments require. We combine local expertise with modern technology to provide a "Cloth Spa" experience that preserves your wardrobe for years.
+              </p>
+              <div className="space-y-6">
+                {[
+                  { title: "Transparency First", desc: "Real-time updates and fixed per-item pricing. No hidden costs." },
+                  { title: "Expert Dry Cleaning", desc: "Gentle solvents and precise heat control for silks and woolens." },
+                  { title: "Local Partner Network", desc: "Only the top-rated laundry shops in Narnaul are part of EZDRY." },
+                ].map((item) => (
+                  <div key={item.title} className="flex gap-4">
+                    <div className="w-6 h-6 bg-indigo-100 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                      <CheckCircle className="w-4 h-4 text-indigo-600" />
+                    </div>
+                    <div>
+                      <p className="font-black text-gray-900 tracking-tight">{item.title}</p>
+                      <p className="text-sm text-gray-400 font-bold">{item.desc}</p>
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
+            </div>
+            <div className="bg-indigo-50 rounded-[3rem] p-12 border border-indigo-100">
+               <div className="space-y-8">
+                  <div className="flex items-center gap-6">
+                     <div className="w-20 h-20 bg-white rounded-3xl flex items-center justify-center shadow-xl shadow-indigo-100 text-3xl">🛡️</div>
+                     <div>
+                        <p className="text-xl font-black text-gray-900 tracking-tight">100% Insured</p>
+                        <p className="text-sm text-gray-400 font-bold">Every garment is covered by our safety guarantee.</p>
+                     </div>
+                  </div>
+                  <div className="flex items-center gap-6">
+                     <div className="w-20 h-20 bg-white rounded-3xl flex items-center justify-center shadow-xl shadow-indigo-100 text-3xl">🚀</div>
+                     <div>
+                        <p className="text-xl font-black text-gray-900 tracking-tight">Express Advantage</p>
+                        <p className="text-sm text-gray-400 font-bold">Same-day service available for emergency needs.</p>
+                     </div>
+                  </div>
+                  <div className="flex items-center gap-6">
+                     <div className="w-20 h-20 bg-white rounded-3xl flex items-center justify-center shadow-xl shadow-indigo-100 text-3xl">🌍</div>
+                     <div>
+                        <p className="text-xl font-black text-gray-900 tracking-tight">Eco-Friendly</p>
+                        <p className="text-sm text-gray-400 font-bold">We use non-toxic detergents safe for you and Narnaul.</p>
+                     </div>
+                  </div>
+               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* PRICING */}
-      <section className="py-16 px-5 bg-sky-50">
+      {/* PRICING TABLE */}
+      <section className="py-24 px-6 bg-neutral-50 border-y border-gray-100">
         <div className="max-w-5xl mx-auto">
-          <h2 className="text-3xl font-extrabold text-gray-900 mb-2">Laundry Prices in Narnaul</h2>
-          <p className="text-gray-500 mb-8">Fixed per-item pricing. No hidden charges. Free delivery above ₹299.</p>
-          <div className="overflow-x-auto rounded-2xl border border-sky-100 shadow-sm">
-            <table className="w-full bg-white text-sm">
-              <thead className="bg-sky-500 text-white">
-                <tr>
-                  <th className="text-left px-5 py-3 font-semibold">Service</th>
-                  <th className="text-left px-5 py-3 font-semibold">Starting Price</th>
-                  <th className="text-left px-5 py-3 font-semibold">Popular Items</th>
-                </tr>
-              </thead>
-              <tbody className="divide-y divide-sky-50">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-black text-gray-900 tracking-tight">Fair & Fixed Rates</h2>
+            <p className="text-gray-500 mt-2 font-bold uppercase tracking-widest text-[10px]">No Surprises. No Hidden Fees.</p>
+          </div>
+          <div className="bg-white rounded-[2.5rem] shadow-xl shadow-gray-200/50 overflow-hidden border border-gray-100">
+            <div className="grid grid-cols-3 bg-indigo-600 p-6 text-white">
+              <div className="text-[10px] font-black uppercase tracking-widest opacity-80">Service Category</div>
+              <div className="text-[10px] font-black uppercase tracking-widest opacity-80">Starting Rate</div>
+              <div className="text-[10px] font-black uppercase tracking-widest opacity-80">Popular Examples</div>
+            </div>
+            <div className="divide-y divide-gray-100">
                 {[
-                  ["Wash & Fold", "₹25/item", "Shirt ₹25 · Trousers ₹35 · Bedsheet ₹70"],
-                  ["Dry Cleaning", "₹120/item", "Suit ₹280 · Saree ₹200 · Blazer ₹180"],
-                  ["Ironing", "₹10/item", "Shirt ₹12 · Trousers ₹15 · Saree ₹35"],
-                  ["Express Same-Day", "+₹49/order", "Book before 10 AM · Return by 7 PM"],
+                  ["Wash & Fold", "₹25/item", "Shirts, T-shirts, Jeans"],
+                  ["Dry Cleaning", "₹120/item", "Suits, Sarees, Blazers"],
+                  ["Steam Ironing", "₹10/item", "Formal Shirts, Trousers"],
+                  ["Bulk/Bedding", "₹80/piece", "Blankets, Curtains, Rugs"],
                 ].map(([svc, price, ex]) => (
-                  <tr key={svc} className="hover:bg-sky-50 transition-colors">
-                    <td className="px-5 py-3 font-medium text-gray-900">{svc}</td>
-                    <td className="px-5 py-3 text-sky-600 font-semibold">{price}</td>
-                    <td className="px-5 py-3 text-gray-500">{ex}</td>
-                  </tr>
+                  <div key={svc} className="grid grid-cols-3 p-8 hover:bg-indigo-50/30 transition-colors">
+                    <div className="font-black text-gray-900">{svc}</div>
+                    <div className="font-black text-indigo-600">{price}</div>
+                    <div className="text-sm font-bold text-gray-400 italic">{ex}</div>
+                  </div>
                 ))}
-              </tbody>
-            </table>
+            </div>
           </div>
         </div>
       </section>
 
       <FAQAccordion
         items={FAQS}
-        heading="Frequently Asked Questions — Narnaul Laundry"
+        heading="Narnaul Laundry Intelligence"
         bg="bg-white"
       />
 
-      {/* CTA */}
-      <section className="py-16 px-5 bg-sky-500">
-        <div className="max-w-3xl mx-auto text-center text-white">
-          <h2 className="text-3xl font-extrabold mb-4">Book Your Narnaul Laundry Pickup Today</h2>
-          <p className="text-sky-100 mb-8">Join hundreds of Narnaul customers getting fresh clothes at their door. First order ₹50 off — code FIRST50.</p>
-          <Button onClick={() => navigate("/customer/book")}
-            className="h-14 bg-white text-sky-600 hover:bg-sky-50 rounded-2xl font-bold px-10 text-base shadow-lg">
-            Book Now — Free Pickup <ChevronRight className="w-4 h-4 ml-1" />
-          </Button>
+      {/* FINAL CTA */}
+      <section className="py-24 px-6">
+        <div className="max-w-5xl mx-auto bg-indigo-600 rounded-[3.5rem] p-16 text-center text-white relative overflow-hidden shadow-2xl">
+           <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32 blur-3xl" />
+           <h2 className="text-4xl md:text-5xl font-black mb-8 tracking-tight">Ready for a Cleaner Wardrobe?</h2>
+           <p className="text-indigo-100 text-lg mb-12 max-w-xl mx-auto font-medium">Join 500+ happy Narnaul families. Your first order is backed by our quality guarantee.</p>
+           <Button onClick={() => navigate("/customer/register")}
+             className="h-20 bg-white text-indigo-600 hover:bg-indigo-50 rounded-3xl font-black px-12 text-xl shadow-2xl shadow-indigo-900/20">
+             Start Your Order <ChevronRight className="w-5 h-5 ml-2" />
+           </Button>
         </div>
       </section>
-
 
     </PublicLayout>
   );

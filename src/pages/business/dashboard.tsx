@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
-import { ShoppingCart, TrendingUp, Clock, Users, ArrowUpRight, Pencil, Save } from "lucide-react";
+import { ShoppingCart, TrendingUp, Clock, Users, ArrowUpRight, Pencil, Save, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -11,11 +11,11 @@ import { getCurrentBusiness, updateBusinessSession } from "@/lib/session";
 import { updateBusinessProfile } from "@/lib/profile-api";
 
 const STATUS_COLORS: Record<string, string> = {
-  requested: "bg-yellow-100 text-yellow-700",
-  accepted: "bg-sky-100 text-sky-700",
+  requested: "bg-amber-100 text-amber-700",
+  accepted: "bg-indigo-100 text-indigo-700",
   picked_up: "bg-blue-100 text-blue-700",
-  cleaning: "bg-cyan-100 text-cyan-700",
-  out_for_delivery: "bg-indigo-100 text-indigo-700",
+  cleaning: "bg-violet-100 text-violet-700",
+  out_for_delivery: "bg-indigo-600 text-white shadow-sm",
   delivered: "bg-emerald-100 text-emerald-700",
   cancelled: "bg-red-100 text-red-700",
 };
@@ -49,7 +49,7 @@ export default function BusinessDashboard() {
   const handleSaveBusinessProfile = async () => {
     if (!businessId) return;
     if (!profileForm.name.trim() || !profileForm.address.trim() || !profileForm.city.trim()) {
-      setProfileMessage("Shop name, address aur city required hain.");
+      setProfileMessage("Shop name, address and city are required.");
       return;
     }
 
@@ -73,166 +73,237 @@ export default function BusinessDashboard() {
         city: profileForm.city.trim(),
       });
       setEditingProfile(false);
-      setProfileMessage("Business profile updated.");
+      setProfileMessage("Business profile updated successfully.");
     } catch (error) {
-      setProfileMessage(error instanceof Error ? error.message : "Business profile update failed.");
+      setProfileMessage(error instanceof Error ? error.message : "Profile update failed.");
     } finally {
       setProfileSaving(false);
     }
   };
 
   const KPI_CARDS = [
-    { label: "Total Orders", value: stats?.totalOrders ?? 0, icon: ShoppingCart, color: "text-sky-600", bg: "bg-sky-50", trend: `${stats?.ordersToday ?? 0} today` },
+    { label: "Total Orders", value: stats?.totalOrders ?? 0, icon: ShoppingCart, color: "text-indigo-600", bg: "bg-indigo-50", trend: `${stats?.ordersToday ?? 0} new today` },
     { label: "Revenue Today", value: `₹${stats?.revenueToday?.toFixed(0) ?? "0"}`, icon: TrendingUp, color: "text-emerald-600", bg: "bg-emerald-50", trend: `₹${stats?.revenueThisMonth?.toFixed(0) ?? "0"} this month` },
-    { label: "Pending", value: stats?.pendingPickups ?? 0, icon: Clock, color: "text-orange-600", bg: "bg-orange-50", trend: "Needs action" },
-    { label: "Customers", value: stats?.totalCustomers ?? 0, icon: Users, color: "text-purple-600", bg: "bg-purple-50", trend: `${stats?.activeRiders ?? 0} active riders` },
+    { label: "Pending", value: stats?.pendingPickups ?? 0, icon: Clock, color: "text-amber-600", bg: "bg-amber-50", trend: "Needs attention" },
+    { label: "Customers", value: stats?.totalCustomers ?? 0, icon: Users, color: "text-violet-600", bg: "bg-violet-50", trend: `${stats?.activeRiders ?? 0} riders online` },
   ];
 
   return (
-    <div className="p-3 sm:p-4 space-y-4 max-w-6xl mx-auto">
-      <div className="pt-1">
-        <h2 className="text-xl sm:text-2xl font-bold text-gray-900">Dashboard</h2>
-        <p className="text-gray-400 text-sm">Your business overview</p>
+    <div className="space-y-8 pb-12">
+      <div>
+        <h2 className="text-2xl font-black text-gray-900 tracking-tight">Business Overview</h2>
+        <p className="text-gray-400 text-sm font-medium">Real-time performance metrics</p>
       </div>
 
-      <Card className="border border-sky-100 shadow-sm rounded-2xl">
-        <CardHeader className="pb-2 px-4 pt-4 flex flex-row items-center justify-between space-y-0">
-          <CardTitle className="text-sm font-semibold text-gray-700">Business Profile</CardTitle>
-          <button onClick={() => setEditingProfile((prev) => !prev)} className="text-sm text-sky-600 font-medium flex items-center gap-1">
-            <Pencil className="w-4 h-4" /> {editingProfile ? "Close" : "Edit"}
-          </button>
-        </CardHeader>
-        <CardContent className="px-4 pb-4">
-          {editingProfile ? (
-            <div className="grid gap-3 md:grid-cols-2">
-              <Input value={profileForm.name} onChange={(e) => setProfileForm((prev) => ({ ...prev, name: e.target.value }))} placeholder="Shop name" />
-              <Input value={profileForm.phone} onChange={(e) => setProfileForm((prev) => ({ ...prev, phone: e.target.value.replace(/\D/g, "").slice(0, 10) }))} placeholder="Phone" />
-              <Input value={profileForm.email} onChange={(e) => setProfileForm((prev) => ({ ...prev, email: e.target.value }))} placeholder="Email" />
-              <Input value={profileForm.city} onChange={(e) => setProfileForm((prev) => ({ ...prev, city: e.target.value }))} placeholder="City" />
-              <Input value={profileForm.pincode} onChange={(e) => setProfileForm((prev) => ({ ...prev, pincode: e.target.value.replace(/\D/g, "").slice(0, 6) }))} placeholder="Pincode" />
-              <Input value={profileForm.description} onChange={(e) => setProfileForm((prev) => ({ ...prev, description: e.target.value }))} placeholder="Short description" />
-              <textarea
-                value={profileForm.address}
-                onChange={(e) => setProfileForm((prev) => ({ ...prev, address: e.target.value }))}
-                placeholder="Business address"
-                rows={3}
-                className="md:col-span-2 w-full rounded-xl border border-gray-200 px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-sky-400"
-              />
-              <div className="md:col-span-2">
-                <Button onClick={handleSaveBusinessProfile} disabled={profileSaving} className="rounded-xl bg-sky-600 hover:bg-sky-700 text-white">
-                  <Save className="w-4 h-4 mr-2" /> {profileSaving ? "Saving..." : "Save Business Profile"}
-                </Button>
-              </div>
-            </div>
-          ) : (
-            <div className="grid gap-1 text-sm text-gray-600 md:grid-cols-2">
-              <p><span className="font-medium text-gray-900">Shop:</span> {business?.shopName ?? "-"}</p>
-              <p><span className="font-medium text-gray-900">Phone:</span> {business?.phone ?? "-"}</p>
-              <p><span className="font-medium text-gray-900">Email:</span> {business?.email ?? "-"}</p>
-              <p><span className="font-medium text-gray-900">City:</span> {business?.city ?? "-"}</p>
-              <p className="md:col-span-2"><span className="font-medium text-gray-900">Address:</span> {business?.address ?? "-"}</p>
-            </div>
-          )}
-          {profileMessage && <p className="text-xs text-sky-600 mt-3">{profileMessage}</p>}
-        </CardContent>
-      </Card>
-
-      <div className="grid grid-cols-2 xl:grid-cols-4 gap-3">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         {KPI_CARDS.map((card, i) => (
-          <motion.div key={card.label} initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}>
-            <Card className="border border-sky-100 shadow-sm rounded-2xl">
-              <CardContent className="p-3 sm:p-4 min-h-[124px]">
-                <div className={`w-9 h-9 ${card.bg} rounded-xl flex items-center justify-center mb-2`}>
-                  <card.icon className={`w-4 h-4 ${card.color}`} />
+          <motion.div key={card.label} initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: i * 0.05 }}>
+            <Card className="border-none bg-white shadow-xl shadow-gray-200/40 rounded-[2rem] overflow-hidden group hover:scale-[1.02] transition-all">
+              <CardContent className="p-6">
+                <div className={`w-12 h-12 ${card.bg} rounded-2xl flex items-center justify-center mb-4 transition-transform group-hover:rotate-12`}>
+                  <card.icon className={`w-6 h-6 ${card.color}`} />
                 </div>
-                <p className="text-xl sm:text-2xl font-bold text-gray-900">{card.value}</p>
-                <p className="text-xs text-gray-500 mb-1">{card.label}</p>
-                <p className="text-xs text-emerald-500 flex items-center gap-0.5 font-medium">
+                <p className="text-3xl font-black text-gray-900 tracking-tighter mb-1">{card.value}</p>
+                <p className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-3">{card.label}</p>
+                <div className="flex items-center gap-1.5 text-[11px] font-black text-emerald-500 uppercase tracking-tight bg-emerald-50 w-fit px-2 py-0.5 rounded-lg">
                   <ArrowUpRight className="w-3 h-3" />{card.trend}
-                </p>
+                </div>
               </CardContent>
             </Card>
           </motion.div>
         ))}
       </div>
 
-      <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
-        <Card className="border border-sky-100 shadow-sm rounded-2xl">
-          <CardHeader className="pb-2 px-4 pt-4">
-            <CardTitle className="text-sm font-semibold text-gray-700">Revenue (7 Days)</CardTitle>
+      <div className="grid grid-cols-1 xl:grid-cols-3 gap-6">
+        {/* Profile Card */}
+        <Card className="xl:col-span-1 border-none bg-white shadow-xl shadow-gray-200/40 rounded-[2.5rem]">
+          <CardHeader className="p-8 pb-0 flex flex-row items-center justify-between space-y-0">
+            <CardTitle className="text-base font-black text-gray-900 uppercase tracking-widest">Profile</CardTitle>
+            <Button 
+              variant="outline" 
+              size="sm" 
+              onClick={() => setEditingProfile((prev) => !prev)} 
+              className="rounded-xl border-indigo-100 text-indigo-600 font-bold h-9"
+            >
+              {editingProfile ? "Cancel" : "Edit Profile"}
+            </Button>
           </CardHeader>
-          <CardContent className="px-2 pb-4">
-            {chartData.length === 0 ? (
-              <div className="flex h-[160px] items-center justify-center text-sm text-gray-400">
-                No revenue data available yet.
+          <CardContent className="p-8">
+            {editingProfile ? (
+              <div className="grid gap-4">
+                <div className="space-y-1">
+                  <p className="text-[10px] font-black text-gray-400 uppercase ml-1">Shop Name</p>
+                  <Input value={profileForm.name} onChange={(e) => setProfileForm((prev) => ({ ...prev, name: e.target.value }))} />
+                </div>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-1">
+                    <p className="text-[10px] font-black text-gray-400 uppercase ml-1">Phone</p>
+                    <Input value={profileForm.phone} onChange={(e) => setProfileForm((prev) => ({ ...prev, phone: e.target.value.replace(/\D/g, "").slice(0, 10) }))} />
+                  </div>
+                  <div className="space-y-1">
+                    <p className="text-[10px] font-black text-gray-400 uppercase ml-1">Pincode</p>
+                    <Input value={profileForm.pincode} onChange={(e) => setProfileForm((prev) => ({ ...prev, pincode: e.target.value.replace(/\D/g, "").slice(0, 6) }))} />
+                  </div>
+                </div>
+                <textarea
+                  value={profileForm.address}
+                  onChange={(e) => setProfileForm((prev) => ({ ...prev, address: e.target.value }))}
+                  placeholder="Full business address"
+                  rows={3}
+                  className="w-full rounded-2xl border border-gray-200 px-4 py-3 text-sm font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:border-transparent transition-all"
+                />
+                <Button onClick={handleSaveBusinessProfile} disabled={profileSaving} className="rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white font-black h-12">
+                  {profileSaving ? "Saving..." : "Update Business Profile"}
+                </Button>
               </div>
             ) : (
-              <ResponsiveContainer width="100%" height={160}>
-                <LineChart data={chartData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#f0f9ff" />
-                  <XAxis dataKey="date" tick={{ fontSize: 10 }} />
-                  <YAxis tick={{ fontSize: 10 }} width={40} />
-                  <Tooltip formatter={(val: any) => [`₹${val}`, "Revenue"]} />
-                  <Line type="monotone" dataKey="revenue" stroke="#0ea5e9" strokeWidth={2.5} dot={{ fill: "#0ea5e9", r: 3 }} />
-                </LineChart>
-              </ResponsiveContainer>
+              <div className="space-y-6">
+                <div className="flex items-center gap-4">
+                  <div className="w-14 h-14 bg-indigo-50 rounded-2xl flex items-center justify-center border-2 border-indigo-100">
+                    <Users className="w-7 h-7 text-indigo-600" />
+                  </div>
+                  <div>
+                    <p className="text-lg font-black text-gray-900 leading-tight">{business?.shopName || "EZDRY Partner"}</p>
+                    <p className="text-xs font-bold text-gray-400 uppercase tracking-widest">{business?.city || "Narnaul"}</p>
+                  </div>
+                </div>
+                <div className="space-y-4 pt-4 border-t border-gray-50">
+                  <div className="flex justify-between items-center">
+                    <span className="text-xs font-bold text-gray-400 uppercase">Phone</span>
+                    <span className="text-sm font-black text-gray-900">{business?.phone || "Not provided"}</span>
+                  </div>
+                  <div className="flex justify-between items-center">
+                    <span className="text-xs font-bold text-gray-400 uppercase">Email</span>
+                    <span className="text-sm font-black text-gray-900 truncate max-w-[200px]">{business?.email || "Not provided"}</span>
+                  </div>
+                  <div className="pt-2">
+                    <span className="text-xs font-bold text-gray-400 uppercase block mb-1">Address</span>
+                    <p className="text-sm font-bold text-gray-700 leading-relaxed">{business?.address || "Address not updated"}</p>
+                  </div>
+                </div>
+              </div>
             )}
+            {profileMessage && <p className="text-xs text-center font-bold text-indigo-600 mt-6 bg-indigo-50 p-2 rounded-xl">{profileMessage}</p>}
           </CardContent>
         </Card>
 
-        <Card className="border border-sky-100 shadow-sm rounded-2xl">
-          <CardHeader className="pb-2 px-4 pt-4">
-            <CardTitle className="text-sm font-semibold text-gray-700">Orders (7 Days)</CardTitle>
+        {/* Analytics Card */}
+        <Card className="xl:col-span-2 border-none bg-white shadow-xl shadow-gray-200/40 rounded-[2.5rem]">
+          <CardHeader className="p-8 pb-0">
+            <CardTitle className="text-base font-black text-gray-900 uppercase tracking-widest">Revenue Insights</CardTitle>
           </CardHeader>
-          <CardContent className="px-2 pb-4">
+          <CardContent className="p-8">
             {chartData.length === 0 ? (
-              <div className="flex h-[160px] items-center justify-center text-sm text-gray-400">
-                No order trend available yet.
+              <div className="flex h-[240px] items-center justify-center text-sm font-bold text-gray-300">
+                No performance data available yet.
               </div>
             ) : (
-              <ResponsiveContainer width="100%" height={160}>
-                <BarChart data={chartData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#f0f9ff" />
-                  <XAxis dataKey="date" tick={{ fontSize: 10 }} />
-                  <YAxis tick={{ fontSize: 10 }} width={30} />
-                  <Tooltip />
-                  <Bar dataKey="orders" fill="#0ea5e9" radius={[4, 4, 0, 0]} />
-                </BarChart>
+              <ResponsiveContainer width="100%" height={260}>
+                <LineChart data={chartData}>
+                  <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
+                  <XAxis 
+                    dataKey="date" 
+                    axisLine={false} 
+                    tickLine={false} 
+                    tick={{ fontSize: 10, fontWeight: 700, fill: '#94a3b8' }} 
+                    dy={10}
+                  />
+                  <YAxis 
+                    axisLine={false} 
+                    tickLine={false} 
+                    tick={{ fontSize: 10, fontWeight: 700, fill: '#94a3b8' }} 
+                    tickFormatter={(val) => `₹${val}`}
+                  />
+                  <Tooltip 
+                    contentStyle={{ borderRadius: '20px', border: 'none', boxShadow: '0 10px 30px rgba(0,0,0,0.1)', padding: '15px' }}
+                    itemStyle={{ fontWeight: 800, fontSize: '14px' }}
+                    labelStyle={{ fontWeight: 800, fontSize: '12px', color: '#94a3b8', marginBottom: '5px' }}
+                  />
+                  <Line 
+                    type="monotone" 
+                    dataKey="revenue" 
+                    stroke="#4f46e5" 
+                    strokeWidth={4} 
+                    dot={{ fill: "#4f46e5", strokeWidth: 2, r: 6, stroke: '#fff' }} 
+                    activeDot={{ r: 8, strokeWidth: 0 }}
+                  />
+                </LineChart>
               </ResponsiveContainer>
             )}
           </CardContent>
         </Card>
       </div>
 
-      <Card className="border border-sky-100 shadow-sm rounded-2xl">
-        <CardHeader className="pb-2 px-4 pt-4">
-          <CardTitle className="text-sm font-semibold text-gray-700">Recent Orders</CardTitle>
-        </CardHeader>
-        <CardContent className="px-4 pb-4">
-          {recentOrders.length === 0 ? (
-            <p className="text-gray-400 text-sm text-center py-6">No orders yet</p>
-          ) : (
-            <div className="space-y-2">
-              {recentOrders.map(order => (
-                <div key={order.id} className="flex items-center gap-3 p-3 bg-sky-50/50 rounded-xl active:scale-[0.99] transition-transform">
-                  <div className="flex-1 min-w-0">
-                    <p className="text-sm font-medium text-gray-900">#{order.id}</p>
-                    <p className="text-xs text-gray-400 truncate">
-                      {(order.items as any[]).map((i: any) => i.itemName).join(", ")}
-                    </p>
-                  </div>
-                  <div className="text-right flex-shrink-0">
-                    <p className="text-sm font-bold text-gray-900">₹{order.total}</p>
-                    <span className={`text-[10px] px-1.5 py-0.5 rounded-full font-medium ${STATUS_COLORS[order.status] ?? "bg-gray-100 text-gray-600"}`}>
-                      {order.status.replace(/_/g, " ")}
-                    </span>
-                  </div>
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        <Card className="lg:col-span-2 border-none bg-white shadow-xl shadow-gray-200/40 rounded-[2.5rem]">
+          <CardHeader className="p-8 pb-4 flex flex-row items-center justify-between">
+            <CardTitle className="text-base font-black text-gray-900 uppercase tracking-widest">Recent Activity</CardTitle>
+            <Button variant="ghost" size="sm" className="text-indigo-600 font-bold hover:bg-indigo-50 rounded-xl">View Orders</Button>
+          </CardHeader>
+          <CardContent className="p-8 pt-0">
+            {recentOrders.length === 0 ? (
+              <div className="text-center py-12">
+                <div className="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <ShoppingCart className="w-8 h-8 text-gray-200" />
                 </div>
-              ))}
+                <p className="text-gray-400 font-bold">No recent orders found</p>
+              </div>
+            ) : (
+              <div className="space-y-3">
+                {recentOrders.map(order => (
+                  <div key={order.id} className="flex items-center gap-4 p-4 hover:bg-gray-50 rounded-[1.5rem] transition-all group">
+                    <div className="w-12 h-12 bg-gray-50 rounded-2xl flex items-center justify-center font-black text-gray-400 text-xs group-hover:bg-indigo-50 group-hover:text-indigo-600 transition-all">
+                      #{String(order.id).slice(-4).toUpperCase()}
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-sm font-black text-gray-900 truncate">
+                        {(order.items as any[]).map((i: any) => i.itemName).join(", ")}
+                      </p>
+                      <p className="text-[11px] font-bold text-gray-400 uppercase tracking-tighter">
+                        {order.createdAt ? new Date(order.createdAt).toLocaleDateString() : "N/A"} at {order.createdAt ? new Date(order.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }) : "N/A"}
+                      </p>
+                    </div>
+                    <div className="text-right">
+                      <p className="text-lg font-black text-gray-900 tracking-tighter">₹{order.total}</p>
+                      <span className={`text-[9px] px-2.5 py-1 rounded-full font-black uppercase tracking-wider ${STATUS_COLORS[order.status] ?? "bg-gray-100 text-gray-600"}`}>
+                        {order.status.replace(/_/g, " ")}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </CardContent>
+        </Card>
+
+        <Card className="border-none bg-indigo-600 shadow-xl shadow-indigo-200 rounded-[2.5rem] text-white overflow-hidden relative">
+          <div className="absolute top-0 right-0 p-8 opacity-10">
+            <Zap className="w-32 h-32" />
+          </div>
+          <CardHeader className="p-8">
+            <CardTitle className="text-base font-black uppercase tracking-widest text-indigo-200">System Pulse</CardTitle>
+          </CardHeader>
+          <CardContent className="p-8 pt-0 space-y-6">
+            <div className="space-y-1">
+              <p className="text-3xl font-black tracking-tighter">Active Today</p>
+              <p className="text-indigo-200 font-bold text-sm">Your business health score is Excellent</p>
             </div>
-          )}
-        </CardContent>
-      </Card>
+            <div className="grid grid-cols-2 gap-4">
+              <div className="bg-white/10 backdrop-blur-md rounded-3xl p-4 border border-white/10">
+                <p className="text-2xl font-black tracking-tighter">{stats?.activeRiders ?? 0}</p>
+                <p className="text-[10px] font-bold uppercase tracking-widest text-indigo-200">Active Riders</p>
+              </div>
+              <div className="bg-white/10 backdrop-blur-md rounded-3xl p-4 border border-white/10">
+                <p className="text-2xl font-black tracking-tighter">{stats?.ordersToday ?? 0}</p>
+                <p className="text-[10px] font-bold uppercase tracking-widest text-indigo-200">New Orders</p>
+              </div>
+            </div>
+            <Button className="w-full h-14 bg-white text-indigo-600 hover:bg-indigo-50 rounded-2xl font-black text-sm uppercase tracking-widest shadow-lg">
+              Manage Riders
+            </Button>
+          </CardContent>
+        </Card>
+      </div>
     </div>
   );
 }

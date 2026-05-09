@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { Search, Filter, Phone, MapPinned, UserCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -9,12 +10,12 @@ import { useListOrders, useUpdateOrder, useListRiders, useAssignRider } from "@/
 import { getCurrentBusiness } from "@/lib/session";
 
 const STATUS_COLORS: Record<string, string> = {
-  requested: "bg-yellow-100 text-yellow-700 border-yellow-200",
-  accepted: "bg-blue-100 text-blue-700 border-blue-200",
-  picked_up: "bg-indigo-100 text-indigo-700 border-indigo-200",
-  cleaning: "bg-orange-100 text-orange-700 border-orange-200",
-  out_for_delivery: "bg-purple-100 text-purple-700 border-purple-200",
-  delivered: "bg-green-100 text-green-700 border-green-200",
+  requested: "bg-amber-100 text-amber-700 border-amber-200",
+  accepted: "bg-indigo-100 text-indigo-700 border-indigo-200",
+  picked_up: "bg-blue-100 text-blue-700 border-blue-200",
+  cleaning: "bg-violet-100 text-violet-700 border-violet-200",
+  out_for_delivery: "bg-indigo-600 text-white border-transparent",
+  delivered: "bg-emerald-100 text-emerald-700 border-emerald-200",
   cancelled: "bg-red-100 text-red-700 border-red-200",
 };
 
@@ -36,7 +37,7 @@ export default function BusinessOrders() {
       order.id.toLowerCase().includes(q)
       || order.customer?.name?.toLowerCase().includes(q)
       || order.customer?.phone?.toLowerCase().includes(q)
-      || order.customer?.address?.toLowerCase().includes(q)
+      || (order.customer as any)?.address?.toLowerCase().includes(q)
     );
   });
 
@@ -62,24 +63,31 @@ export default function BusinessOrders() {
   };
 
   return (
-    <div className="p-6">
-      <div className="mb-6">
-        <h2 className="text-2xl font-bold text-gray-900 mb-1">Orders</h2>
-        <p className="text-gray-500 text-sm">Manage and track all customer orders</p>
+    <div className="space-y-8 pb-12">
+      <div>
+        <h2 className="text-2xl font-black text-gray-900 tracking-tight">Order Pipeline</h2>
+        <p className="text-gray-400 text-sm font-medium">Manage fulfillment and rider assignments</p>
       </div>
 
       {/* Filters */}
-      <div className="flex flex-col sm:flex-row gap-3 mb-5">
-        <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-          <Input placeholder="Search orders..." value={search} onChange={e => setSearch(e.target.value)} className="pl-10 rounded-xl" />
+      <div className="flex flex-col sm:flex-row gap-4 items-center">
+        <div className="relative flex-1 w-full">
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+          <Input 
+            placeholder="Search by Order ID, Name, or Phone..." 
+            value={search} 
+            onChange={e => setSearch(e.target.value)} 
+            className="pl-12 h-12 rounded-2xl border-none bg-white shadow-xl shadow-gray-200/40 focus:ring-2 focus:ring-indigo-500 font-medium" 
+          />
         </div>
         <Select value={statusFilter} onValueChange={setStatusFilter}>
-          <SelectTrigger className="w-full sm:w-48 rounded-xl">
-            <Filter className="w-4 h-4 mr-2 text-gray-400" />
-            <SelectValue placeholder="Status" />
+          <SelectTrigger className="w-full sm:w-56 h-12 rounded-2xl border-none bg-white shadow-xl shadow-gray-200/40 font-bold text-gray-700">
+            <div className="flex items-center gap-2">
+              <Filter className="w-4 h-4 text-indigo-600" />
+              <SelectValue placeholder="All Statuses" />
+            </div>
           </SelectTrigger>
-          <SelectContent>
+          <SelectContent className="rounded-2xl border-gray-100">
             <SelectItem value="all">All Statuses</SelectItem>
             <SelectItem value="requested">Requested</SelectItem>
             <SelectItem value="accepted">Accepted</SelectItem>
@@ -93,54 +101,55 @@ export default function BusinessOrders() {
       </div>
 
       {/* Orders Table */}
-      <div className="bg-white rounded-2xl shadow-sm overflow-hidden">
+      <Card className="border-none bg-white shadow-xl shadow-gray-200/40 rounded-[2.5rem] overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
-            <thead className="bg-gray-50 border-b border-gray-200">
+            <thead className="bg-neutral-50/50 border-b border-neutral-100">
               <tr>
-                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wide">Order</th>
-                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wide">Customer</th>
-                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wide">Items</th>
-                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wide">Amount</th>
-                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wide">Status</th>
-                <th className="px-4 py-3 text-left text-xs font-semibold text-gray-500 uppercase tracking-wide">Actions</th>
+                <th className="px-6 py-5 text-left text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">ID & Date</th>
+                <th className="px-6 py-5 text-left text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">Customer</th>
+                <th className="px-6 py-5 text-left text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">Order Volume</th>
+                <th className="px-6 py-5 text-left text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">Value</th>
+                <th className="px-6 py-5 text-left text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">Live Status</th>
+                <th className="px-6 py-5 text-right text-[10px] font-black text-gray-400 uppercase tracking-[0.2em]">Management</th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-gray-100">
+            <tbody className="divide-y divide-gray-50">
               {filteredOrders.map(order => (
-                <motion.tr key={order.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="hover:bg-gray-50 transition-colors">
-                  <td className="px-4 py-3">
+                <motion.tr key={order.id} initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="group hover:bg-indigo-50/30 transition-all">
+                  <td className="px-6 py-5">
                     <div>
-                      <p className="text-sm font-semibold text-gray-900">#{order.id}</p>
-                      <p className="text-xs text-gray-500">{order.pickupDate}</p>
+                      <p className="text-sm font-black text-gray-900 tracking-tight">#{String(order.id).slice(-6).toUpperCase()}</p>
+                      <p className="text-[10px] font-bold text-gray-400 uppercase mt-1">{order.pickupDate}</p>
                     </div>
                   </td>
-                  <td className="px-4 py-3">
-                    <div className="flex items-center gap-2">
-                      <UserCircle className="w-6 h-6 text-gray-400" />
+                  <td className="px-6 py-5">
+                    <div className="flex items-center gap-3">
+                      <div className="w-10 h-10 bg-indigo-50 rounded-2xl flex items-center justify-center font-black text-indigo-600 text-sm">
+                        {order.customer?.name?.[0] ?? "C"}
+                      </div>
                       <div>
-                        <p className="text-sm font-medium text-gray-900">{order.customer?.name ?? "Customer"}</p>
-                        <p className="text-xs text-gray-500">{order.customer?.phone ?? ""}</p>
-                        <p className="text-[11px] text-gray-400 max-w-[220px] truncate">{order.customer?.address ?? "Address unavailable"}</p>
+                        <p className="text-sm font-black text-gray-900 tracking-tight">{order.customer?.name ?? "Guest"}</p>
+                        <p className="text-[10px] font-bold text-gray-400 tracking-tight">{(order.customer as any)?.address ?? "No address"}</p>
                       </div>
                     </div>
                   </td>
-                  <td className="px-4 py-3">
-                    <p className="text-sm text-gray-600">
-                      {(order.items as any[]).slice(0, 2).map((i: any) => `${i.itemName}×${i.quantity}`).join(", ")}
-                      {(order.items as any[]).length > 2 && " +more"}
+                  <td className="px-6 py-5">
+                    <p className="text-xs font-bold text-gray-600 leading-relaxed">
+                      {(order.items as any[]).slice(0, 2).map((i: any) => `${i.itemName} ×${i.quantity}`).join(", ")}
+                      {(order.items as any[]).length > 2 && <span className="text-indigo-400"> +{ (order.items as any[]).length - 2} more</span>}
                     </p>
                   </td>
-                  <td className="px-4 py-3">
-                    <p className="text-sm font-bold text-gray-900">₹{order.total}</p>
-                    <p className="text-xs text-gray-500">{order.paymentMethod}</p>
+                  <td className="px-6 py-5">
+                    <p className="text-base font-black text-gray-900 tracking-tighter">₹{order.total}</p>
+                    <p className="text-[10px] font-black text-indigo-500 uppercase tracking-widest">{order.paymentMethod}</p>
                   </td>
-                  <td className="px-4 py-3">
+                  <td className="px-6 py-5">
                     <Select value={order.status} onValueChange={(val) => handleStatusUpdate(order.id, val)}>
-                      <SelectTrigger className={`w-36 h-8 text-xs border rounded-lg ${STATUS_COLORS[order.status]}`}>
+                      <SelectTrigger className={`w-40 h-10 text-[10px] font-black uppercase tracking-widest border-none shadow-sm rounded-xl ${STATUS_COLORS[order.status]}`}>
                         <SelectValue />
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent className="rounded-2xl border-gray-100">
                         <SelectItem value="requested">Requested</SelectItem>
                         <SelectItem value="accepted">Accepted</SelectItem>
                         <SelectItem value="picked_up">Picked Up</SelectItem>
@@ -151,37 +160,33 @@ export default function BusinessOrders() {
                       </SelectContent>
                     </Select>
                   </td>
-                  <td className="px-4 py-3">
-                    <div className="flex flex-wrap items-center gap-2">
+                  <td className="px-6 py-5 text-right">
+                    <div className="flex items-center justify-end gap-2">
                       {order.status === "requested" && (
-                        <Button size="sm" onClick={() => handleStatusUpdate(order.id, "accepted")} className="h-7 text-xs bg-green-500 hover:bg-green-600 text-white rounded-lg">Accept</Button>
+                        <Button size="sm" onClick={() => handleStatusUpdate(order.id, "accepted")} className="h-9 px-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-black text-[10px] uppercase tracking-widest shadow-lg shadow-emerald-100">Accept</Button>
                       )}
                       {!order.riderId && riders && riders.length > 0 && (
                         <Select onValueChange={(val) => handleAssignRider(order.id, val)}>
-                          <SelectTrigger className="h-7 text-xs w-28 rounded-lg border-blue-200 text-blue-600">
-                            <SelectValue placeholder="Assign" />
+                          <SelectTrigger className="h-9 w-32 rounded-xl border-indigo-100 text-indigo-600 font-black text-[10px] uppercase tracking-widest bg-indigo-50 hover:bg-indigo-100 transition-colors">
+                            <SelectValue placeholder="Assign Rider" />
                           </SelectTrigger>
-                          <SelectContent>
+                          <SelectContent className="rounded-2xl border-gray-100">
                             {riders.filter(r => r.isAvailable).map(r => (
-                              <SelectItem key={r.id} value={r.id}>{r.name}</SelectItem>
+                              <SelectItem key={r.id} value={r.id} className="font-bold">{r.name}</SelectItem>
                             ))}
                           </SelectContent>
                         </Select>
                       )}
-                      {order.customer?.phone && (
-                        <a
-                          href={`tel:${order.customer.phone}`}
-                          className="h-7 px-2 text-xs rounded-lg bg-emerald-50 text-emerald-700 border border-emerald-200 inline-flex items-center gap-1"
-                        >
-                          <Phone className="w-3 h-3" /> Call
-                        </a>
-                      )}
-                      <button
-                        onClick={() => openMap(order)}
-                        className="h-7 px-2 text-xs rounded-lg bg-sky-50 text-sky-700 border border-sky-200 inline-flex items-center gap-1"
-                      >
-                        <MapPinned className="w-3 h-3" /> Map
-                      </button>
+                      <div className="flex gap-1">
+                        {order.customer?.phone && (
+                          <a href={`tel:${order.customer.phone}`} className="w-9 h-9 rounded-xl bg-neutral-100 text-neutral-600 flex items-center justify-center hover:bg-indigo-600 hover:text-white transition-all shadow-sm">
+                            <Phone className="w-4 h-4" />
+                          </a>
+                        )}
+                        <button onClick={() => openMap(order)} className="w-9 h-9 rounded-xl bg-neutral-100 text-neutral-600 flex items-center justify-center hover:bg-indigo-600 hover:text-white transition-all shadow-sm">
+                          <MapPinned className="w-4 h-4" />
+                        </button>
+                      </div>
                     </div>
                   </td>
                 </motion.tr>
@@ -189,13 +194,15 @@ export default function BusinessOrders() {
             </tbody>
           </table>
           {filteredOrders.length === 0 && (
-            <div className="text-center py-12 text-gray-400">
-              <ShoppingBagIcon />
-              <p className="mt-2 text-sm">No orders found</p>
+            <div className="text-center py-24">
+              <div className="w-20 h-20 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-4">
+                <Search className="w-10 h-10 text-gray-200" />
+              </div>
+              <p className="text-gray-400 font-black uppercase tracking-widest text-xs">No matching orders found</p>
             </div>
           )}
         </div>
-      </div>
+      </Card>
     </div>
   );
 }

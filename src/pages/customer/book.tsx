@@ -6,9 +6,9 @@ import { Button } from "@/components/ui/button";
 import { useListBusinesses, useListItems } from "@/lib/api-client-react";
 
 const CATEGORIES = [
-  { id: "wash", label: "Wash", icon: "🧺", color: "from-sky-400 to-sky-600" },
-  { id: "dry_clean", label: "Dry Clean", icon: "👔", color: "from-blue-400 to-blue-600" },
-  { id: "iron", label: "Iron", icon: "♨️", color: "from-cyan-400 to-cyan-600" },
+  { id: "wash", label: "Wash", icon: "🧺", color: "from-indigo-500 to-indigo-700" },
+  { id: "dry_clean", label: "Dry Clean", icon: "👔", color: "from-violet-500 to-violet-700" },
+  { id: "iron", label: "Iron", icon: "♨️", color: "from-blue-500 to-blue-700" },
 ];
 
 const CATEGORY_ICONS: Record<string, string> = {
@@ -18,61 +18,26 @@ const CATEGORY_ICONS: Record<string, string> = {
   fold: "🧼",
 };
 
-// Item-specific emojis based on item name
+const SELECTED_BUSINESS_STORAGE_KEY = "ezdry_selected_business";
+
 const ITEM_EMOJIS: Record<string, string> = {
   shirt: "👔",
-  tshirt: "👕",
-  "t-shirt": "👕",
   pant: "👖",
-  trousers: "👖",
-  jeans: "👖",
+  trouser: "👖",
+  saree: "🥻",
+  dress: "👗",
+  suit: "🤵",
   blazer: "🧥",
   jacket: "🧥",
   coat: "🧥",
-  suit: "🤵",
-  saree: "🥻",
-  dress: "👗",
-  skirt: "👗",
   kurta: "👘",
-  pyjama: "🩳",
-  shorts: "🩳",
-  undergarment: "🩲",
-  innerwear: "🩲",
-  socks: "🧦",
-  tie: "👔",
-  belt: "🪢",
-  cap: "🧢",
-  hat: "👒",
-  scarf: "🧣",
-  glove: "🧤",
-  sweater: "🧶",
-  blanket: "🛏️",
   bedsheet: "🛏️",
+  blanket: "🛏️",
   curtain: "🪟",
   towel: "🧻",
   tablecloth: "🧺",
-  napkin: "🧻",
-  handkerchief: "🧻",
-  lehenga: "👗",
-  sherwani: "🤵",
-  waistcoat: "🦺",
-  vest: "🦺",
-  swimsuit: "🩱",
-  bikini: "👙",
-  gown: "👗",
-  frock: "👗",
-  hoodie: "🧥",
-  sweatshirt: "👕",
-  polo: "👕",
-  formal: "👔",
-  casual: "👕",
-  woolen: "🧶",
-  silk: "🥻",
-  cotton: "🧺",
-  linen: "🧺",
+  napkin: "🍽️",
 };
-
-const SELECTED_BUSINESS_STORAGE_KEY = "ezdry_selected_business";
 
 export default function BookOrder() {
   const [, navigate] = useLocation();
@@ -116,15 +81,12 @@ export default function BookOrder() {
     return 0;
   };
 
-  // Get appropriate emoji for item based on name
   const getItemEmoji = (itemName: string): string => {
     if (!itemName) return "🧺";
     const lowerName = itemName.toLowerCase();
-    // Check for exact matches first
     for (const [key, emoji] of Object.entries(ITEM_EMOJIS)) {
       if (lowerName.includes(key)) return emoji;
     }
-    // Return category default if no match
     return CATEGORY_ICONS[selectedCategory] || "🧺";
   };
 
@@ -185,48 +147,47 @@ export default function BookOrder() {
   const activeCat = CATEGORIES.find(c => c.id === selectedCategory)!;
 
   return (
-    <div className="min-h-full bg-sky-50 flex flex-col">
+    <div className="min-h-full bg-neutral-50 flex flex-col">
       {/* Header */}
-      <div className={`bg-gradient-to-r ${activeCat.color} px-5 pt-5 pb-6`}>
-        <div className="flex items-center gap-3 mb-5">
-          <button onClick={() => navigate("/customer/home")} className="p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors">
-            <ChevronLeft className="w-5 h-5 text-white" />
+      <div className={`bg-gradient-to-br ${activeCat.color} px-6 pt-6 pb-10 rounded-b-[2.5rem] shadow-xl shadow-indigo-100`}>
+        <div className="flex items-center gap-4 mb-6">
+          <button onClick={() => navigate("/customer/home")} className="w-10 h-10 rounded-2xl bg-white/20 backdrop-blur-md hover:bg-white/30 flex items-center justify-center transition-all">
+            <ChevronLeft className="w-6 h-6 text-white" />
           </button>
           <div>
-            <h1 className="font-bold text-lg text-white">Select Items</h1>
-            <p className="text-white/70 text-xs">Choose items & quantity to add</p>
+            <h1 className="font-black text-xl text-white tracking-tight">Select Items</h1>
+            <p className="text-white/70 text-xs font-medium uppercase tracking-wider">Professional Cloth Spa</p>
           </div>
         </div>
 
         {/* Category Tabs */}
-        <div className="flex gap-2">
+        <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
           {CATEGORIES.map(cat => (
             <button
               key={cat.id}
               onClick={() => setSelectedCategory(cat.id)}
-              className={`flex items-center gap-1.5 px-4 py-2 rounded-full text-sm font-semibold transition-all ${
+              className={`flex items-center gap-2 px-5 py-2.5 rounded-2xl text-sm font-bold transition-all whitespace-nowrap ${
                 selectedCategory === cat.id
-                  ? "bg-white text-gray-800 shadow-md"
-                  : "bg-white/20 text-white hover:bg-white/30"
+                  ? "bg-white text-gray-900 shadow-xl scale-105"
+                  : "bg-white/15 text-white/90 hover:bg-white/25 border border-white/10"
               }`}
             >
-              <span>{cat.icon}</span>
+              <span className="text-lg">{cat.icon}</span>
               {cat.label}
             </button>
           ))}
         </div>
 
-        {activeBusinesses.length > 0 && (
-          <div className="mt-4 space-y-2">
-            <p className="text-xs font-medium text-white/80">Choose laundry partner</p>
-            <div className="flex gap-2 overflow-x-auto pb-1">
+        {activeBusinesses.length > 1 && (
+          <div className="mt-6 space-y-2">
+            <p className="text-[10px] font-bold text-white/50 uppercase tracking-widest px-1">Select Partner</p>
+            <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
               {activeBusinesses.map((business) => (
                 <button
                   key={business.id}
-                  type="button"
                   onClick={() => handleBusinessSelect(business.id)}
-                  className={`rounded-full px-4 py-2 text-xs font-semibold transition-all ${
-                    businessId === business.id ? "bg-white text-gray-900" : "bg-white/20 text-white hover:bg-white/30"
+                  className={`rounded-xl px-4 py-2 text-[11px] font-black transition-all uppercase tracking-wider ${
+                    businessId === business.id ? "bg-white text-indigo-600 shadow-lg" : "bg-white/10 text-white/60"
                   }`}
                 >
                   {business.name}
@@ -238,26 +199,32 @@ export default function BookOrder() {
       </div>
 
       {/* Items Grid */}
-      <div className="flex-1 overflow-y-auto px-4 py-4 pb-44">
+      <div className="flex-1 px-4 py-6 pb-44">
         {!businessId && !isLoading && (
-          <div className="rounded-2xl bg-white p-5 text-center text-sm text-gray-500 shadow-sm">
-            No active laundry partners available at the moment.
+          <div className="rounded-[2rem] bg-white p-8 text-center shadow-sm border border-gray-100">
+            <div className="w-16 h-16 bg-gray-50 rounded-full flex items-center justify-center mx-auto mb-4">
+              <ShoppingBag className="w-8 h-8 text-gray-300" />
+            </div>
+            <p className="text-gray-900 font-bold mb-1">No Partners Found</p>
+            <p className="text-gray-400 text-xs">Laundry partners are currently unavailable in your area.</p>
           </div>
         )}
 
         {businessId && !isLoading && filteredItems.length === 0 && (
-          <div className="rounded-2xl bg-white p-5 text-center text-sm text-gray-500 shadow-sm">
-            {selectedBusiness?.name ?? "This partner"} has not added any items yet.
+          <div className="rounded-[2rem] bg-white p-8 text-center shadow-sm border border-gray-100">
+            <p className="text-gray-900 font-bold mb-1">Service Unavailable</p>
+            <p className="text-gray-400 text-xs">{selectedBusiness?.name} hasn't listed items for this category.</p>
           </div>
         )}
 
         <AnimatePresence mode="wait">
           <motion.div
             key={selectedCategory}
-            initial={{ opacity: 0, y: 10 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0 }}
-            className="space-y-3"
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0.95 }}
+            transition={{ duration: 0.2 }}
+            className="grid gap-4"
           >
             {filteredItems.map((item, i) => {
               const key = itemKey(item);
@@ -269,42 +236,42 @@ export default function BookOrder() {
                   key={item.id}
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: i * 0.04 }}
-                  className={`flex items-center justify-between bg-white rounded-2xl p-4 shadow-sm border transition-all ${
-                    qty > 0 ? "border-sky-300 shadow-sky-100" : "border-transparent"
+                  transition={{ delay: i * 0.03 }}
+                  className={`flex items-center justify-between bg-white rounded-[2rem] p-5 shadow-sm border-2 transition-all ${
+                    qty > 0 ? "border-indigo-500 shadow-indigo-100 bg-indigo-50/20" : "border-transparent"
                   }`}
                 >
-                  <div className="flex items-center gap-3">
-                    <div className={`w-11 h-11 rounded-xl flex items-center justify-center text-2xl ${qty > 0 ? "bg-sky-100" : "bg-sky-50"}`}>
+                  <div className="flex items-center gap-4">
+                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center text-3xl shadow-sm ${qty > 0 ? "bg-white" : "bg-neutral-50"}`}>
                       {getItemEmoji(item.name)}
                     </div>
                     <div>
-                      <p className="font-semibold text-gray-900 text-sm">{item.name}</p>
-                      <p className="text-sky-500 font-bold text-sm">₹{price}<span className="text-gray-400 font-normal text-xs">/pc</span></p>
+                      <p className="font-black text-gray-900 text-base tracking-tight">{item.name}</p>
+                      <p className="text-indigo-600 font-black text-sm">₹{price}<span className="text-gray-400 font-bold text-[10px] uppercase ml-1">/ piece</span></p>
                     </div>
                   </div>
 
                   {qty === 0 ? (
                     <button
                       onClick={() => addToCart(item)}
-                      className="w-9 h-9 rounded-full bg-sky-500 hover:bg-sky-600 text-white flex items-center justify-center shadow-sm transition-all active:scale-95"
+                      className="w-11 h-11 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white flex items-center justify-center shadow-lg shadow-indigo-100 transition-all active:scale-90"
                     >
-                      <Plus className="w-4 h-4" />
+                      <Plus className="w-5 h-5" />
                     </button>
                   ) : (
-                    <div className="flex items-center gap-2">
+                    <div className="flex items-center gap-3 bg-white rounded-2xl p-1 shadow-inner border border-indigo-100">
                       <button
                         onClick={() => removeFromCart(item)}
-                        className="w-9 h-9 rounded-full border-2 border-sky-400 text-sky-500 flex items-center justify-center hover:bg-sky-50 transition-all active:scale-95"
+                        className="w-9 h-9 rounded-xl text-indigo-600 flex items-center justify-center hover:bg-indigo-50 transition-all active:scale-90"
                       >
-                        <Minus className="w-3.5 h-3.5" />
+                        <Minus className="w-4 h-4" />
                       </button>
-                      <span className="font-bold text-gray-900 w-6 text-center text-base">{qty}</span>
+                      <span className="font-black text-gray-900 w-6 text-center text-lg">{qty}</span>
                       <button
                         onClick={() => addToCart(item)}
-                        className="w-9 h-9 rounded-full bg-sky-500 hover:bg-sky-600 text-white flex items-center justify-center shadow-sm transition-all active:scale-95"
+                        className="w-9 h-9 rounded-xl bg-indigo-600 text-white flex items-center justify-center shadow-md transition-all active:scale-90"
                       >
-                        <Plus className="w-3.5 h-3.5" />
+                        <Plus className="w-4 h-4" />
                       </button>
                     </div>
                   )}
@@ -319,25 +286,25 @@ export default function BookOrder() {
       <AnimatePresence>
         {cartCount > 0 && (
           <motion.div
-            initial={{ y: 100, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 100, opacity: 0 }}
-            className="sticky bottom-0 left-0 right-0 px-5 pb-6 pt-3 bg-white border-t border-sky-100 shadow-lg z-10"
+            initial={{ y: 100 }}
+            animate={{ y: 0 }}
+            exit={{ y: 100 }}
+            className="absolute bottom-0 left-0 right-0 px-6 pb-10 pt-4 bg-white/80 backdrop-blur-xl border-t border-indigo-50 shadow-[0_-20px_40px_rgba(0,0,0,0.05)] z-20"
           >
             <Button
               onClick={handleCheckout}
-              className="w-full h-14 bg-sky-500 hover:bg-sky-600 text-white rounded-2xl font-semibold shadow-lg shadow-sky-200"
+              className="w-full h-16 bg-indigo-600 hover:bg-indigo-700 text-white rounded-3xl font-black shadow-xl shadow-indigo-200"
             >
-              <div className="flex items-center justify-between w-full px-2">
-                <div className="flex items-center gap-2">
-                  <div className="w-7 h-7 bg-white/20 rounded-full flex items-center justify-center">
-                    <ShoppingBag className="w-4 h-4" />
+              <div className="flex items-center justify-between w-full px-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 bg-white/20 rounded-xl flex items-center justify-center">
+                    <ShoppingBag className="w-5 h-5" />
                   </div>
-                  <span className="font-bold">{cartCount} item{cartCount > 1 ? "s" : ""}</span>
+                  <span className="font-black text-base">{cartCount} items selected</span>
                 </div>
-                <div className="flex items-center gap-2">
-                  <span className="font-extrabold text-lg">₹{cartTotal}</span>
-                  <div className="bg-white/20 rounded-full px-3 py-1 text-xs font-semibold">Next →</div>
+                <div className="flex items-center gap-3">
+                  <span className="font-black text-xl tracking-tighter">₹{cartTotal}</span>
+                  <div className="bg-white/20 rounded-full px-4 py-1.5 text-[10px] font-black uppercase tracking-widest">Next →</div>
                 </div>
               </div>
             </Button>

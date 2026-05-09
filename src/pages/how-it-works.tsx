@@ -49,52 +49,57 @@ export default function HowItWorks() {
   return (
     <PublicLayout>
       {/* HERO */}
-      <section className="bg-gradient-to-br from-sky-50 to-white py-16 px-6 text-center">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-3xl mx-auto">
-          <span className="inline-block bg-sky-100 text-sky-700 text-sm font-semibold px-4 py-1.5 rounded-full mb-5">Simple. Fast. Reliable.</span>
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-5 leading-tight">
-            How EZDRY <span className="text-sky-500">Works</span>
-          </h1>
-          <p className="text-gray-500 text-lg">
-            Four steps from booking to fresh clothes at your Narnaul door. Takes less than 60 seconds to start.
-          </p>
-        </motion.div>
+      <section className="bg-gradient-to-br from-indigo-50/50 via-white to-white py-32 px-6 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-indigo-100/30 rounded-full blur-[100px] -z-0" />
+        <div className="max-w-7xl mx-auto text-center relative z-10">
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}>
+             <div className="inline-flex items-center gap-2 bg-white px-5 py-2 rounded-full shadow-sm border border-indigo-100 mb-8">
+               <span className="w-2 h-2 bg-indigo-600 rounded-full animate-pulse" />
+               <span className="text-[10px] font-black uppercase tracking-widest text-gray-500">The Seamless Logistics Model</span>
+            </div>
+            <h1 className="text-5xl md:text-8xl font-black text-gray-900 mb-10 leading-[0.95] tracking-tighter">
+              Simplified <br /><span className="text-indigo-600 italic">For Your Life.</span>
+            </h1>
+            <p className="text-gray-500 text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed font-medium">
+              Four surgical steps from order to fresh clothes at your doorstep. We handle the complexity; you enjoy the results.
+            </p>
+          </motion.div>
+        </div>
       </section>
 
       {/* STEPS */}
-      <section className="py-16 px-6">
-        <div className="max-w-5xl mx-auto space-y-16">
+      <section className="py-24 px-6">
+        <div className="max-w-7xl mx-auto space-y-32">
           {STEPS.map((step, i) => (
             <motion.div
               key={step.num}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 40 }}
               whileInView={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.5, delay: i * 0.05 }}
-              className={`grid md:grid-cols-2 gap-10 items-center ${i % 2 === 1 ? "md:[&>*:first-child]:order-2" : ""}`}
+              transition={{ duration: 0.8, delay: i * 0.1 }}
+              viewport={{ once: true }}
+              className={`grid md:grid-cols-2 gap-20 items-center ${i % 2 === 1 ? "md:[&>*:first-child]:order-2" : ""}`}
             >
-              <div>
-                <div className="flex items-center gap-4 mb-5">
-                  <div className="text-5xl">{step.icon}</div>
-                  <div className="w-12 h-12 bg-sky-500 rounded-2xl text-white font-black text-lg flex items-center justify-center shadow-md shadow-sky-200">
-                    {step.num}
-                  </div>
+              <div className="relative">
+                <div className="text-[12rem] font-black text-indigo-50 absolute -top-32 -left-10 -z-10 select-none">
+                  {step.num}
                 </div>
-                <h2 className="text-2xl font-extrabold text-gray-900 mb-3">{step.title}</h2>
-                <p className="text-gray-500 leading-relaxed mb-5">{step.desc}</p>
-                <Button onClick={() => navigate("/customer/book")}
-                  variant="outline" className="border-sky-200 text-sky-600 hover:bg-sky-50 rounded-xl">
-                  Get Started <ChevronRight className="w-4 h-4 ml-1" />
+                <div className="text-7xl mb-10">{step.icon}</div>
+                <h2 className="text-4xl font-black text-gray-900 mb-6 tracking-tight">{step.title}</h2>
+                <p className="text-gray-500 text-lg leading-relaxed mb-10 font-medium">{step.desc}</p>
+                <Button onClick={() => navigate("/customer/register")}
+                  className="h-16 bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl px-8 text-lg font-black shadow-xl shadow-indigo-100 group transition-all">
+                  Get Started <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
               </div>
-              <div className="bg-sky-50 rounded-3xl p-6 border border-sky-100">
-                <p className="text-sm font-bold text-sky-700 mb-4 uppercase tracking-wide">What happens</p>
-                <div className="space-y-3">
+              <div className="bg-neutral-50 rounded-[3rem] p-12 border border-gray-100 shadow-xl shadow-gray-200/50">
+                <p className="text-[10px] font-black text-indigo-600 mb-8 uppercase tracking-[0.3em]">Operational Protocol</p>
+                <div className="space-y-6">
                   {step.detail.map((d, j) => (
-                    <div key={j} className="flex items-start gap-3">
-                      <div className="w-6 h-6 rounded-full bg-sky-500 text-white text-xs font-bold flex items-center justify-center flex-shrink-0 mt-0.5">
+                    <div key={j} className="flex items-start gap-5 group">
+                      <div className="w-8 h-8 rounded-full bg-white border border-indigo-100 text-indigo-600 text-xs font-black flex items-center justify-center flex-shrink-0 mt-0.5 shadow-sm group-hover:bg-indigo-600 group-hover:text-white transition-all">
                         {j + 1}
                       </div>
-                      <p className="text-sm text-gray-700">{d}</p>
+                      <p className="text-sm text-gray-900 font-bold leading-relaxed tracking-tight">{d}</p>
                     </div>
                   ))}
                 </div>
@@ -106,19 +111,20 @@ export default function HowItWorks() {
 
       <FAQAccordion
         items={FAQS}
-        heading="Questions About the Process"
-        bg="bg-sky-50"
+        heading="Logistics FAQ"
+        bg="bg-neutral-50"
       />
 
       {/* CTA */}
-      <section className="py-16 px-6 bg-sky-500">
-        <div className="max-w-3xl mx-auto text-center text-white">
-          <h2 className="text-3xl font-extrabold mb-4">Ready? It Takes 60 Seconds</h2>
-          <p className="text-sky-100 mb-8">Book your first EZDRY pickup in Narnaul. Free delivery on orders above ₹299.</p>
-          <Button onClick={() => navigate("/customer/book")}
-            className="h-14 bg-white text-sky-600 hover:bg-sky-50 rounded-2xl font-bold px-10 text-base shadow-lg">
-            Book Pickup Now <ChevronRight className="w-4 h-4 ml-1" />
-          </Button>
+      <section className="py-24 px-6">
+        <div className="max-w-5xl mx-auto bg-gray-900 rounded-[3.5rem] p-20 text-center text-white relative overflow-hidden shadow-2xl">
+           <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-600/20 rounded-full -mr-32 -mt-32 blur-3xl" />
+           <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tight italic">Ready to Reclaim Your Time?</h2>
+           <p className="text-gray-400 text-xl mb-12 max-w-2xl mx-auto font-medium">Book your first EZDRY pickup in Narnaul. Free delivery on orders above ₹299.</p>
+           <Button onClick={() => navigate("/customer/register")}
+             className="h-20 bg-indigo-600 text-white hover:bg-indigo-700 rounded-3xl font-black px-12 text-xl shadow-2xl shadow-indigo-900/40">
+             Book Pickup Now <ChevronRight className="w-5 h-5 ml-2" />
+           </Button>
         </div>
       </section>
     </PublicLayout>

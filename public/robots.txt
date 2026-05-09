@@ -1,6 +1,8 @@
 User-agent: *
 Allow: /
 
+Sitemap: https://www.ezdry.in/sitemap.xml
+
 # Prevent favicon blocking
 Allow: /favicon.ico
 Allow: /favicon-16x16.png

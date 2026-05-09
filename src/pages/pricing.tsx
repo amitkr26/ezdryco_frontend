@@ -5,6 +5,8 @@ import { Button } from "@/components/ui/button";
 import { useSEO } from "@/hooks/useSEO";
 import PublicLayout from "@/layouts/public-layout";
 import { FAQAccordion } from "@/components/FAQAccordion";
+import { PriceChecker } from "@/components/PriceChecker";
+import { ReviewsSection } from "@/components/ReviewsSection";
 
 const PLANS = [
   {
@@ -52,55 +54,60 @@ export default function Pricing() {
   return (
     <PublicLayout>
       {/* HERO */}
-      <section className="bg-gradient-to-br from-sky-50 to-white py-16 px-6 text-center">
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="max-w-3xl mx-auto">
-          <span className="inline-block bg-sky-100 text-sky-700 text-sm font-semibold px-4 py-1.5 rounded-full mb-5">
-            <Shield className="w-3.5 h-3.5 inline mr-1" />No Hidden Charges
-          </span>
-          <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-5 leading-tight">
-            Simple, <span className="text-sky-500">Transparent</span> Pricing
-          </h1>
-          <p className="text-gray-500 text-lg">
-            Fixed per-item rates. No surprises. Every price listed before you confirm.
-          </p>
-        </motion.div>
+      <section className="bg-gradient-to-br from-indigo-50/50 via-white to-white py-24 px-6 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-indigo-100/30 rounded-full blur-[100px] -z-0" />
+        <div className="max-w-5xl mx-auto text-center relative z-10">
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}>
+             <div className="inline-flex items-center gap-2 bg-white px-5 py-2 rounded-full shadow-sm border border-indigo-100 mb-8">
+               <Shield className="w-4 h-4 text-indigo-600" />
+               <span className="text-[10px] font-black uppercase tracking-widest text-gray-500">100% Transparent Billing</span>
+            </div>
+            <h1 className="text-5xl md:text-8xl font-black text-gray-900 mb-8 leading-[0.95] tracking-tighter">
+              Fair Rates. <br /><span className="text-indigo-600 italic">Zero Surprises.</span>
+            </h1>
+            <p className="text-gray-500 text-xl md:text-2xl max-w-3xl mx-auto leading-relaxed font-medium">
+              We believe in honest, per-item pricing. No complex subscriptions or hidden convenience fees. Just professional care for your budget.
+            </p>
+          </motion.div>
+        </div>
       </section>
 
       {/* PLANS */}
-      <section className="py-16 px-6">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid md:grid-cols-3 gap-6">
+      <section className="py-24 px-6 bg-white">
+        <div className="max-w-7xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-8">
+             <div className="md:col-span-1 py-10">
+                <h2 className="text-3xl font-black text-gray-900 tracking-tight mb-4">Pricing Model</h2>
+                <p className="text-gray-500 font-medium leading-relaxed">Unlike traditional dhobis who negotiate every time, EZDRY provides a fixed, public rate list for all residents of Narnaul.</p>
+             </div>
             {PLANS.map((plan, i) => (
               <motion.div
                 key={plan.id}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: i * 0.1 }}
-                className={`rounded-3xl border p-6 relative ${plan.highlight
-                  ? "border-sky-500 bg-sky-500 text-white shadow-xl shadow-sky-200"
-                  : "border-sky-100 bg-white shadow-sm"}`}
+                className={`rounded-[2.5rem] border p-12 relative flex flex-col justify-between ${plan.highlight
+                  ? "border-gray-900 bg-gray-900 text-white shadow-2xl shadow-indigo-200/50"
+                  : "border-gray-100 bg-neutral-50 shadow-sm"}`}
               >
-                {plan.badge && (
-                  <span className="absolute -top-3 left-1/2 -translate-x-1/2 bg-yellow-400 text-yellow-900 text-xs font-bold px-3 py-1 rounded-full">
-                    {plan.badge}
-                  </span>
-                )}
-                <p className={`text-sm font-semibold mb-1 ${plan.highlight ? "text-sky-100" : "text-sky-600"}`}>{plan.tagline}</p>
-                <h2 className={`text-xl font-extrabold mb-1 ${plan.highlight ? "text-white" : "text-gray-900"}`}>{plan.name}</h2>
-                <div className="my-4">
-                  <span className={`text-3xl font-black ${plan.highlight ? "text-white" : "text-gray-900"}`}>{plan.price}</span>
-                  <p className={`text-xs mt-1 ${plan.highlight ? "text-sky-200" : "text-gray-400"}`}>{plan.sub}</p>
-                </div>
-                <div className="space-y-2.5 mb-6">
-                  {plan.features.map((f) => (
-                    <div key={f} className={`flex items-start gap-2 text-sm ${plan.highlight ? "text-sky-50" : "text-gray-600"}`}>
-                      <CheckCircle className={`w-4 h-4 flex-shrink-0 mt-0.5 ${plan.highlight ? "text-sky-200" : "text-sky-500"}`} /> {f}
-                    </div>
-                  ))}
+                <div>
+                  <p className={`text-[10px] font-black uppercase tracking-widest mb-2 ${plan.highlight ? "text-indigo-400" : "text-gray-400"}`}>{plan.tagline}</p>
+                  <h2 className={`text-2xl font-black mb-8 tracking-tight ${plan.highlight ? "text-white" : "text-gray-900"}`}>{plan.name}</h2>
+                  <div className="mb-10">
+                    <span className={`text-4xl font-black ${plan.highlight ? "text-white" : "text-gray-900"}`}>{plan.price}</span>
+                    <p className={`text-xs mt-2 font-bold uppercase tracking-widest ${plan.highlight ? "text-indigo-300" : "text-gray-400"}`}>{plan.sub}</p>
+                  </div>
+                  <div className="space-y-4 mb-12">
+                    {plan.features.map((f) => (
+                      <div key={f} className={`flex items-start gap-3 text-sm font-medium ${plan.highlight ? "text-gray-400" : "text-gray-600"}`}>
+                        <CheckCircle className={`w-5 h-5 flex-shrink-0 ${plan.highlight ? "text-indigo-400" : "text-indigo-600"}`} /> {f}
+                      </div>
+                    ))}
+                  </div>
                 </div>
                 <Button
-                  onClick={() => navigate("/customer/book")}
-                  className={`w-full rounded-2xl font-bold h-11 ${plan.highlight ? "bg-white text-sky-600 hover:bg-sky-50" : "bg-sky-500 hover:bg-sky-600 text-white"}`}
+                  onClick={() => navigate("/customer/register")}
+                  className={`w-full rounded-2xl font-black h-16 text-lg transition-all hover:scale-[1.02] ${plan.highlight ? "bg-indigo-600 text-white hover:bg-indigo-700 shadow-xl shadow-indigo-900/50" : "bg-white text-gray-900 border border-gray-200 hover:bg-gray-50"}`}
                 >
                   {plan.cta}
                 </Button>
@@ -111,51 +118,56 @@ export default function Pricing() {
       </section>
 
       {/* PRICE TABLE */}
-      <section className="py-16 px-6 bg-sky-50">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-extrabold text-gray-900 mb-2 text-center">Full Price List — Narnaul</h2>
-          <p className="text-gray-500 text-center mb-10">Per-item pricing. No minimums per category.</p>
-          <div className="grid md:grid-cols-3 gap-6">
+      <section className="py-24 px-6 bg-neutral-50 rounded-[4rem] mx-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-black text-gray-900 tracking-tight">Standard Item Rates</h2>
+            <p className="text-gray-500 mt-2 text-lg font-medium">Transparent billing for all Narnaul localities.</p>
+          </div>
+          <div className="grid md:grid-cols-3 gap-8">
             {PRICE_ITEMS.map((cat) => (
-              <div key={cat.category} className="bg-white rounded-3xl overflow-hidden border border-sky-100 shadow-sm">
-                <div className="bg-sky-500 px-5 py-4">
-                  <h3 className="text-white font-bold text-base">{cat.category}</h3>
+              <div key={cat.category} className="bg-white rounded-[2.5rem] overflow-hidden border border-gray-100 shadow-xl shadow-gray-200/40">
+                <div className="bg-gray-900 px-8 py-6">
+                  <h3 className="text-white font-black text-xs uppercase tracking-[0.2em]">{cat.category}</h3>
                 </div>
                 <div className="divide-y divide-gray-50">
                   {cat.items.map(([item, price]) => (
-                    <div key={item} className="flex justify-between items-center px-5 py-3">
-                      <span className="text-sm text-gray-700">{item}</span>
-                      <span className="text-sm font-bold text-sky-600">{price}</span>
+                    <div key={item} className="flex justify-between items-center px-8 py-5 hover:bg-indigo-50/50 transition-colors">
+                      <span className="text-sm font-bold text-gray-900 tracking-tight">{item}</span>
+                      <span className="text-sm font-black text-indigo-600">{price}</span>
                     </div>
                   ))}
                 </div>
               </div>
             ))}
           </div>
-          <div className="mt-6 bg-sky-100 rounded-2xl p-5 text-center">
-            <p className="text-sky-800 text-sm font-medium">
-              <Zap className="w-4 h-4 inline mr-1" />
-              Express Same-Day add-on: +₹49 per order (book before 10 AM, return by 7 PM) · Free delivery on orders ₹299+
+          <div className="mt-12 bg-white border border-indigo-100 rounded-[2rem] p-8 text-center shadow-lg shadow-indigo-100/20">
+            <p className="text-gray-600 text-sm font-bold flex items-center justify-center gap-3">
+              <Zap className="w-5 h-5 text-indigo-600 fill-indigo-600" />
+              Express Same-Day: +₹49 per order · Free pickup on orders above ₹299
             </p>
           </div>
         </div>
       </section>
 
+      <ReviewsSection />
+
       <FAQAccordion
         items={FAQS}
-        heading="Pricing FAQs"
+        heading="Pricing Intelligence"
         bg="bg-white"
       />
 
       {/* CTA */}
-      <section className="py-16 px-6 bg-sky-500">
-        <div className="max-w-3xl mx-auto text-center text-white">
-          <h2 className="text-3xl font-extrabold mb-4">Get ₹50 Off Your First Order</h2>
-          <p className="text-sky-100 mb-8">Use code FIRST50 at checkout. Free pickup in Narnaul. No minimum subscription.</p>
-          <Button onClick={() => navigate("/customer/book")}
-            className="h-14 bg-white text-sky-600 hover:bg-sky-50 rounded-2xl font-bold px-10 text-base shadow-lg">
-            Book Now — Free Pickup <ChevronRight className="w-4 h-4 ml-1" />
-          </Button>
+      <section className="py-24 px-6">
+        <div className="max-w-5xl mx-auto bg-indigo-600 rounded-[3.5rem] p-20 text-center text-white relative overflow-hidden shadow-2xl">
+           <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32 blur-3xl" />
+           <h2 className="text-4xl md:text-5xl font-black mb-8 tracking-tight">Ready for a Better Experience?</h2>
+           <p className="text-indigo-100 text-xl mb-12 max-w-xl mx-auto font-medium">Join 5,000+ Narnaul residents who trust EZDRY for quality and fair pricing.</p>
+           <Button onClick={() => navigate("/customer/register")}
+             className="h-20 bg-white text-indigo-600 hover:bg-indigo-50 rounded-3xl font-black px-12 text-xl shadow-2xl shadow-indigo-900/20">
+             Schedule My Pickup <ChevronRight className="w-5 h-5 ml-2" />
+           </Button>
         </div>
       </section>
     </PublicLayout>

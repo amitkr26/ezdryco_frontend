@@ -1,10 +1,11 @@
 import { useLocation } from "wouter";
 import { motion } from "framer-motion";
-import { CheckCircle, ChevronRight, Clock, Shield, Star } from "lucide-react";
+import { CheckCircle, ChevronRight, Clock, Shield, Star, Sparkles, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useSEO } from "@/hooks/useSEO";
 import PublicLayout from "@/layouts/public-layout";
 import { FAQAccordion } from "@/components/FAQAccordion";
+import { ReviewsSection } from "@/components/ReviewsSection";
 
 const SERVICES = [
   {
@@ -61,83 +62,99 @@ export default function Services() {
   return (
     <PublicLayout>
       {/* HERO */}
-      <section className="bg-gradient-to-br from-sky-50 to-white py-16 px-6">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
-            <span className="inline-block bg-sky-100 text-sky-700 text-sm font-semibold px-4 py-1.5 rounded-full mb-5">📍 Narnaul, Haryana</span>
-            <h1 className="text-4xl sm:text-5xl font-extrabold text-gray-900 mb-5 leading-tight">
-              Our Laundry <span className="text-sky-500">Services</span>
+      <section className="bg-gradient-to-br from-indigo-50/50 via-white to-white py-24 px-6 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-indigo-100/30 rounded-full blur-[100px] -z-0" />
+        <div className="max-w-5xl mx-auto text-center relative z-10">
+          <motion.div initial={{ opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }}>
+            <span className="inline-flex items-center gap-2 bg-white px-5 py-2 rounded-[2.5rem] shadow-sm border border-indigo-100 mb-8">
+               <Sparkles className="w-4 h-4 text-indigo-600" />
+               <span className="text-[10px] font-black uppercase tracking-widest text-gray-500">Service Catalog — Narnaul, Haryana</span>
+            </span>
+            <h1 className="text-5xl md:text-7xl font-black text-gray-900 mb-8 leading-[0.95] tracking-tighter">
+              Clothing Care <br /><span className="text-indigo-600 italic">For Every Need.</span>
             </h1>
-            <p className="text-gray-500 text-lg max-w-2xl mx-auto">
-              Three professional services — one platform. Free pickup, expert cleaning, doorstep delivery across Narnaul.
+            <p className="text-gray-500 text-xl max-w-2xl mx-auto leading-relaxed font-medium">
+              Three professional service verticals designed to keep your wardrobe fresh, organized, and preserved. Pickup to delivery in 24-48 hours.
             </p>
           </motion.div>
         </div>
       </section>
 
       {/* SERVICES */}
-      {SERVICES.map((svc, i) => (
-        <section key={svc.id} id={svc.id} className={`py-16 px-6 ${i % 2 === 1 ? "bg-sky-50" : "bg-white"}`}>
-          <div className="max-w-6xl mx-auto">
-            <div className={`grid md:grid-cols-2 gap-12 items-center ${i % 2 === 1 ? "md:flex-row-reverse" : ""}`}>
-              <motion.div initial={{ opacity: 0, x: i % 2 === 0 ? -20 : 20 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}>
-                <div className={`w-20 h-20 rounded-3xl bg-gradient-to-br ${svc.color} flex items-center justify-center text-4xl mb-6 shadow-lg`}>
-                  {svc.icon}
-                </div>
-                <p className="text-sky-600 font-semibold text-sm mb-2">{svc.tagline}</p>
-                <h2 className="text-3xl font-extrabold text-gray-900 mb-4">{svc.title}</h2>
-                <p className="text-gray-500 leading-relaxed mb-6">{svc.desc}</p>
-                <div className="grid grid-cols-2 gap-2 mb-6">
-                  {svc.features.map((f) => (
-                    <div key={f} className="flex items-center gap-2 text-sm text-gray-700">
-                      <CheckCircle className="w-4 h-4 text-sky-500 flex-shrink-0" /> {f}
-                    </div>
-                  ))}
-                </div>
-                <Button onClick={() => navigate("/customer/book")}
-                  className="bg-sky-500 hover:bg-sky-600 text-white rounded-2xl px-7 h-12 font-semibold">
-                  Book {svc.title} <ChevronRight className="w-4 h-4 ml-1" />
-                </Button>
-              </motion.div>
-
-              <motion.div initial={{ opacity: 0, x: i % 2 === 0 ? 20 : -20 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.5 }}>
-                <div className="bg-white rounded-3xl border border-sky-100 shadow-sm overflow-hidden">
-                  <div className={`bg-gradient-to-br ${svc.color} p-5`}>
-                    <p className="text-white font-bold text-lg">Sample Pricing</p>
-                    <p className="text-white/80 text-sm">{svc.price}</p>
+      <div className="space-y-6 pb-24">
+        {SERVICES.map((svc, i) => (
+          <section key={svc.id} id={svc.id} className={`py-24 px-6 rounded-[2.5rem] mx-6 ${i % 2 === 1 ? "bg-neutral-50" : "bg-white border border-gray-100 shadow-sm"}`}>
+            <div className="max-w-7xl mx-auto">
+              <div className={`grid md:grid-cols-2 gap-20 items-center ${i % 2 === 1 ? "md:flex-row-reverse" : ""}`}>
+                <motion.div initial={{ opacity: 0, x: i % 2 === 0 ? -40 : 40 }} whileInView={{ opacity: 1, x: 0 }} transition={{ duration: 0.8 }}>
+                  <div className={`w-24 h-24 rounded-[2.5rem] bg-indigo-600 flex items-center justify-center text-4xl mb-10 shadow-2xl shadow-indigo-100`}>
+                    {svc.icon}
                   </div>
-                  <div className="divide-y divide-gray-50">
-                    {svc.items.map(([item, price]) => (
-                      <div key={item} className="flex justify-between items-center px-5 py-3.5">
-                        <span className="text-sm text-gray-700">{item}</span>
-                        <span className="text-sm font-bold text-sky-600">{price}</span>
+                  <p className="text-indigo-600 font-black text-xs uppercase tracking-[0.2em] mb-4">{svc.tagline}</p>
+                  <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6 tracking-tight">{svc.title}</h2>
+                  <p className="text-gray-500 text-lg leading-relaxed mb-10 font-medium">{svc.desc}</p>
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-10">
+                    {svc.features.map((f) => (
+                      <div key={f} className="flex items-center gap-3 text-sm font-bold text-gray-600 bg-white/50 p-3 rounded-[2.5rem] border border-gray-100">
+                        <CheckCircle className="w-5 h-5 text-indigo-600 flex-shrink-0" /> {f}
                       </div>
                     ))}
                   </div>
-                  <div className="p-5 bg-sky-50 border-t border-sky-100">
-                    <p className="text-xs text-gray-500 flex items-center gap-1.5">
-                      <Shield className="w-3.5 h-3.5 text-sky-500" /> All orders insured. No hidden charges.
-                    </p>
+                  <Button onClick={() => navigate("/customer/book")}
+                    className="h-16 bg-indigo-600 hover:bg-indigo-700 text-white rounded-[2.5rem] px-10 text-lg font-black shadow-xl shadow-indigo-100 transition-all hover:scale-[1.02]">
+                    Book {svc.title} <ChevronRight className="w-4 h-4 ml-2" />
+                  </Button>
+                </motion.div>
+
+                <motion.div initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ duration: 0.8 }}>
+                  <div className="bg-white rounded-[2.5rem] border border-gray-100 shadow-2xl shadow-gray-200/50 overflow-hidden">
+                    <div className={`bg-gray-900 p-8 text-white`}>
+                      <div className="flex justify-between items-end">
+                        <div>
+                          <p className="text-[10px] font-black uppercase tracking-[0.3em] opacity-60 mb-2">Pricing Guideline</p>
+                          <p className="text-2xl font-black tracking-tight italic">Standard Rates</p>
+                        </div>
+                        <div className="text-right">
+                           <p className="text-indigo-400 font-black text-xl">{svc.price}</p>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="divide-y divide-gray-50">
+                      {svc.items.map(([item, price]) => (
+                        <div key={item} className="flex justify-between items-center px-10 py-6 hover:bg-indigo-50/50 transition-colors">
+                          <span className="text-gray-900 font-black tracking-tight">{item}</span>
+                          <span className="text-indigo-600 font-black">{price}</span>
+                        </div>
+                      ))}
+                    </div>
+                    <div className="p-8 bg-neutral-50 border-t border-gray-50 text-center">
+                      <p className="text-[10px] font-bold text-gray-400 uppercase tracking-widest flex items-center justify-center gap-2">
+                        <Shield className="w-4 h-4 text-indigo-600" /> Insured Processing Guarantee
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </motion.div>
+                </motion.div>
+              </div>
             </div>
-          </div>
-        </section>
-      ))}
+          </section>
+        ))}
+      </div>
 
       {/* TRUST BADGES */}
-      <section className="py-12 bg-gray-900">
-        <div className="max-w-6xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-6 text-center">
+      <section className="py-24 px-6 bg-gray-900 rounded-[2.5rem] mx-6 mb-24">
+        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
           {[
-            { icon: <Clock className="w-6 h-6" />, label: "Fast Turnaround" },
-            { icon: <Shield className="w-6 h-6" />, label: "Insured Orders" },
-            { icon: <Star className="w-6 h-6" />, label: "4.9★ Rated Service" },
-            { icon: <CheckCircle className="w-6 h-6" />, label: "7 Days a Week" },
+            { icon: <Clock className="w-8 h-8" />, label: "Express Turnaround", desc: "Same-day available" },
+            { icon: <Shield className="w-8 h-8" />, label: "Insured Care", desc: "Garment protection" },
+            { icon: <Star className="w-8 h-8" />, label: "Top Rated", desc: "Narnaul's favorite" },
+            { icon: <CheckCircle className="w-8 h-8" />, label: "Always Open", desc: "7 days a week" },
           ].map((b) => (
-            <div key={b.label} className="flex flex-col items-center gap-2 text-white">
-              <div className="text-sky-400">{b.icon}</div>
-              <p className="text-sm font-semibold">{b.label}</p>
+            <div key={b.label} className="flex flex-col items-center gap-4 text-white">
+              <div className="text-indigo-400 mb-2">{b.icon}</div>
+              <div className="space-y-1">
+                 <p className="text-sm font-black uppercase tracking-widest">{b.label}</p>
+                 <p className="text-[10px] font-bold text-gray-500 uppercase tracking-widest">{b.desc}</p>
+              </div>
             </div>
           ))}
         </div>
@@ -145,19 +162,22 @@ export default function Services() {
 
       <FAQAccordion
         items={FAQS}
-        heading="Frequently Asked Questions"
+        heading="Service Intelligence"
         bg="bg-white"
       />
 
+      <ReviewsSection />
+
       {/* CTA */}
-      <section className="py-16 px-6 bg-sky-500">
-        <div className="max-w-3xl mx-auto text-center text-white">
-          <h2 className="text-3xl font-extrabold mb-4">Book Your First Pickup in Narnaul</h2>
-          <p className="text-sky-100 mb-8">Free pickup available. Fast turnaround. ₹50 off with code FIRST50.</p>
-          <Button onClick={() => navigate("/customer/book")}
-            className="h-14 bg-white text-sky-600 hover:bg-sky-50 rounded-2xl font-bold px-10 text-base shadow-lg">
-            Book Now — Free Pickup <ChevronRight className="w-4 h-4 ml-1" />
-          </Button>
+      <section className="py-24 px-6">
+        <div className="max-w-5xl mx-auto bg-indigo-600 rounded-[2.5rem] p-20 text-center text-white relative overflow-hidden shadow-2xl">
+           <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32 blur-3xl" />
+           <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tight">Experience the <br /><span className="italic">Cloth Spa</span> Standard</h2>
+           <p className="text-indigo-100 text-xl mb-12 max-w-2xl mx-auto font-medium">Join thousands of Narnaul residents who trust us with their wardrobe. First order ₹50 off.</p>
+           <Button onClick={() => navigate("/customer/book")}
+             className="h-20 bg-white text-indigo-600 hover:bg-indigo-50 rounded-[2.5rem] font-black px-12 text-xl shadow-2xl shadow-indigo-900/20">
+             Start Your Journey <ChevronRight className="w-5 h-5 ml-2" />
+           </Button>
         </div>
       </section>
     </PublicLayout>

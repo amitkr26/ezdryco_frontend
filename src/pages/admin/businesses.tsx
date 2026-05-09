@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { Search, Store, Check, X, Clock, CheckCircle, XCircle, Users } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
 import { useListBusinesses, useUpdateBusiness } from "@/lib/api-client-react";
@@ -48,32 +49,32 @@ export default function AdminBusinesses() {
   };
 
   const statusBadge = (status: BizStatus) => {
-    if (status === "active") return <Badge className="bg-emerald-100 text-emerald-700 border-0"><CheckCircle className="w-3 h-3 mr-1" />Active</Badge>;
-    if (status === "pending") return <Badge className="bg-yellow-100 text-yellow-700 border-0"><Clock className="w-3 h-3 mr-1" />Pending</Badge>;
-    return <Badge className="bg-red-100 text-red-700 border-0"><XCircle className="w-3 h-3 mr-1" />Inactive</Badge>;
+    if (status === "active") return <Badge className="bg-emerald-100 text-emerald-700 border-none font-black text-[10px] uppercase rounded-lg px-2 py-0.5"><CheckCircle className="w-3 h-3 mr-1" />Active</Badge>;
+    if (status === "pending") return <Badge className="bg-amber-100 text-amber-700 border-none font-black text-[10px] uppercase rounded-lg px-2 py-0.5"><Clock className="w-3 h-3 mr-1" />Pending</Badge>;
+    return <Badge className="bg-red-100 text-red-700 border-none font-black text-[10px] uppercase rounded-lg px-2 py-0.5"><XCircle className="w-3 h-3 mr-1" />Inactive</Badge>;
   };
 
   return (
-    <div className="p-6">
-      <div className="mb-6">
-        <h2 className="text-2xl font-bold text-gray-900">Business Registrations</h2>
-        <p className="text-gray-400 text-sm">Review and approve business partner requests</p>
+    <div className="space-y-8">
+      <div>
+        <h2 className="text-2xl font-black text-gray-900 tracking-tight">Business Partners</h2>
+        <p className="text-gray-400 text-sm font-medium">Lifecycle management for shop registrations</p>
       </div>
 
       {/* Tabs */}
-      <div className="flex gap-2 mb-5 flex-wrap">
+      <div className="flex gap-2 p-1.5 bg-gray-100 rounded-3xl w-fit">
         {(["all", "pending", "active", "inactive"] as const).map(t => (
           <button
             key={t}
             onClick={() => setTab(t)}
-            className={`flex items-center gap-1.5 px-4 py-2 rounded-xl text-sm font-medium transition-all ${
+            className={`flex items-center gap-2 px-6 py-3 rounded-2xl text-[10px] font-black uppercase tracking-widest transition-all ${
               tab === t
-                ? t === "pending" ? "bg-yellow-500 text-white" : t === "active" ? "bg-emerald-500 text-white" : t === "inactive" ? "bg-red-500 text-white" : "bg-sky-500 text-white"
-                : "bg-sky-50 text-gray-600 hover:bg-sky-100"
+                ? "bg-white text-indigo-600 shadow-sm shadow-gray-200/50"
+                : "text-gray-400 hover:text-gray-600"
             }`}
           >
-            {t.charAt(0).toUpperCase() + t.slice(1)}
-            <span className={`text-xs px-1.5 py-0.5 rounded-full font-bold ${tab === t ? "bg-white/20" : "bg-sky-100 text-sky-600"}`}>
+            {t}
+            <span className={`px-2 py-0.5 rounded-lg text-[9px] ${tab === t ? "bg-indigo-50 text-indigo-600" : "bg-gray-200 text-gray-500"}`}>
               {counts[t]}
             </span>
           </button>
@@ -81,91 +82,106 @@ export default function AdminBusinesses() {
       </div>
 
       {/* Search */}
-      <div className="relative mb-5">
-        <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
-        <Input value={search} onChange={e => setSearch(e.target.value)} placeholder="Search by shop name, owner or phone..." className="pl-10 rounded-xl border-sky-100" />
+      <div className="relative">
+        <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+        <Input 
+          value={search} 
+          onChange={e => setSearch(e.target.value)} 
+          placeholder="Lookup by shop name, owner or phone..." 
+          className="pl-12 h-14 rounded-[1.5rem] border-none bg-white shadow-xl shadow-gray-200/40 focus:ring-2 focus:ring-indigo-500 font-medium" 
+        />
       </div>
 
       {/* Empty state */}
       {filtered.length === 0 && (
-        <div className="bg-white rounded-2xl border border-sky-100 p-12 text-center">
-          <Users className="w-12 h-12 text-sky-200 mx-auto mb-4" />
-          <p className="text-gray-400 font-medium">No {tab === "all" ? "" : tab} business registrations</p>
-          <p className="text-gray-300 text-sm mt-1">When businesses register, they'll appear here</p>
-        </div>
+        <Card className="border-none bg-white rounded-[2.5rem] p-24 text-center shadow-xl shadow-gray-200/40">
+          <div className="w-20 h-20 bg-neutral-50 rounded-full flex items-center justify-center mx-auto mb-6">
+            <Users className="w-10 h-10 text-gray-200" />
+          </div>
+          <p className="text-gray-900 font-black uppercase tracking-widest text-sm mb-1">No {tab === "all" ? "businesses" : tab + " partners"} found</p>
+          <p className="text-gray-400 text-xs font-medium">When registrations occur, they will appear here</p>
+        </Card>
       )}
 
       {/* Cards */}
-      <div className="grid gap-4">
+      <div className="grid gap-6">
         {filtered.map((biz, i) => (
           <motion.div
             key={biz.id}
-            initial={{ opacity: 0, y: 10 }}
+            initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: i * 0.05 }}
-            className="bg-white rounded-2xl border border-sky-100 p-5 shadow-sm"
           >
-            <div className="flex items-start justify-between flex-wrap gap-4">
-              <div className="flex items-center gap-4">
-                <div className="w-12 h-12 bg-sky-100 rounded-2xl flex items-center justify-center flex-shrink-0">
-                    <span className="text-sky-600 font-bold text-lg">{biz.name[0]}</span>
+            <Card className="border-none bg-white rounded-[2.5rem] p-8 shadow-xl shadow-gray-200/40 group hover:shadow-2xl transition-all">
+              <div className="flex items-start justify-between flex-wrap gap-6">
+                <div className="flex items-center gap-6">
+                  <div className="w-16 h-16 bg-neutral-50 rounded-[1.5rem] flex items-center justify-center border-2 border-transparent group-hover:border-indigo-100 transition-all">
+                      <span className="text-indigo-600 font-black text-2xl uppercase">{biz.name[0]}</span>
+                  </div>
+                  <div className="space-y-1">
+                    <div className="flex items-center gap-3">
+                      <h3 className="font-black text-gray-900 text-lg tracking-tight leading-none">{biz.name}</h3>
+                      {statusBadge(biz.status)}
+                    </div>
+                    <p className="text-sm font-bold text-gray-500">{biz.ownerName} • <span className="text-indigo-500">{biz.city}</span></p>
+                    <div className="flex gap-4 pt-2">
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Phone</span>
+                        <span className="text-xs font-black text-gray-700 tracking-tight">+91 {biz.phone}</span>
+                      </div>
+                      <div className="flex items-center gap-1.5">
+                        <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest">Email</span>
+                        <span className="text-xs font-black text-gray-700 tracking-tight">{biz.email}</span>
+                      </div>
+                    </div>
+                    <div className="pt-2">
+                       <span className="text-[10px] font-black text-gray-400 uppercase tracking-widest block mb-0.5">Physical Hub</span>
+                       <p className="text-xs font-bold text-gray-600">{biz.address}</p>
+                    </div>
+                    <p className="text-[10px] font-black text-gray-300 uppercase tracking-widest pt-2">Registration ID: {biz.id.toUpperCase()}</p>
+                  </div>
                 </div>
-                <div>
-                  <div className="flex items-center gap-2 mb-1">
-                    <h3 className="font-bold text-gray-900">{biz.name}</h3>
-                    {statusBadge(biz.status)}
-                  </div>
-                  <p className="text-sm text-gray-500">{biz.ownerName} • {biz.city}</p>
-                  <div className="flex gap-4 mt-1">
-                    <span className="text-xs text-gray-400">📞 +91 {biz.phone}</span>
-                    <span className="text-xs text-gray-400">✉️ {biz.email}</span>
-                  </div>
-                  <p className="text-xs text-gray-400 mt-0.5">📍 {biz.address}</p>
-                  <p className="text-xs text-gray-300 mt-1">Submitted: {new Date(biz.joinedAt).toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" })}</p>
+
+                <div className="flex items-center gap-3">
+                  {biz.status === "pending" && (
+                    <div className="flex gap-3">
+                      <Button
+                        onClick={() => updateStatus(biz.id, "active")}
+                        className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl h-12 px-6 text-sm font-black uppercase tracking-widest shadow-lg shadow-indigo-100"
+                      >
+                        <Check className="w-4 h-4 mr-2" /> Approve
+                      </Button>
+                      <Button
+                        onClick={() => updateStatus(biz.id, "inactive")}
+                        variant="outline"
+                        className="border-red-100 text-red-500 hover:bg-red-50 rounded-2xl h-12 px-6 text-sm font-black uppercase tracking-widest"
+                      >
+                        <X className="w-4 h-4 mr-2" /> Reject
+                      </Button>
+                    </div>
+                  )}
+
+                  {biz.status === "active" && (
+                    <Button
+                      onClick={() => updateStatus(biz.id, "inactive")}
+                      variant="outline"
+                      className="border-red-100 text-red-500 hover:bg-red-50 rounded-2xl h-12 px-6 text-sm font-black uppercase tracking-widest"
+                    >
+                      <X className="w-4 h-4 mr-2" /> Revoke Access
+                    </Button>
+                  )}
+
+                  {biz.status === "inactive" && (
+                    <Button
+                      onClick={() => updateStatus(biz.id, "active")}
+                      className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl h-12 px-6 text-sm font-black uppercase tracking-widest shadow-lg shadow-indigo-100"
+                    >
+                      <Check className="w-4 h-4 mr-2" /> Re-Approve
+                    </Button>
+                  )}
                 </div>
               </div>
-
-              {biz.status === "pending" && (
-                <div className="flex gap-2 flex-shrink-0">
-                  <Button
-                    onClick={() => updateStatus(biz.id, "active")}
-                    className="bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl h-10 px-5 text-sm font-semibold gap-1.5"
-                  >
-                    <Check className="w-4 h-4" /> Approve
-                  </Button>
-                  <Button
-                    onClick={() => updateStatus(biz.id, "inactive")}
-                    variant="outline"
-                    className="border-red-200 text-red-500 hover:bg-red-50 rounded-xl h-10 px-5 text-sm font-semibold gap-1.5"
-                  >
-                    <X className="w-4 h-4" /> Reject
-                  </Button>
-                </div>
-              )}
-
-              {biz.status === "active" && (
-                <div className="flex gap-2 flex-shrink-0">
-                  <Button
-                    onClick={() => updateStatus(biz.id, "inactive")}
-                    variant="outline"
-                    className="border-red-200 text-red-500 hover:bg-red-50 rounded-xl h-10 px-4 text-sm gap-1.5"
-                  >
-                    <X className="w-4 h-4" /> Revoke
-                  </Button>
-                </div>
-              )}
-
-              {biz.status === "inactive" && (
-                <div className="flex gap-2 flex-shrink-0">
-                  <Button
-                    onClick={() => updateStatus(biz.id, "active")}
-                    className="bg-emerald-500 hover:bg-emerald-600 text-white rounded-xl h-10 px-4 text-sm gap-1.5"
-                  >
-                    <Check className="w-4 h-4" /> Re-Approve
-                  </Button>
-                </div>
-              )}
-            </div>
+            </Card>
           </motion.div>
         ))}
       </div>

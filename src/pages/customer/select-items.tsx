@@ -38,7 +38,7 @@ export default function CustomerSelectItems() {
     <div className="min-h-screen bg-sky-50 pb-32">
       <header className="px-4 pt-6 pb-3 bg-white shadow-sm sticky top-0 z-20">
         <div className="max-w-xl mx-auto flex items-center justify-between">
-          <button onClick={() => navigate(-1)} className="text-gray-600">Back</button>
+          <button onClick={() => window.history.back()} className="text-gray-600">Back</button>
           <h1 className="text-lg font-semibold">Select Items</h1>
           <div className="text-sm text-gray-500">{Object.values(quantities).reduce((a,b)=>a+b,0)} items</div>
         </div>

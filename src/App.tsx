@@ -1,3 +1,4 @@
+import { Suspense, lazy } from "react";
 import { Switch, Route, Router as WouterRouter } from "wouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "@/components/ui/toaster";
@@ -41,15 +42,8 @@ import AdminUsers from "@/pages/admin/users";
 import AdminNotifications from "@/pages/admin/notifications";
 import AdminBlogs from "@/pages/admin/blogs";
 
-// SEO Pages — Narnaul
-import LaundryServiceNarnaul from "@/pages/seo/laundry-service-narnaul";
-import DryCleaningNarnaul from "@/pages/seo/dry-cleaning-narnaul";
-import LaundryNearMeNarnaul from "@/pages/seo/laundry-near-me-narnaul";
+// EAGER LOADED PAGES (Critical path)
 import BlogIndex from "@/pages/seo/blog-index";
-import BlogPost from "@/pages/seo/blog-post";
-
-// New Public Pages
-import Services from "@/pages/services";
 import HowItWorks from "@/pages/how-it-works";
 import Pricing from "@/pages/pricing";
 import About from "@/pages/about";
@@ -57,6 +51,31 @@ import Contact from "@/pages/contact";
 import PrivacyPolicy from "@/pages/privacy";
 import TermsOfUse from "@/pages/terms";
 import RefundPolicy from "@/pages/refund";
+// LAZY LOADED PAGES (Code Splitting)
+// Heavy pages - loaded on demand
+const AreasWeServe = lazy(() => import("@/pages/areas-we-serve"));
+const Plans = lazy(() => import("@/pages/plans"));
+const CommercialPage = lazy(() => import("@/pages/commercial"));
+const Services = lazy(() => import("@/pages/services"));
+const ShoeCleaning = lazy(() => import("@/pages/shoe-cleaning"));
+const CarpetCleaning = lazy(() => import("@/pages/carpet-cleaning"));
+const CurtainCleaning = lazy(() => import("@/pages/curtain-cleaning"));
+
+// Locality Pages - Lazy loaded for performance
+const ShastriNagarLaundry = lazy(() => import("@/pages/seo/shastri-nagar-laundry"));
+const NasibpurLaundry = lazy(() => import("@/pages/seo/nasibpur-laundry"));
+const KoriawasLaundry = lazy(() => import("@/pages/seo/koriawas-laundry"));
+const HudaSectorLaundry = lazy(() => import("@/pages/seo/huda-sector-laundry"));
+const KailashNagarLaundry = lazy(() => import("@/pages/seo/kailash-nagar-laundry"));
+const HousingBoardLaundry = lazy(() => import("@/pages/seo/housing-board-laundry"));
+
+// SEO Pages - Lazy loaded
+const LaundryServiceNarnaul = lazy(() => import("@/pages/seo/laundry-service-narnaul"));
+const DryCleaningNarnaul = lazy(() => import("@/pages/seo/dry-cleaning-narnaul"));
+const LaundryNearMeNarnaul = lazy(() => import("@/pages/seo/laundry-near-me-narnaul"));
+const AdarshNagarLaundry = lazy(() => import("@/pages/seo/adarsh-nagar-laundry"));
+const MahendragarhRoadLaundry = lazy(() => import("@/pages/seo/mahendragarh-road-laundry"));
+const BlogPost = lazy(() => import("@/pages/seo/blog-post"));
 
 const queryClient = new QueryClient({
   defaultOptions: { 
@@ -89,8 +108,13 @@ function Router() {
 
       {/* New Public Pages */}
       <Route path="/services" component={Services} />
+      <Route path="/shoe-cleaning-narnaul" component={ShoeCleaning} />
+      <Route path="/carpet-cleaning-narnaul" component={CarpetCleaning} />
+      <Route path="/curtain-cleaning-narnaul" component={CurtainCleaning} />
       <Route path="/how-it-works" component={HowItWorks} />
+      <Route path="/commercial" component={CommercialPage} />
       <Route path="/pricing" component={Pricing} />
+      <Route path="/plans" component={Plans} />
       <Route path="/about" component={About} />
       <Route path="/contact" component={Contact} />
       <Route path="/privacy" component={PrivacyPolicy} />
@@ -100,6 +124,16 @@ function Router() {
       <Route path="/laundry-service-narnaul" component={LaundryServiceNarnaul} />
       <Route path="/dry-cleaning-narnaul" component={DryCleaningNarnaul} />
       <Route path="/laundry-near-me-narnaul" component={LaundryNearMeNarnaul} />
+      <Route path="/adarsh-nagar-laundry" component={AdarshNagarLaundry} />
+      <Route path="/mahendragarh-road-laundry" component={MahendragarhRoadLaundry} />
+      {/* Areas We Serve Hub + Locality Pages */}
+      <Route path="/areas-we-serve" component={AreasWeServe} />
+      <Route path="/shastri-nagar-laundry" component={ShastriNagarLaundry} />
+      <Route path="/nasibpur-laundry" component={NasibpurLaundry} />
+      <Route path="/koriawas-laundry" component={KoriawasLaundry} />
+      <Route path="/huda-sector-laundry" component={HudaSectorLaundry} />
+      <Route path="/kailash-nagar-laundry" component={KailashNagarLaundry} />
+      <Route path="/housing-board-laundry" component={HousingBoardLaundry} />
       <Route path="/blog" component={BlogIndex} />
       <Route path="/blog/:slug" component={BlogPost} />
 
@@ -188,6 +222,18 @@ function Router() {
   );
 }
 
+// Loading fallback for Suspense
+function PageLoader() {
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-gray-50">
+      <div className="text-center">
+        <div className="w-12 h-12 border-4 border-indigo-600 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+        <p className="text-gray-500 font-medium">Loading...</p>
+      </div>
+    </div>
+  );
+}
+
 function App() {
   // Fallback for BASE_URL to prevent undefined errors
   const baseUrl = (import.meta.env.BASE_URL || "/").replace(/\/$/, "");
@@ -196,7 +242,9 @@ function App() {
     <QueryClientProvider client={queryClient}>
       <TooltipProvider>
         <WouterRouter base={baseUrl}>
-          <Router />
+          <Suspense fallback={<PageLoader />}>
+            <Router />
+          </Suspense>
         </WouterRouter>
         <Toaster />
       </TooltipProvider>
