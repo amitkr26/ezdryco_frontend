@@ -132,9 +132,9 @@ export default function LandingPage() {
   return (
     <PublicLayout>
       {/* ── HERO SECTION ── */}
-      <section className="pt-20 pb-32 bg-gradient-to-br from-indigo-50/50 via-white to-white relative overflow-hidden">
-        <div className="absolute top-20 right-0 w-[600px] h-[600px] bg-indigo-100/40 rounded-full blur-[120px] opacity-30 -z-0" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-indigo-100/40 rounded-full blur-[100px] opacity-30 -z-0" />
+      <section className="pt-16 pb-20 bg-gradient-to-br from-sky-50/60 via-white to-white relative overflow-hidden">
+        <div className="absolute top-20 right-0 w-[500px] h-[500px] bg-sky-100/30 rounded-full blur-[100px] opacity-40 -z-0" />
+        <div className="absolute bottom-0 left-0 w-[300px] h-[300px] bg-sky-100/30 rounded-full blur-[80px] opacity-30 -z-0" />
         
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="grid lg:grid-cols-2 gap-20 items-center">
@@ -143,14 +143,14 @@ export default function LandingPage() {
               animate={{ opacity: 1, x: 0 }} 
               transition={{ duration: 0.8, ease: "easeOut" }}
             >
-              <div className="inline-flex items-center gap-2 bg-indigo-600/5 text-indigo-700 px-6 py-2.5 rounded-full text-[10px] font-black uppercase tracking-[0.2em] mb-10 border border-indigo-100/50">
+              <div className="inline-flex items-center gap-2 bg-sky-500/10 text-sky-600 px-5 py-2 rounded-full text-[10px] font-bold uppercase tracking-wider mb-8 border border-sky-100">
                 <Sparkles className="w-3.5 h-3.5" /> Narnaul's #1 Clothing Spa
               </div>
-              <h1 className="text-6xl md:text-8xl font-[900] text-gray-900 leading-[0.95] mb-10 tracking-tighter">
-                Laundry <br />
-                <span className="text-indigo-600 italic">Redefined.</span>
+              <h1 className="text-5xl md:text-7xl font-bold text-gray-900 leading-[1.1] mb-8 tracking-tight">
+                Fresh Laundry <br />
+                <span className="text-sky-500">Delivered.</span>
               </h1>
-              <p className="text-gray-500 text-xl md:text-2xl mb-12 leading-relaxed font-medium max-w-2xl">
+              <p className="text-gray-500 text-lg md:text-xl mb-10 leading-relaxed font-medium max-w-xl">
               From silk sarees to everyday wear—we pick up, clean, and deliver. 
               <span className="text-gray-900 font-black"> All of Narnaul covered.</span>
             </p>
@@ -167,7 +167,7 @@ export default function LandingPage() {
             <div className="flex flex-col sm:flex-row gap-6">
                 <Button
                   onClick={() => navigate("/customer/register")}
-                  className="h-20 bg-indigo-600 hover:bg-indigo-700 text-white rounded-3xl font-black text-xl px-12 shadow-2xl shadow-indigo-200 group transition-all hover:scale-[1.02]"
+                  className="h-16 bg-sky-500 hover:bg-sky-600 text-white rounded-2xl font-bold text-lg px-10 shadow-lg shadow-sky-100 group transition-all hover:scale-[1.02]"
                 >
                   <Truck className="w-6 h-6 mr-3 group-hover:translate-x-1 transition-transform" />
                   Schedule Pickup
@@ -176,7 +176,7 @@ export default function LandingPage() {
                   <div className="flex items-center gap-4 mb-2">
                     <div className="flex -space-x-3">
                       {[1, 2, 3, 4].map((i) => (
-                        <div key={i} className="w-10 h-10 rounded-full border-4 border-white bg-indigo-50 flex items-center justify-center text-[10px] font-black text-indigo-400">
+                        <div key={i} className="w-10 h-10 rounded-full border-4 border-white bg-sky-50 flex items-center justify-center text-[10px] font-bold text-sky-500">
                           {String.fromCharCode(64 + i)}
                         </div>
                       ))}
@@ -187,32 +187,32 @@ export default function LandingPage() {
                     </div>
                   </div>
                   <div className="text-[11px] font-black text-gray-400 uppercase tracking-widest">
-                    Trusted by <span className="text-indigo-600">500+ Families</span> in Narnaul
+                    Trusted by <span className="text-sky-500 font-bold">500+ Families</span> in Narnaul
                   </div>
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 sm:grid-cols-3 gap-8 mt-16 border-t border-gray-100 pt-12">
+              <div className="grid grid-cols-3 gap-6 mt-12 border-t border-gray-100 pt-8">
                 <div className="space-y-1">
-                  <div className="flex items-center gap-2 text-indigo-600 mb-1">
-                    <Shield className="w-5 h-5" />
-                    <span className="text-xs font-black uppercase tracking-widest">Hygienic</span>
+                  <div className="flex items-center gap-2 text-sky-500 mb-1">
+                    <Shield className="w-4 h-4" />
+                    <span className="text-[10px] font-bold uppercase tracking-wider">Hygienic</span>
                   </div>
-                  <p className="text-[10px] font-bold text-gray-400 leading-tight">Sanitized processing for every garment.</p>
+                  <p className="text-[10px] font-medium text-gray-400 leading-tight">Sanitized processing.</p>
                 </div>
                 <div className="space-y-1">
-                  <div className="flex items-center gap-2 text-indigo-600 mb-1">
-                    <Clock className="w-5 h-5" />
-                    <span className="text-xs font-black uppercase tracking-widest">24h Return</span>
+                  <div className="flex items-center gap-2 text-sky-500 mb-1">
+                    <Clock className="w-4 h-4" />
+                    <span className="text-[10px] font-bold uppercase tracking-wider">24h Return</span>
                   </div>
-                  <p className="text-[10px] font-bold text-gray-400 leading-tight">Express delivery available in Narnaul.</p>
+                  <p className="text-[10px] font-medium text-gray-400 leading-tight">Express delivery.</p>
                 </div>
                 <div className="space-y-1">
-                  <div className="flex items-center gap-2 text-indigo-600 mb-1">
-                    <MapPin className="w-5 h-5" />
-                    <span className="text-xs font-black uppercase tracking-widest">Free Pickup</span>
+                  <div className="flex items-center gap-2 text-sky-500 mb-1">
+                    <MapPin className="w-4 h-4" />
+                    <span className="text-[10px] font-bold uppercase tracking-wider">Free Pickup</span>
                   </div>
-                  <p className="text-[10px] font-bold text-gray-400 leading-tight">No-cost doorstep collection service.</p>
+                  <p className="text-[10px] font-medium text-gray-400 leading-tight">Doorstep service.</p>
                 </div>
               </div>
             </motion.div>
@@ -224,23 +224,23 @@ export default function LandingPage() {
               className="hidden lg:block relative"
             >
               <div className="relative group">
-                <div className="absolute inset-0 bg-indigo-600/10 rounded-[5rem] rotate-3 scale-105 blur-2xl group-hover:rotate-6 transition-all duration-700" />
-                <div className="relative bg-white rounded-[5rem] border-8 border-white shadow-[0_50px_100px_-20px_rgba(79,70,229,0.15)] p-2 overflow-hidden">
+                <div className="absolute inset-0 bg-sky-500/10 rounded-[5rem] rotate-3 scale-105 blur-2xl group-hover:rotate-6 transition-all duration-700" />
+                <div className="relative bg-white rounded-[5rem] border-8 border-white shadow-[0_40px_80px_-20px_rgba(56,189,248,0.15)] p-2 overflow-hidden">
                   <img 
                     src="/landing-hero-premium.png" 
                     alt="Premium Laundry Service in Narnaul" 
                     className="w-full h-auto rounded-[4.5rem] object-cover aspect-[4/5]"
                   />
                   <div className="absolute top-10 right-10 bg-white/90 backdrop-blur-md px-6 py-4 rounded-3xl border border-white/50 shadow-2xl">
-                     <p className="text-[10px] font-black text-indigo-600 uppercase tracking-widest mb-1">Next Available Slot</p>
+                     <p className="text-[10px] font-bold text-sky-500 uppercase tracking-wider mb-1">Next Available Slot</p>
                      <p className="text-lg font-black text-gray-900 leading-none">Today, 2:00 PM</p>
                   </div>
-                  <div className="absolute bottom-10 left-10 right-10 bg-indigo-600 p-8 rounded-[2.5rem] shadow-2xl">
-                    <div className="flex items-center gap-6">
-                      <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center text-indigo-600 text-2xl font-black shadow-inner">4.9</div>
+                  <div className="absolute bottom-10 left-10 right-10 bg-sky-500 p-6 rounded-2xl shadow-xl">
+                    <div className="flex items-center gap-4">
+                      <div className="w-14 h-14 bg-white rounded-xl flex items-center justify-center text-sky-500 text-xl font-bold shadow-inner">4.9</div>
                       <div>
-                        <p className="font-black text-white text-xl tracking-tight leading-none mb-1">Top Rated</p>
-                        <p className="text-indigo-200 text-xs font-bold">Narnaul's favorite clothing care</p>
+                        <p className="font-bold text-white text-lg tracking-tight leading-none mb-1">Top Rated</p>
+                        <p className="text-sky-100 text-xs font-medium">Narnaul's favorite clothing care</p>
                       </div>
                     </div>
                   </div>
@@ -265,13 +265,12 @@ export default function LandingPage() {
       </section>
 
       {/* ── SERVICES OVERVIEW ── */}
-      <section className="py-24 bg-white" id="services">
+      <section className="py-16 bg-white" id="services">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-black text-gray-900 mb-6 tracking-tight">Our Professional Services in Narnaul</h2>
-            <p className="text-gray-500 max-w-2xl mx-auto text-lg leading-relaxed">
-              We offer a complete range of clothing care solutions for your wardrobe. 
-              From everyday wash & fold to premium dry cleaning and specialized item cleaning.
+          <div className="text-center mb-14">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4 tracking-tight">Our Services in Narnaul</h2>
+            <p className="text-gray-500 max-w-xl mx-auto text-base leading-relaxed">
+              Complete clothing care solutions — from everyday wash to premium dry cleaning.
             </p>
           </div>
 
@@ -280,13 +279,13 @@ export default function LandingPage() {
               <motion.div 
                 key={i} 
                 whileHover={{ y: -10 }}
-                className="bg-white rounded-3xl p-8 border border-gray-100 shadow-sm hover:shadow-xl hover:border-indigo-100 transition-all"
+                className="bg-white rounded-2xl p-6 border border-gray-100 shadow-sm hover:shadow-lg hover:border-sky-100 transition-all"
               >
-                <div className="text-6xl mb-8">{s.icon}</div>
-                <h3 className="text-xl font-black text-gray-900 mb-4">{s.title}</h3>
-                <p className="text-gray-500 text-sm mb-6 leading-relaxed">{s.desc}</p>
-                <div className="pt-6 border-t border-gray-50 flex items-center justify-between">
-                   <span className="text-indigo-600 font-bold text-sm">{s.price}</span>
+                <div className="text-4xl mb-5">{s.icon}</div>
+                <h3 className="text-lg font-bold text-gray-900 mb-2">{s.title}</h3>
+                <p className="text-gray-500 text-sm mb-4 leading-relaxed line-clamp-2">{s.desc}</p>
+                <div className="pt-4 border-t border-gray-50">
+                   <span className="text-sky-500 font-semibold text-sm">{s.price}</span>
                 </div>
               </motion.div>
             ))}
@@ -301,13 +300,13 @@ export default function LandingPage() {
       </section>
 
       {/* ── PROCESS EXPLAINER ── */}
-      <section className="py-24 bg-indigo-600 relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-full opacity-5 bg-[radial-gradient(circle_at_30%_30%,white_1px,transparent_1px)] bg-[length:40px_40px]" />
+      <section className="py-16 bg-gradient-to-br from-sky-500 to-sky-600 relative overflow-hidden">
+        <div className="absolute top-0 left-0 w-full h-full opacity-10 bg-[radial-gradient(circle_at_30%_30%,white_1px,transparent_1px)] bg-[length:30px_30px]" />
         
         <div className="max-w-7xl mx-auto px-6 relative z-10 text-white">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-black mb-6 tracking-tight">Doorstep to Doorstep — The EZDRY Way</h2>
-            <p className="text-indigo-100 max-w-2xl mx-auto text-lg">
+          <div className="text-center mb-14">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">How EZDRY Works</h2>
+            <p className="text-sky-100 max-w-2xl mx-auto text-base">
               We've redesigned laundry to be simple, fast, and completely hassle-free.
             </p>
           </div>
@@ -316,14 +315,14 @@ export default function LandingPage() {
             {STEPS.map((step, i) => (
               <div key={i} className="relative">
                 {i < STEPS.length - 1 && (
-                  <div className="hidden lg:block absolute top-10 left-[70%] w-full h-[2px] bg-indigo-500" />
+                  <div className="hidden lg:block absolute top-8 left-[70%] w-full h-[1px] bg-white/30" />
                 )}
-                <div className="w-20 h-20 bg-indigo-500/50 backdrop-blur-md rounded-2xl flex items-center justify-center text-4xl mb-8 border border-white/20">
+                <div className="w-16 h-16 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center text-3xl mb-6 border border-white/30">
                   {step.icon}
                 </div>
-                <div className="text-indigo-300 font-black text-6xl opacity-20 mb-4">{i + 1}</div>
+                <div className="text-sky-200 font-bold text-5xl opacity-30 mb-3">{i + 1}</div>
                 <h3 className="text-xl font-black mb-3">{step.title}</h3>
-                <p className="text-indigo-100/70 text-sm leading-relaxed">{step.desc}</p>
+                <p className="text-sky-50/80 text-sm leading-relaxed">{step.desc}</p>
               </div>
             ))}
           </div>
@@ -331,34 +330,34 @@ export default function LandingPage() {
       </section>
 
       {/* ── COMMERCIAL / B2B ── */}
-      <section className="py-24 bg-gray-50 border-b border-gray-100">
+      <section className="py-16 bg-slate-50 border-b border-slate-100">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid lg:grid-cols-2 gap-20 items-center">
+          <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-4xl font-black text-gray-900 mb-8 tracking-tight">Commercial & Bulk Laundry Solutions in Narnaul</h2>
-              <p className="text-gray-600 text-lg mb-10 leading-relaxed">
-                Narnaul's businesses deserve premium care too. We provide professional bulk laundry services for local hotels, hostels, and salons with guaranteed turnaround times and commercial-grade cleaning.
+              <h2 className="text-3xl font-bold text-gray-900 mb-6 tracking-tight">Commercial & Bulk Laundry</h2>
+              <p className="text-gray-600 text-base mb-8 leading-relaxed">
+                Professional bulk laundry services for Narnaul's hotels, hostels, and salons with guaranteed turnaround times.
               </p>
               
-              <div className="grid sm:grid-cols-2 gap-8">
+              <div className="grid sm:grid-cols-2 gap-4">
                 {B2B_SERVICES.map((b, i) => (
                   <div key={i} className="bg-white p-6 rounded-2xl border border-gray-200/50 shadow-sm">
-                    <div className="text-indigo-600 mb-4">{b.icon}</div>
+                    <div className="text-sky-500 mb-3">{b.icon}</div>
                     <h3 className="font-black text-gray-900 mb-2">{b.title}</h3>
                     <p className="text-xs text-gray-500 leading-relaxed">{b.desc}</p>
                   </div>
                 ))}
               </div>
               
-              <Button onClick={() => navigate("/contact?type=b2b")} className="mt-12 bg-gray-900 text-white rounded-xl font-bold px-8 h-14">
+              <Button onClick={() => navigate("/contact?type=b2b")} className="mt-10 bg-slate-800 hover:bg-slate-900 text-white rounded-xl font-bold px-8 h-12">
                 Inquire for B2B Pricing
               </Button>
             </div>
             
             <div className="relative">
-               <div className="bg-indigo-600/5 rounded-3xl p-12 aspect-square flex items-center justify-center border border-indigo-100">
+               <div className="bg-sky-50 rounded-2xl p-10 aspect-square flex items-center justify-center border border-sky-100">
                   <div className="text-center">
-                     <p className="text-6xl font-black text-indigo-600 mb-4">50+</p>
+                     <p className="text-5xl font-bold text-sky-500 mb-3">50+</p>
                      <p className="text-xl font-bold text-gray-600 italic">Trusted Business Partners <br /> in Narnaul</p>
                   </div>
                </div>
@@ -371,28 +370,27 @@ export default function LandingPage() {
       <TrustBlocks />
       
       {/* ── REAL CUSTOMER REVIEWS ── */}
-      <section className="py-24 bg-white">
+      <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <RealisticReviews variant="full" showReply={true} maxReviews={6} />
         </div>
       </section>
 
       {/* ── GOOGLE REVIEWS SECTION ── */}
-      <section className="py-24 bg-gray-50">
+      <section className="py-16 bg-slate-50">
         <div className="max-w-4xl mx-auto px-6">
           <GoogleReviews variant="full" showRequestCTA={true} />
         </div>
       </section>
 
       {/* ── LOCATION & MAP ── */}
-      <section className="py-24 bg-white">
+      <section className="py-16 bg-white">
         <div className="max-w-6xl mx-auto px-6">
           <div className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-4xl font-black text-gray-900 mb-4">Serving All of Narnaul</h2>
-              <p className="text-gray-500 mb-6">
-                Free pickup and delivery across 8+ localities. From Adarsh Nagar to Koriawas — 
-                we're never far from your doorstep.
+              <h2 className="text-3xl font-bold text-gray-900 mb-3">Serving All of Narnaul</h2>
+              <p className="text-gray-500 mb-5 text-base">
+                Free pickup across 8+ localities. From Adarsh Nagar to Koriawas.
               </p>
               <CTAGroup context="locality" locality="Narnaul" showSecondary={true} />
             </div>
@@ -402,12 +400,12 @@ export default function LandingPage() {
       </section>
 
       {/* ── LOCAL BLOG ── */}
-      <section id="blogs" className="py-24 bg-gray-50">
+      <section id="blogs" className="py-16 bg-slate-50">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col md:row items-center justify-between mb-16 gap-6">
             <div>
-              <h2 className="text-4xl font-black text-gray-900 mb-2">Clothing Care Blog</h2>
-              <p className="text-gray-500">Expert tips on laundry, stain removal, and fabric care.</p>
+              <h2 className="text-3xl font-bold text-gray-900 mb-2">Laundry Tips & Guides</h2>
+              <p className="text-gray-500 text-base">Expert advice on stain removal and fabric care.</p>
             </div>
             <Button onClick={() => navigate("/blog")} variant="outline" className="rounded-xl border-gray-200 font-bold px-6">
               View All Articles
@@ -429,13 +427,13 @@ export default function LandingPage() {
       />
 
       {/* ── JOIN AS BUSINESS ── */}
-      <section className="py-24 bg-gray-900 text-white rounded-[3rem] mx-6 mb-24 overflow-hidden relative shadow-2xl">
-        <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-indigo-600/20 rounded-full blur-[120px] -z-0" />
+      <section className="py-16 bg-gradient-to-br from-slate-800 to-slate-900 text-white rounded-2xl mx-6 mb-16 overflow-hidden relative shadow-lg">
+        <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-sky-500/10 rounded-full blur-[100px] -z-0" />
         <div className="max-w-5xl mx-auto px-6 text-center relative z-10">
-          <div className="text-6xl mb-10">🏪</div>
-          <h2 className="text-4xl md:text-5xl font-black mb-6 tracking-tight">Partner with EZDRY in Narnaul</h2>
-          <p className="text-gray-400 text-lg mb-12 max-w-2xl mx-auto leading-relaxed">
-            Own a laundry or dry cleaning business in Narnaul? Join our network, digitize your operations, and get more customers without any overhead.
+          <div className="text-5xl mb-8">🏪</div>
+          <h2 className="text-3xl md:text-4xl font-bold mb-4 tracking-tight">Partner with EZDRY</h2>
+          <p className="text-slate-400 text-base mb-10 max-w-xl mx-auto leading-relaxed">
+            Own a laundry business in Narnaul? Join our network and grow your customer base.
           </p>
           <div className="flex flex-col sm:flex-row gap-5 justify-center">
             <Button

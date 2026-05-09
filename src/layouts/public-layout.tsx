@@ -153,13 +153,13 @@ export default function PublicLayout({ children }: PublicLayoutProps) {
           <div className="hidden md:flex items-center gap-4">
             <Link
               href="/customer/login"
-              className="text-sm text-gray-600 hover:text-indigo-600 font-medium transition-colors"
+              className="text-sm text-gray-600 hover:text-sky-500 font-medium transition-colors"
             >
               Login
             </Link>
             <Button
               onClick={() => navigate("/customer/register")}
-              className="bg-indigo-600 hover:bg-indigo-700 text-white rounded-full px-6 py-2.5 text-sm font-bold shadow-lg shadow-indigo-100"
+              className="bg-sky-500 hover:bg-sky-600 text-white rounded-full px-6 py-2.5 text-sm font-bold shadow-md shadow-sky-100"
             >
               Book Pickup
             </Button>
@@ -169,7 +169,7 @@ export default function PublicLayout({ children }: PublicLayoutProps) {
           <div className="flex md:hidden items-center">
             <button
               onClick={() => setMenuOpen(!menuOpen)}
-              className="p-2 rounded-lg text-gray-700 hover:bg-indigo-50 transition-colors"
+              className="p-2 rounded-lg text-gray-700 hover:bg-sky-50 transition-colors"
               aria-label={menuOpen ? "Close menu" : "Open menu"}
             >
               {menuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -186,7 +186,7 @@ export default function PublicLayout({ children }: PublicLayoutProps) {
               <Link
                 key={link.href}
                 href={link.href}
-                className={`w-full text-left flex items-center justify-between px-4 py-3.5 rounded-xl text-base font-medium transition-colors ${location === link.href ? "bg-indigo-50 text-indigo-600" : "text-gray-700 hover:bg-gray-50"}`}
+                className={`w-full text-left flex items-center justify-between px-4 py-3.5 rounded-xl text-base font-medium transition-colors ${location === link.href ? "bg-sky-50 text-sky-600" : "text-gray-700 hover:bg-gray-50"}`}
               >
                 {link.label}
                 <ChevronRight className="w-4 h-4 opacity-40" />
@@ -195,7 +195,7 @@ export default function PublicLayout({ children }: PublicLayoutProps) {
             <div className="pt-6 flex flex-col gap-3">
               <Button
                 onClick={() => navigate("/customer/register")}
-                className="w-full bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl h-12 text-base font-bold shadow-md"
+                className="w-full bg-sky-500 hover:bg-sky-600 text-white rounded-xl h-12 text-base font-bold shadow-md"
               >
                 Book Your Pickup
               </Button>
@@ -248,12 +248,12 @@ export default function PublicLayout({ children }: PublicLayoutProps) {
           onClick={() => trackPhoneClick("floating_bar")}
           className="flex-1 h-12 bg-gray-50 text-gray-700 rounded-xl flex items-center justify-center font-bold text-sm border border-gray-100"
         >
-          <Phone className="w-4 h-4 mr-2 text-indigo-600" />
+          <Phone className="w-4 h-4 mr-2 text-sky-500" />
           Call Now
         </a>
         <Button
           onClick={() => navigate("/customer/register")}
-          className="flex-[2] h-12 bg-indigo-600 hover:bg-indigo-700 text-white rounded-xl font-bold text-sm shadow-lg shadow-indigo-100"
+          className="flex-[2] h-12 bg-sky-500 hover:bg-sky-600 text-white rounded-xl font-bold text-sm shadow-md shadow-sky-100"
         >
           Book Pickup Now
         </Button>
@@ -262,34 +262,34 @@ export default function PublicLayout({ children }: PublicLayoutProps) {
       <LocalAreaSection />
 
       {/* ── FOOTER ── */}
-      <footer className="bg-gray-900 text-white pt-32 pb-12">
+      <footer className="bg-slate-50 text-slate-800 pt-20 pb-10 border-t border-slate-200">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-20 mb-24">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
 
             {/* Brand column */}
             <div className="space-y-10">
-              <EZDRYLogo size={42} textColor="text-white" />
-              <p className="text-gray-400 text-lg leading-relaxed font-medium">
+              <EZDRYLogo size={36} textColor="text-slate-800" />
+              <p className="text-slate-500 text-base leading-relaxed">
                 Narnaul's homegrown premium fabric care platform. 
-                Modernizing the way our city handles laundry.
+                Fresh, clean laundry delivered to your doorstep.
               </p>
               <div className="space-y-4">
-                <div className="flex items-center gap-4 text-indigo-400">
-                  <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center border border-white/10">
-                    <MapPin className="w-5 h-5" />
+                <div className="flex items-center gap-3 text-slate-600">
+                  <div className="w-9 h-9 rounded-lg bg-sky-50 flex items-center justify-center border border-sky-100">
+                    <MapPin className="w-4 h-4 text-sky-500" />
                   </div>
                   <div>
-                    <p className="text-[10px] font-black uppercase tracking-widest text-gray-500">Regional HQ</p>
-                    <p className="text-sm font-black tracking-tight">Narnaul, Haryana 123001</p>
+                    <p className="text-[10px] font-medium uppercase tracking-wider text-slate-400">Location</p>
+                    <p className="text-sm font-medium">Narnaul, Haryana</p>
                   </div>
                 </div>
-                <div className="flex items-center gap-4 text-indigo-400">
-                  <div className="w-10 h-10 rounded-full bg-white/5 flex items-center justify-center border border-white/10">
-                    <Phone className="w-5 h-5" />
+                <div className="flex items-center gap-3 text-slate-600">
+                  <div className="w-9 h-9 rounded-lg bg-sky-50 flex items-center justify-center border border-sky-100">
+                    <Phone className="w-4 h-4 text-sky-500" />
                   </div>
                   <div>
-                    <p className="text-[10px] font-black uppercase tracking-widest text-gray-500">Concierge</p>
-                    <p className="text-sm font-black tracking-tight">+91 96718 69470</p>
+                    <p className="text-[10px] font-medium uppercase tracking-wider text-slate-400">Phone</p>
+                    <p className="text-sm font-medium">+91 96718 69470</p>
                   </div>
                 </div>
               </div>
@@ -297,11 +297,11 @@ export default function PublicLayout({ children }: PublicLayoutProps) {
 
             {/* Services column */}
             <div>
-              <h3 className="text-white font-black mb-10 text-[10px] uppercase tracking-[0.3em] opacity-60">Services</h3>
+              <h3 className="text-slate-800 font-bold mb-6 text-xs uppercase tracking-wider">Services</h3>
               <ul className="space-y-5">
                 {SERVICE_LINKS.map((link) => (
                   <li key={link.label}>
-                    <Link href={link.href} className="text-gray-400 hover:text-indigo-400 transition-colors text-sm font-bold tracking-tight">
+                    <Link href={link.href} className="text-slate-500 hover:text-sky-500 transition-colors text-sm font-medium">
                       {link.label}
                     </Link>
                   </li>
@@ -311,11 +311,11 @@ export default function PublicLayout({ children }: PublicLayoutProps) {
 
             {/* Company column */}
             <div>
-              <h3 className="text-white font-black mb-10 text-[10px] uppercase tracking-[0.3em] opacity-60">Company</h3>
+              <h3 className="text-slate-800 font-bold mb-6 text-xs uppercase tracking-wider">Company</h3>
               <ul className="space-y-5">
                 {QUICK_LINKS.map((link) => (
                   <li key={link.label}>
-                    <Link href={link.href} className="text-gray-400 hover:text-indigo-400 transition-colors text-sm font-bold tracking-tight">
+                    <Link href={link.href} className="text-slate-500 hover:text-sky-500 transition-colors text-sm font-medium">
                       {link.label}
                     </Link>
                   </li>
@@ -326,38 +326,38 @@ export default function PublicLayout({ children }: PublicLayoutProps) {
             {/* Trust/Newsletter column */}
             <div className="space-y-10">
                <div>
-                  <h3 className="text-white font-black mb-10 text-[10px] uppercase tracking-[0.3em] opacity-60">Local Trust</h3>
-                  <div className="bg-white/5 border border-white/10 rounded-[2rem] p-6">
-                     <div className="flex items-center gap-3 mb-4">
-                        <Star className="w-5 h-5 text-yellow-500 fill-yellow-500" />
-                        <p className="text-sm font-black tracking-tight">4.9/5 Rating</p>
+                  <h3 className="text-slate-800 font-bold mb-4 text-xs uppercase tracking-wider">Local Trust</h3>
+                  <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-sm">
+                     <div className="flex items-center gap-2 mb-3">
+                        <Star className="w-4 h-4 text-yellow-500 fill-yellow-500" />
+                        <p className="text-sm font-bold">4.9/5 Rating</p>
                      </div>
-                     <p className="text-xs text-gray-500 font-bold leading-relaxed">
-                        Trusted by 5,000+ residents across Narnaul for premium garment care.
+                     <p className="text-xs text-slate-500 leading-relaxed">
+                        Trusted by 5,000+ residents across Narnaul.
                      </p>
                   </div>
                </div>
                <div className="flex gap-4">
-                  <a href="https://www.instagram.com/ezdryco/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-indigo-600 hover:text-white hover:border-indigo-600 transition-all shadow-xl">
-                     <Instagram className="w-5 h-5" />
+                  <a href="https://www.instagram.com/ezdryco/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-500 hover:bg-sky-500 hover:text-white hover:border-sky-500 transition-all shadow-sm">
+                     <Instagram className="w-4 h-4" />
                   </a>
-                  <a href="https://www.linkedin.com/in/ezdry-co-8b4363405/" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-indigo-600 hover:text-white hover:border-indigo-600 transition-all shadow-xl">
-                     <Linkedin className="w-5 h-5" />
+                  <a href="https://www.linkedin.com/in/ezdry-co-8b4363405/" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-500 hover:bg-sky-500 hover:text-white hover:border-sky-500 transition-all shadow-sm">
+                     <Linkedin className="w-4 h-4" />
                   </a>
-                  <a href="https://www.youtube.com/@Dryco-h8i" target="_blank" rel="noopener noreferrer" className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center text-gray-400 hover:bg-indigo-600 hover:text-white hover:border-indigo-600 transition-all shadow-xl">
-                     <Youtube className="w-5 h-5" />
+                  <a href="https://www.youtube.com/@Dryco-h8i" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-xl bg-white border border-slate-200 flex items-center justify-center text-slate-500 hover:bg-sky-500 hover:text-white hover:border-sky-500 transition-all shadow-sm">
+                     <Youtube className="w-4 h-4" />
                   </a>
                </div>
             </div>
           </div>
 
-          <div className="pt-10 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-6">
-            <p className="text-gray-500 text-xs font-bold tracking-widest uppercase">
+          <div className="pt-8 border-t border-slate-200 flex flex-col md:flex-row justify-between items-center gap-6">
+            <p className="text-slate-400 text-xs font-medium">
               &copy; {new Date().getFullYear()} EZDRY Narnaul. All Rights Reserved.
             </p>
-            <div className="flex flex-wrap justify-center gap-8">
+            <div className="flex flex-wrap justify-center gap-6">
               {LEGAL_LINKS.map((link) => (
-                <Link key={link.label} href={link.href} className="text-[10px] font-black uppercase tracking-widest text-gray-500 hover:text-white transition-colors">
+                <Link key={link.label} href={link.href} className="text-xs font-medium text-slate-500 hover:text-sky-500 transition-colors">
                   {link.label}
                 </Link>
               ))}

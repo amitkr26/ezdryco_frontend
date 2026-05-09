@@ -20,8 +20,24 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script type="module" crossorigin src="/assets/index-Bp1_Bpf0.js"></script>
-    <link rel="stylesheet" crossorigin href="/assets/index-D3LGo9fM.css">
+    
+    <!-- Google Analytics 4 - Replace G-XXXXXXXXXX with your actual GA4 Measurement ID -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX', {
+        'send_page_view': true,
+        'cookie_flags': 'SameSite=None;Secure',
+        'custom_map': {'custom_parameter_1': 'user_type'}
+      });
+    </script>
+    <script type="module" crossorigin src="/js/index-ljF0TAqF.js"></script>
+    <link rel="modulepreload" crossorigin href="/js/data-BKoxfYb9.js">
+    <link rel="modulepreload" crossorigin href="/js/ui-CkYDP5dv.js">
+    <link rel="modulepreload" crossorigin href="/js/vendor-DTKIKQfO.js">
+    <link rel="stylesheet" crossorigin href="/css/index-Df5mk0iL.css">
   </head>
   <body>
     <div id="root"></div>
