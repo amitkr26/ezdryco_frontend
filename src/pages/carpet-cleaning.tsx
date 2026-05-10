@@ -30,7 +30,7 @@ export default function CarpetCleaning() {
           <p className="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
             Revive your home's comfort. Our deep-cleaning process removes dust, allergens, and tough stains from your carpets and rugs.
           </p>
-          <Button onClick={() => navigate("/customer/register")} className="mt-10 h-16 bg-indigo-600 text-white rounded-2xl font-bold px-10 text-lg shadow-xl">
+          <Button onClick={() => navigate("/customer/book")} className="mt-10 h-16 bg-indigo-600 text-white rounded-2xl font-bold px-10 text-lg shadow-xl">
             Schedule Carpet Pickup <ChevronRight className="w-5 h-5 ml-2" />
           </Button>
         </motion.div>

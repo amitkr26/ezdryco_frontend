@@ -50,7 +50,7 @@ export default function About() {
               </p>
             </div>
             
-            <div className="grid grid-cols-2 gap-8 mt-12">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-8 mt-12">
                <div className="flex flex-col gap-2">
                   <div className="text-4xl font-black text-gray-900">500+</div>
                   <p className="text-sm font-bold text-gray-400 uppercase tracking-wide">Daily Active Users</p>
@@ -90,7 +90,7 @@ export default function About() {
              <p className="text-gray-500 max-w-xl mx-auto text-lg">We aren't just a laundry app; we are a trust-based platform for the Narnaul community.</p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               { icon: "🛡️", title: "Unmatched Accountability", desc: "Every garment is barcoded and tracked. We treat your clothes like our own, ensuring zero loss and maximum care." },
               { icon: "💎", title: "Premium Quality", desc: "From eco-friendly detergents to professional steam presses, we never compromise on the 'Cloth Spa' standard." },
@@ -130,7 +130,7 @@ export default function About() {
           <h2 className="text-4xl font-black mb-8 tracking-tight">Be Part of the Narnaul Laundry Revolution</h2>
           <p className="text-indigo-100 text-lg mb-12">Join thousands of Narnaul residents who have upgraded to EZDRY. Wear fresh, every day.</p>
           <div className="flex flex-col sm:flex-row gap-5 justify-center">
-            <Button onClick={() => navigate("/customer/register")}
+            <Button onClick={() => navigate("/customer/book")}
               className="h-16 bg-white text-indigo-600 hover:bg-gray-100 rounded-2xl font-black px-10 text-lg">
               Book Your First Pickup
             </Button>

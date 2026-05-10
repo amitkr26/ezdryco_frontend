@@ -142,7 +142,7 @@ export default function Services() {
 
       {/* TRUST BADGES */}
       <section className="py-24 px-6 bg-gray-900 rounded-[2.5rem] mx-6 mb-24">
-        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
+        <div className="max-w-7xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-12 text-center">
           {[
             { icon: <Clock className="w-8 h-8" />, label: "Express Turnaround", desc: "Same-day available" },
             { icon: <Shield className="w-8 h-8" />, label: "Insured Care", desc: "Garment protection" },

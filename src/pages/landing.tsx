@@ -146,14 +146,14 @@ export default function LandingPage() {
               <div className="inline-flex items-center gap-2 bg-sky-500/10 text-sky-600 px-5 py-2 rounded-full text-[10px] font-bold uppercase tracking-wider mb-8 border border-sky-100">
                 <Sparkles className="w-3.5 h-3.5" /> Narnaul's #1 Clothing Spa
               </div>
-              <h1 className="text-5xl md:text-7xl font-bold text-gray-900 leading-[1.1] mb-8 tracking-tight">
+              <h1 className="text-4xl sm:text-5xl md:text-7xl font-bold text-gray-900 leading-tight sm:leading-[1.1] mb-8 tracking-tight">
                 Fresh Laundry <br />
                 <span className="text-sky-500">Delivered.</span>
               </h1>
-              <p className="text-gray-500 text-lg md:text-xl mb-10 leading-relaxed font-medium max-w-xl">
-              From silk sarees to everyday wear—we pick up, clean, and deliver. 
-              <span className="text-gray-900 font-black"> All of Narnaul covered.</span>
-            </p>
+              <p className="text-gray-500 text-base sm:text-lg md:text-xl mb-10 leading-relaxed font-medium max-w-full sm:max-w-xl">
+                From silk sarees to everyday wear—we pick up, clean, and deliver. 
+                <span className="text-gray-900 font-black"> All of Narnaul covered.</span>
+              </p>
 
             <motion.div 
               initial={{ opacity: 0, y: 20 }}
@@ -166,7 +166,7 @@ export default function LandingPage() {
             
             <div className="flex flex-col sm:flex-row gap-6">
                 <Button
-                  onClick={() => navigate("/customer/register")}
+                  onClick={() => navigate("/customer/book")}
                   className="h-16 bg-sky-500 hover:bg-sky-600 text-white rounded-2xl font-bold text-lg px-10 shadow-lg shadow-sky-100 group transition-all hover:scale-[1.02]"
                 >
                   <Truck className="w-6 h-6 mr-3 group-hover:translate-x-1 transition-transform" />
@@ -192,7 +192,7 @@ export default function LandingPage() {
                 </div>
               </div>
 
-              <div className="grid grid-cols-3 gap-6 mt-12 border-t border-gray-100 pt-8">
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 mt-12 border-t border-gray-100 pt-8">
                 <div className="space-y-1">
                   <div className="flex items-center gap-2 text-sky-500 mb-1">
                     <Shield className="w-4 h-4" />
@@ -221,7 +221,7 @@ export default function LandingPage() {
               initial={{ opacity: 0, scale: 0.95, rotate: 2 }} 
               animate={{ opacity: 1, scale: 1, rotate: 0 }} 
               transition={{ duration: 1, delay: 0.2 }} 
-              className="hidden lg:block relative"
+              className="relative max-w-xl mx-auto lg:mx-0 mt-12 lg:mt-0"
             >
               <div className="relative group">
                 <div className="absolute inset-0 bg-sky-500/10 rounded-[5rem] rotate-3 scale-105 blur-2xl group-hover:rotate-6 transition-all duration-700" />

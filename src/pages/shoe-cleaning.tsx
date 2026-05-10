@@ -31,7 +31,7 @@ export default function ShoeCleaning() {
             <p className="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
               Don't let dirty shoes ruin your look. Our Shoe Spa service deep cleans, sanitizes, and restores your favorite footwear to their former glory.
             </p>
-            <Button onClick={() => navigate("/customer/register")} className="mt-10 h-16 bg-indigo-600 text-white rounded-2xl font-bold px-10 text-lg shadow-xl shadow-indigo-100">
+            <Button onClick={() => navigate("/customer/book")} className="mt-10 h-16 bg-indigo-600 text-white rounded-2xl font-bold px-10 text-lg shadow-xl shadow-indigo-100">
               Book Shoe Pickup <ChevronRight className="w-5 h-5 ml-2" />
             </Button>
           </motion.div>
@@ -85,7 +85,7 @@ export default function ShoeCleaning() {
       <section className="py-20 bg-indigo-600 text-white text-center">
          <h2 className="text-3xl font-black mb-6">Ready to Refresh Your Shoes?</h2>
          <p className="text-indigo-100 mb-10 max-w-xl mx-auto">First-time shoe spa customer? Use code SHOE20 for 20% off your first order.</p>
-         <Button onClick={() => navigate("/customer/register")} className="bg-white text-indigo-600 hover:bg-gray-100 h-14 rounded-xl font-black px-10">
+         <Button onClick={() => navigate("/customer/book")} className="bg-white text-indigo-600 hover:bg-gray-100 h-14 rounded-xl font-black px-10">
             Book Now
          </Button>
       </section>

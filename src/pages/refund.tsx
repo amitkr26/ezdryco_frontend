@@ -27,7 +27,7 @@ export default function RefundPolicy() {
           <span className="inline-block bg-sky-100 text-sky-700 text-sm font-semibold px-4 py-1.5 rounded-full mb-5">Legal</span>
           <h1 className="text-4xl font-extrabold text-gray-900 mb-3">Refund & Cancellation Policy</h1>
           <p className="text-gray-500 mb-6">Last updated: April 23, 2025</p>
-          <div className="grid grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {[["Full refund if cancelled 1hr before pickup", "✅"], ["Damaged items covered up to ₹2,000", "🛡️"], ["5–7 day refund processing", "⏱️"]].map(([t, icon]) => (
               <div key={t} className="bg-white rounded-xl border border-sky-100 p-4 text-center shadow-sm">
                 <div className="text-2xl mb-2">{icon}</div>

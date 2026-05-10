@@ -30,7 +30,7 @@ export default function CurtainCleaning() {
           <p className="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
             Curtains act as filters for dust and allergens. Keep your home healthy with our professional curtain deep-cleaning and steaming service.
           </p>
-          <Button onClick={() => navigate("/customer/register")} className="mt-10 h-16 bg-indigo-600 text-white rounded-2xl font-bold px-10 text-lg shadow-xl">
+          <Button onClick={() => navigate("/customer/book")} className="mt-10 h-16 bg-indigo-600 text-white rounded-2xl font-bold px-10 text-lg shadow-xl">
             Book Curtain Pickup <ChevronRight className="w-5 h-5 ml-2" />
           </Button>
         </motion.div>
@@ -86,7 +86,7 @@ export default function CurtainCleaning() {
       <section className="py-20 bg-indigo-600 text-white text-center">
          <h2 className="text-3xl font-black mb-6">Freshen Up Your Home Today</h2>
          <p className="text-indigo-100 mb-10 max-w-xl mx-auto">Free doorstep pickup across Narnaul on all curtain cleaning orders.</p>
-         <Button onClick={() => navigate("/customer/register")} className="bg-white text-indigo-600 hover:bg-gray-100 h-14 rounded-xl font-black px-10">
+         <Button onClick={() => navigate("/customer/book")} className="bg-white text-indigo-600 hover:bg-gray-100 h-14 rounded-xl font-black px-10">
             Schedule a Pickup
          </Button>
       </section>

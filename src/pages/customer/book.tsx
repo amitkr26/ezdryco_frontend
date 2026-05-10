@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "wouter";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, Plus, Minus, ShoppingBag } from "lucide-react";
+import { ChevronLeft, Plus, Minus, ShoppingBag, Droplet, Shirt, Zap } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useListBusinesses, useListItems } from "@/lib/api-client-react";
 
 const CATEGORIES = [
-  { id: "wash", label: "Wash", icon: "🧺", color: "from-indigo-500 to-indigo-700" },
-  { id: "dry_clean", label: "Dry Clean", icon: "👔", color: "from-violet-500 to-violet-700" },
-  { id: "iron", label: "Iron", icon: "♨️", color: "from-blue-500 to-blue-700" },
+  { id: "wash", label: "Wash", icon: <Droplet className="w-4 h-4" />, color: "from-sky-500 to-sky-700" },
+  { id: "dry_clean", label: "Dry Clean", icon: <Shirt className="w-4 h-4" />, color: "from-sky-500 to-sky-700" },
+  { id: "iron", label: "Iron", icon: <Zap className="w-4 h-4" />, color: "from-sky-500 to-sky-700" },
 ];
 
 const CATEGORY_ICONS: Record<string, string> = {
@@ -149,7 +149,7 @@ export default function BookOrder() {
   return (
     <div className="min-h-full bg-neutral-50 flex flex-col">
       {/* Header */}
-      <div className={`bg-gradient-to-br ${activeCat.color} px-6 pt-6 pb-10 rounded-b-[2.5rem] shadow-xl shadow-indigo-100`}>
+      <div className={`bg-gradient-to-br ${activeCat.color} px-6 pt-6 pb-10 rounded-b-[2.5rem] shadow-xl shadow-sky-100`}>
         <div className="flex items-center gap-4 mb-6">
           <button onClick={() => navigate("/customer/home")} className="w-10 h-10 rounded-2xl bg-white/20 backdrop-blur-md hover:bg-white/30 flex items-center justify-center transition-all">
             <ChevronLeft className="w-6 h-6 text-white" />
@@ -161,19 +161,19 @@ export default function BookOrder() {
         </div>
 
         {/* Category Tabs */}
-        <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+        <div className="flex flex-wrap justify-center gap-2 pb-2">
           {CATEGORIES.map(cat => (
             <button
               key={cat.id}
               onClick={() => setSelectedCategory(cat.id)}
-              className={`flex items-center gap-2 px-5 py-2.5 rounded-2xl text-sm font-bold transition-all whitespace-nowrap ${
+              className={`flex items-center gap-2 min-w-[96px] px-4 py-2.5 rounded-full text-sm font-bold transition-all whitespace-nowrap overflow-hidden text-ellipsis shadow-sm ${
                 selectedCategory === cat.id
                   ? "bg-white text-gray-900 shadow-xl scale-105"
                   : "bg-white/15 text-white/90 hover:bg-white/25 border border-white/10"
               }`}
             >
-              <span className="text-lg">{cat.icon}</span>
-              {cat.label}
+              {cat.icon}
+              <span>{cat.label}</span>
             </button>
           ))}
         </div>
@@ -181,13 +181,13 @@ export default function BookOrder() {
         {activeBusinesses.length > 1 && (
           <div className="mt-6 space-y-2">
             <p className="text-[10px] font-bold text-white/50 uppercase tracking-widest px-1">Select Partner</p>
-            <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
+            <div className="flex flex-wrap justify-center gap-2 pb-1">
               {activeBusinesses.map((business) => (
                 <button
                   key={business.id}
                   onClick={() => handleBusinessSelect(business.id)}
-                  className={`rounded-xl px-4 py-2 text-[11px] font-black transition-all uppercase tracking-wider ${
-                    businessId === business.id ? "bg-white text-indigo-600 shadow-lg" : "bg-white/10 text-white/60"
+                  className={`rounded-2xl px-4 py-2 min-w-[110px] max-w-[160px] text-[11px] font-black transition-all uppercase tracking-wider truncate ${
+                    businessId === business.id ? "bg-white text-sky-600 shadow-lg" : "bg-white/15 text-white/70 hover:bg-white/20"
                   }`}
                 >
                   {business.name}
@@ -238,7 +238,7 @@ export default function BookOrder() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: i * 0.03 }}
                   className={`flex items-center justify-between bg-white rounded-[2rem] p-5 shadow-sm border-2 transition-all ${
-                    qty > 0 ? "border-indigo-500 shadow-indigo-100 bg-indigo-50/20" : "border-transparent"
+                    qty > 0 ? "border-sky-500 shadow-sky-100 bg-sky-50/20" : "border-transparent"
                   }`}
                 >
                   <div className="flex items-center gap-4">
@@ -247,29 +247,29 @@ export default function BookOrder() {
                     </div>
                     <div>
                       <p className="font-black text-gray-900 text-base tracking-tight">{item.name}</p>
-                      <p className="text-indigo-600 font-black text-sm">₹{price}<span className="text-gray-400 font-bold text-[10px] uppercase ml-1">/ piece</span></p>
+                      <p className="text-sky-600 font-black text-sm">₹{price}<span className="text-gray-400 font-bold text-[10px] uppercase ml-1">/ piece</span></p>
                     </div>
                   </div>
 
                   {qty === 0 ? (
                     <button
                       onClick={() => addToCart(item)}
-                      className="w-11 h-11 rounded-2xl bg-indigo-600 hover:bg-indigo-700 text-white flex items-center justify-center shadow-lg shadow-indigo-100 transition-all active:scale-90"
+                      className="w-11 h-11 rounded-2xl bg-sky-600 hover:bg-sky-700 text-white flex items-center justify-center shadow-lg shadow-sky-100 transition-all active:scale-90"
                     >
                       <Plus className="w-5 h-5" />
                     </button>
                   ) : (
-                    <div className="flex items-center gap-3 bg-white rounded-2xl p-1 shadow-inner border border-indigo-100">
+                    <div className="flex items-center gap-3 bg-white rounded-2xl p-1 shadow-inner border border-sky-100">
                       <button
                         onClick={() => removeFromCart(item)}
-                        className="w-9 h-9 rounded-xl text-indigo-600 flex items-center justify-center hover:bg-indigo-50 transition-all active:scale-90"
+                        className="w-9 h-9 rounded-xl text-sky-600 flex items-center justify-center hover:bg-sky-50 transition-all active:scale-90"
                       >
                         <Minus className="w-4 h-4" />
                       </button>
                       <span className="font-black text-gray-900 w-6 text-center text-lg">{qty}</span>
                       <button
                         onClick={() => addToCart(item)}
-                        className="w-9 h-9 rounded-xl bg-indigo-600 text-white flex items-center justify-center shadow-md transition-all active:scale-90"
+                        className="w-9 h-9 rounded-xl bg-sky-600 text-white flex items-center justify-center shadow-md transition-all active:scale-90"
                       >
                         <Plus className="w-4 h-4" />
                       </button>
@@ -289,11 +289,11 @@ export default function BookOrder() {
             initial={{ y: 100 }}
             animate={{ y: 0 }}
             exit={{ y: 100 }}
-            className="absolute bottom-0 left-0 right-0 px-6 pb-10 pt-4 bg-white/80 backdrop-blur-xl border-t border-indigo-50 shadow-[0_-20px_40px_rgba(0,0,0,0.05)] z-20"
+            className="absolute bottom-0 left-0 right-0 px-6 pb-10 pt-4 bg-white/80 backdrop-blur-xl border-t border-sky-50 shadow-[0_-20px_40px_rgba(0,0,0,0.05)] z-20"
           >
             <Button
               onClick={handleCheckout}
-              className="w-full h-16 bg-indigo-600 hover:bg-indigo-700 text-white rounded-3xl font-black shadow-xl shadow-indigo-200"
+              className="w-full h-16 bg-sky-600 hover:bg-sky-700 text-white rounded-3xl font-black shadow-xl shadow-sky-200"
             >
               <div className="flex items-center justify-between w-full px-4">
                 <div className="flex items-center gap-3">

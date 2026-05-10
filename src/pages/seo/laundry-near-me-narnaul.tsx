@@ -53,7 +53,7 @@ export default function LaundryNearMeNarnaul() {
               Pickup, clean, and deliver — anywhere in Narnaul.
             </p>
             <div className="flex flex-col sm:flex-row gap-6">
-              <Button onClick={() => navigate("/customer/register")}
+              <Button onClick={() => navigate("/customer/book")}
                 className="h-16 bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl font-black px-10 text-lg shadow-xl shadow-indigo-200">
                 Book Pickup Near You <ChevronRight className="w-4 h-4 ml-2" />
               </Button>
@@ -175,7 +175,7 @@ export default function LaundryNearMeNarnaul() {
            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32 blur-3xl" />
            <h2 className="text-4xl md:text-5xl font-black mb-8 tracking-tight">Stop Searching. Start Booking.</h2>
            <p className="text-indigo-100 text-lg mb-12 max-w-xl mx-auto font-medium">The most convenient laundry service in Narnaul is just 60 seconds away.</p>
-           <Button onClick={() => navigate("/customer/register")}
+           <Button onClick={() => navigate("/customer/book")}
              className="h-20 bg-white text-indigo-600 hover:bg-indigo-50 rounded-3xl font-black px-12 text-xl shadow-2xl shadow-indigo-900/20">
              Schedule My Pickup <ChevronRight className="w-5 h-5 ml-2" />
            </Button>

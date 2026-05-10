@@ -177,7 +177,7 @@ export default function BlogIndex() {
            <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-600/20 rounded-full -mr-32 -mt-32 blur-3xl" />
            <h2 className="text-4xl md:text-5xl font-black mb-8 tracking-tight italic">Enough Reading?</h2>
            <p className="text-gray-400 text-xl mb-12 max-w-xl mx-auto font-medium">Experience the difference of professional care for yourself. First order ₹50 off.</p>
-           <Button onClick={() => navigate("/customer/register")}
+           <Button onClick={() => navigate("/customer/book")}
              className="h-20 bg-indigo-600 text-white hover:bg-indigo-700 rounded-3xl font-black px-12 text-xl shadow-2xl shadow-indigo-900/40">
              Book Pickup Now <ChevronRight className="w-5 h-5 ml-2" />
            </Button>

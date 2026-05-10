@@ -23,7 +23,7 @@ const BLOG_CONTENT: Record<string, {
       { heading: "The Narnaul Advantage", body: "By choosing professional care, you're not just saving time; you're extending the life of your expensive silk sarees and cotton kurtas by up to 3x. Don't let Narnaul's water destroy your favorites." },
     ],
     relatedLinks: [
-      { label: "Book Soft-Water Wash →", href: "/customer/register" },
+      { label: "Book Soft-Water Wash →", href: "/customer/book" },
       { label: "Laundry Service Narnaul →", href: "/laundry-service-narnaul" },
       { label: "Pricing List →", href: "/pricing" },
     ],
@@ -40,7 +40,7 @@ const BLOG_CONTENT: Record<string, {
       { heading: "The Bottom Line for Narnaul", body: "EZDRY isn't trying to replace every local dhobi. It's filling the gap they leave — dry cleaning, weekend availability, delicate garment care, and the convenience of not leaving your home. For basic shirts and everyday wear, both options work. For anything more than that, EZDRY is the safer choice in Narnaul." },
     ],
     relatedLinks: [
-      { label: "Book EZDRY Pickup in Narnaul →", href: "/customer/register" },
+      { label: "Book EZDRY Pickup in Narnaul →", href: "/customer/book" },
       { label: "Laundry Service Narnaul →", href: "/laundry-service-narnaul" },
       { label: "Affordable Laundry in Narnaul →", href: "/blog/affordable-laundry-narnaul" },
     ],
@@ -58,7 +58,7 @@ const BLOG_CONTENT: Record<string, {
     ],
     relatedLinks: [
       { label: "Dry Cleaning in Narnaul →", href: "/dry-cleaning-narnaul" },
-      { label: "Book Laundry Pickup Narnaul →", href: "/customer/register" },
+      { label: "Book Laundry Pickup Narnaul →", href: "/customer/book" },
       { label: "Best Laundry in Narnaul →", href: "/blog/best-laundry-service-narnaul" },
     ],
   },
@@ -74,7 +74,7 @@ const BLOG_CONTENT: Record<string, {
       { heading: "Monthly Cost Estimate for Narnaul Family", body: "Typical Narnaul household (4 people): 30 shirts/month × ₹25 = ₹750 · 20 trousers × ₹35 = ₹700 · 8 bedsheets × ₹70 = ₹560 · Monthly total: ~₹2,010. That's under ₹70/day for complete household laundry with doorstep service. Most families find this reasonable once they calculate the time and effort saved." },
     ],
     relatedLinks: [
-      { label: "Book EZDRY in Narnaul →", href: "/customer/register" },
+      { label: "Book EZDRY in Narnaul →", href: "/customer/book" },
       { label: "Laundry Service Narnaul →", href: "/laundry-service-narnaul" },
       { label: "Dry Cleaning Narnaul →", href: "/dry-cleaning-narnaul" },
     ],
@@ -94,7 +94,7 @@ const BLOG_CONTENT: Record<string, {
       { label: "Dry Cleaning for Delicates →", href: "/dry-cleaning-narnaul" },
       { label: "Stain Removal Guide →", href: "/blog/stain-removal-complete-guide" },
       { label: "Monsoon Care Tips →", href: "/blog/monsoon-laundry-care-narnaul" },
-      { label: "Book Professional Care →", href: "/customer/register" },
+      { label: "Book Professional Care →", href: "/customer/book" },
     ],
   },
   "stain-removal-complete-guide": {
@@ -129,7 +129,7 @@ const BLOG_CONTENT: Record<string, {
     relatedLinks: [
       { label: "Fabric Care Guide →", href: "/blog/complete-fabric-care-guide-narnaul" },
       { label: "Stain Removal Tips →", href: "/blog/stain-removal-complete-guide" },
-      { label: "Express Laundry Service →", href: "/customer/register" },
+      { label: "Express Laundry Service →", href: "/customer/book" },
     ],
   },
   "wedding-garment-care-narnaul": {
@@ -148,7 +148,7 @@ const BLOG_CONTENT: Record<string, {
       { label: "Dry Cleaning Service →", href: "/dry-cleaning-narnaul" },
       { label: "Stain Removal Guide →", href: "/blog/stain-removal-complete-guide" },
       { label: "Silk Care Tips →", href: "/blog/complete-fabric-care-guide-narnaul" },
-      { label: "Book Wedding Garment Care →", href: "/customer/register" },
+      { label: "Book Wedding Garment Care →", href: "/customer/book" },
     ],
   },
   "shoe-cleaning-complete-guide": {
@@ -285,7 +285,7 @@ export default function BlogPost() {
                 <p className="text-xl font-black mb-2 tracking-tight italic">Narnaul's Professional Choice</p>
                 <p className="text-gray-400 text-sm font-medium">Doorstep pickup. Fast turnaround. Soft water wash.</p>
               </div>
-              <Button onClick={() => navigate("/customer/register")}
+              <Button onClick={() => navigate("/customer/book")}
                 className="h-16 bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl px-10 text-lg font-black shadow-xl shadow-indigo-900/50 transition-all hover:scale-[1.02]">
                 Book Your First Pickup <ChevronRight className="w-4 h-4 ml-2" />
               </Button>

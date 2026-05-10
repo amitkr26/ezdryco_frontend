@@ -113,7 +113,7 @@ export default function ShastriNagarLaundry() {
             </div>
 
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Button onClick={() => navigate("/customer/register")} className="h-16 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl font-black px-10">
+              <Button onClick={() => navigate("/customer/book")} className="h-16 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl font-black px-10">
                 Book Shastri Nagar Pickup <ChevronRight className="w-5 h-5 ml-2" />
               </Button>
               <Button onClick={() => window.open("https://wa.me/919671869470")} variant="outline" className="h-16 rounded-2xl border-gray-200 font-bold px-10">
@@ -252,7 +252,7 @@ export default function ShastriNagarLaundry() {
             Traditional wear care, family plans, and community pickup points.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-            <Button onClick={() => navigate("/customer/register")} className="h-16 bg-white text-blue-600 hover:bg-gray-100 rounded-2xl font-black px-10">
+            <Button onClick={() => navigate("/customer/book")} className="h-16 bg-white text-blue-600 hover:bg-gray-100 rounded-2xl font-black px-10">
               Start Family Plan
             </Button>
             <Button onClick={() => window.open("https://wa.me/919671869470")} variant="outline" className="h-16 border-white/20 text-white hover:bg-white/10 rounded-2xl font-bold px-10">

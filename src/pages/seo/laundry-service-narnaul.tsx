@@ -16,10 +16,10 @@ const FAQS = [
 ];
 
 const SERVICES = [
-  { icon: "🧺", title: "Wash & Fold", desc: "Everyday clothes washed, dried, and neatly folded. From ₹25/item.", href: "/customer/register" },
-  { icon: "👔", title: "Dry Cleaning", desc: "Suits, sherwanis, silk dupattas — solvent-cleaned to preserve fabric. From ₹120/item.", href: "/customer/register" },
-  { icon: "♨️", title: "Ironing & Steam Press", desc: "Crisp, wrinkle-free clothes every time. Professional steam iron. From ₹10/item.", href: "/customer/register" },
-  { icon: "⚡", title: "Express Same-Day", desc: "Book before 10 AM, back by 7 PM. Available in Narnaul. +₹49 surcharge.", href: "/customer/register" },
+  { icon: "🧺", title: "Wash & Fold", desc: "Everyday clothes washed, dried, and neatly folded. From ₹25/item.", href: "/customer/book" },
+  { icon: "👔", title: "Dry Cleaning", desc: "Suits, sherwanis, silk dupattas — solvent-cleaned to preserve fabric. From ₹120/item.", href: "/customer/book" },
+  { icon: "♨️", title: "Ironing & Steam Press", desc: "Crisp, wrinkle-free clothes every time. Professional steam iron. From ₹10/item.", href: "/customer/book" },
+  { icon: "⚡", title: "Express Same-Day", desc: "Book before 10 AM, back by 7 PM. Available in Narnaul. +₹49 surcharge.", href: "/customer/book" },
 ];
 
 export default function LaundryServiceNarnaul() {
@@ -55,7 +55,7 @@ export default function LaundryServiceNarnaul() {
             </p>
             <div className="flex flex-col sm:flex-row gap-6">
               <Button
-                onClick={() => navigate("/customer/register")}
+                onClick={() => navigate("/customer/book")}
                 className="h-16 bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl font-black px-10 text-lg shadow-xl shadow-indigo-200"
               >
                 Book Narnaul Pickup <ChevronRight className="w-4 h-4 ml-2" />
@@ -200,7 +200,7 @@ export default function LaundryServiceNarnaul() {
             <p className="text-gray-500 mt-2 font-bold uppercase tracking-widest text-[10px]">No Surprises. No Hidden Fees.</p>
           </div>
           <div className="bg-white rounded-[2.5rem] shadow-xl shadow-gray-200/50 overflow-hidden border border-gray-100">
-            <div className="grid grid-cols-3 bg-indigo-600 p-6 text-white">
+            <div className="grid grid-cols-1 md:grid-cols-3 bg-indigo-600 p-6 text-white gap-4">
               <div className="text-[10px] font-black uppercase tracking-widest opacity-80">Service Category</div>
               <div className="text-[10px] font-black uppercase tracking-widest opacity-80">Starting Rate</div>
               <div className="text-[10px] font-black uppercase tracking-widest opacity-80">Popular Examples</div>
@@ -212,7 +212,7 @@ export default function LaundryServiceNarnaul() {
                   ["Steam Ironing", "₹10/item", "Formal Shirts, Trousers"],
                   ["Bulk/Bedding", "₹80/piece", "Blankets, Curtains, Rugs"],
                 ].map(([svc, price, ex]) => (
-                  <div key={svc} className="grid grid-cols-3 p-8 hover:bg-indigo-50/30 transition-colors">
+                  <div key={svc} className="grid grid-cols-1 md:grid-cols-3 gap-6 p-8 hover:bg-indigo-50/30 transition-colors">
                     <div className="font-black text-gray-900">{svc}</div>
                     <div className="font-black text-indigo-600">{price}</div>
                     <div className="text-sm font-bold text-gray-400 italic">{ex}</div>
@@ -235,7 +235,7 @@ export default function LaundryServiceNarnaul() {
            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32 blur-3xl" />
            <h2 className="text-4xl md:text-5xl font-black mb-8 tracking-tight">Ready for a Cleaner Wardrobe?</h2>
            <p className="text-indigo-100 text-lg mb-12 max-w-xl mx-auto font-medium">Join 500+ happy Narnaul families. Your first order is backed by our quality guarantee.</p>
-           <Button onClick={() => navigate("/customer/register")}
+           <Button onClick={() => navigate("/customer/book")}
              className="h-20 bg-white text-indigo-600 hover:bg-indigo-50 rounded-3xl font-black px-12 text-xl shadow-2xl shadow-indigo-900/20">
              Start Your Order <ChevronRight className="w-5 h-5 ml-2" />
            </Button>

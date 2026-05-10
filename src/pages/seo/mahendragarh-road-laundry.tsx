@@ -38,7 +38,7 @@ export default function MahendragarhRoadLaundry() {
             The busiest road in Narnaul deserves the fastest laundry service. Get your clothes cleaned and delivered without leaving your home.
           </p>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
-             <Button onClick={() => navigate("/customer/register")} className="h-16 bg-indigo-600 text-white hover:bg-indigo-700 rounded-2xl font-black px-10 text-lg shadow-xl shadow-indigo-100">
+             <Button onClick={() => navigate("/customer/book")} className="h-16 bg-indigo-600 text-white hover:bg-indigo-700 rounded-2xl font-black px-10 text-lg shadow-xl shadow-indigo-100">
                Book Mahendragarh Road Pickup <ChevronRight className="w-5 h-5 ml-2" />
              </Button>
              <Button onClick={() => window.open("https://wa.me/919671869470")} variant="outline" className="h-16 rounded-2xl border-gray-200 font-bold px-10">
@@ -79,7 +79,7 @@ export default function MahendragarhRoadLaundry() {
            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-32 -mt-32 blur-3xl" />
            <h2 className="text-4xl md:text-5xl font-black mb-8 tracking-tight">The Smart Way to do Laundry</h2>
            <p className="text-indigo-100 text-lg mb-12 max-w-xl mx-auto font-medium">Serving Mahendragarh Road 7 days a week. Experience the Cloth Spa difference today.</p>
-           <Button onClick={() => navigate("/customer/register")}
+           <Button onClick={() => navigate("/customer/book")}
              className="h-20 bg-white text-indigo-600 hover:bg-indigo-50 rounded-3xl font-black px-12 text-xl shadow-2xl shadow-indigo-900/20">
              Book My Pickup <ChevronRight className="w-5 h-5 ml-2" />
            </Button>

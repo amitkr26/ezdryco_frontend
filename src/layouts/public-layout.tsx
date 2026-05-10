@@ -158,7 +158,7 @@ export default function PublicLayout({ children }: PublicLayoutProps) {
               Login
             </Link>
             <Button
-              onClick={() => navigate("/customer/register")}
+              onClick={() => navigate("/customer/book")}
               className="bg-sky-500 hover:bg-sky-600 text-white rounded-full px-6 py-2.5 text-sm font-bold shadow-md shadow-sky-100"
             >
               Book Pickup
@@ -194,7 +194,7 @@ export default function PublicLayout({ children }: PublicLayoutProps) {
             ))}
             <div className="pt-6 flex flex-col gap-3">
               <Button
-                onClick={() => navigate("/customer/register")}
+                onClick={() => navigate("/customer/book")}
                 className="w-full bg-sky-500 hover:bg-sky-600 text-white rounded-xl h-12 text-base font-bold shadow-md"
               >
                 Book Your Pickup
@@ -220,7 +220,7 @@ export default function PublicLayout({ children }: PublicLayoutProps) {
       )}
 
       {/* ── PAGE CONTENT ── */}
-      <main className="flex-1 pt-[64px] sm:pt-[72px] pb-20 md:pb-0">
+      <main className="flex-1 pt-[64px] sm:pt-[72px] pb-28 md:pb-0">
         <Breadcrumbs />
         {children}
       </main>
@@ -232,7 +232,7 @@ export default function PublicLayout({ children }: PublicLayoutProps) {
         target="_blank"
         rel="noopener noreferrer"
         onClick={() => trackWhatsAppClick("floating_button", "main_floating_cta")}
-        className="fixed bottom-6 right-6 z-40 bg-green-500 text-white p-4 rounded-full shadow-2xl hover:bg-green-600 hover:scale-110 transition-all flex items-center justify-center group"
+        className="fixed bottom-24 right-6 z-40 bg-green-500 text-white p-4 rounded-full shadow-2xl hover:bg-green-600 hover:scale-110 transition-all flex items-center justify-center group md:bottom-6"
         aria-label="Contact on WhatsApp"
       >
         <MessageCircle className="w-7 h-7" />
@@ -252,7 +252,7 @@ export default function PublicLayout({ children }: PublicLayoutProps) {
           Call Now
         </a>
         <Button
-          onClick={() => navigate("/customer/register")}
+          onClick={() => navigate("/customer/book")}
           className="flex-[2] h-12 bg-sky-500 hover:bg-sky-600 text-white rounded-xl font-bold text-sm shadow-md shadow-sky-100"
         >
           Book Pickup Now
@@ -262,7 +262,7 @@ export default function PublicLayout({ children }: PublicLayoutProps) {
       <LocalAreaSection />
 
       {/* ── FOOTER ── */}
-      <footer className="bg-slate-50 text-slate-800 pt-20 pb-10 border-t border-slate-200">
+      <footer className="bg-slate-50 text-slate-800 pt-20 pb-28 md:pb-10 border-t border-slate-200">
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
 
@@ -356,6 +356,9 @@ export default function PublicLayout({ children }: PublicLayoutProps) {
               &copy; {new Date().getFullYear()} EZDRY Narnaul. All Rights Reserved.
             </p>
             <div className="flex flex-wrap justify-center gap-6">
+              <Link href="/admin/login" className="text-xs font-medium text-slate-500 hover:text-sky-500 transition-colors">
+                Admin Panel
+              </Link>
               {LEGAL_LINKS.map((link) => (
                 <Link key={link.label} href={link.href} className="text-xs font-medium text-slate-500 hover:text-sky-500 transition-colors">
                   {link.label}

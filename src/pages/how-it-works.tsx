@@ -86,7 +86,7 @@ export default function HowItWorks() {
                 <div className="text-7xl mb-10">{step.icon}</div>
                 <h2 className="text-4xl font-black text-gray-900 mb-6 tracking-tight">{step.title}</h2>
                 <p className="text-gray-500 text-lg leading-relaxed mb-10 font-medium">{step.desc}</p>
-                <Button onClick={() => navigate("/customer/register")}
+                <Button onClick={() => navigate("/customer/book")}
                   className="h-16 bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl px-8 text-lg font-black shadow-xl shadow-indigo-100 group transition-all">
                   Get Started <ChevronRight className="w-5 h-5 ml-2 group-hover:translate-x-1 transition-transform" />
                 </Button>
@@ -121,7 +121,7 @@ export default function HowItWorks() {
            <div className="absolute top-0 right-0 w-64 h-64 bg-indigo-600/20 rounded-full -mr-32 -mt-32 blur-3xl" />
            <h2 className="text-4xl md:text-6xl font-black mb-8 tracking-tight italic">Ready to Reclaim Your Time?</h2>
            <p className="text-gray-400 text-xl mb-12 max-w-2xl mx-auto font-medium">Book your first EZDRY pickup in Narnaul. Free delivery on orders above ₹299.</p>
-           <Button onClick={() => navigate("/customer/register")}
+           <Button onClick={() => navigate("/customer/book")}
              className="h-20 bg-indigo-600 text-white hover:bg-indigo-700 rounded-3xl font-black px-12 text-xl shadow-2xl shadow-indigo-900/40">
              Book Pickup Now <ChevronRight className="w-5 h-5 ml-2" />
            </Button>

@@ -88,15 +88,26 @@ export default function Contact() {
                 ))}
              </div>
              
-             <div className="bg-white p-6 rounded-2xl border border-gray-200">
+             <div className="bg-white p-6 rounded-2xl border border-gray-200 space-y-6">
                 <div className="flex items-center gap-4">
                    <div className="w-12 h-12 bg-indigo-50 rounded-full flex items-center justify-center">
                       <MapPin className="w-6 h-6 text-indigo-600" />
                    </div>
                    <div>
-                      <p className="font-bold text-gray-900">Headquarters</p>
-                      <p className="text-xs text-gray-500">Narnaul, Haryana 123001, India</p>
+                      <p className="font-bold text-gray-900">Store & Office Location</p>
+                      <p className="text-xs text-gray-500">Main Road, Near Adarsh Nagar, Narnaul, Haryana 123001</p>
                    </div>
+                </div>
+                <div className="rounded-3xl bg-sky-50 border border-sky-100 p-4">
+                  <p className="text-sm font-semibold text-sky-700">Find us on Google Maps</p>
+                  <a
+                    href="https://maps.app.goo.gl/SSpHwo8K6fD5YKu1A"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="mt-3 inline-flex items-center gap-2 text-sky-600 font-semibold hover:text-sky-800"
+                  >
+                    Open Store & Office Location
+                  </a>
                 </div>
              </div>
           </div>

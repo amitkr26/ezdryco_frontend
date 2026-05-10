@@ -55,7 +55,7 @@ export default function KailashNagarLaundry() {
             </div>
 
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Button onClick={() => navigate("/customer/register")} className="h-16 bg-pink-600 hover:bg-pink-700 text-white rounded-2xl font-black px-10">
+              <Button onClick={() => navigate("/customer/book")} className="h-16 bg-pink-600 hover:bg-pink-700 text-white rounded-2xl font-black px-10">
                 Book Kailash Nagar <ChevronRight className="w-5 h-5 ml-2" />
               </Button>
               <Button onClick={() => window.open("https://wa.me/919671869470")} variant="outline" className="h-16 rounded-2xl border-gray-200 font-bold px-10">

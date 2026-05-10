@@ -26,14 +26,14 @@ const EZDRY_LOCATION = {
   lng: 76.1083,
   phone: "+91 96718 69470",
   hours: "8:00 AM - 8:00 PM",
-  mapsUrl: "https://maps.google.com/?q=EZDRY+Narnaul",
+  mapsUrl: "https://maps.app.goo.gl/SSpHwo8K6fD5YKu1A",
   embedUrl: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d28076.123456789!2d76.1083!3d28.0444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDAyJzQwLjAiTiA3NsKwMDYnMzAuMCJF!5e0!3m2!1sen!2sin!4v1234567890",
 };
 
 export function MapEmbed({ variant = "full", showServiceArea = true, locality }: MapEmbedProps) {
   const handleDirections = () => {
     trackEvent("map_directions_click", { locality: locality || "general" });
-    window.open(`https://www.google.com/maps/dir/?api=1&destination=${EZDRY_LOCATION.lat},${EZDRY_LOCATION.lng}`, "_blank");
+    window.open(EZDRY_LOCATION.mapsUrl, "_blank");
   };
 
   const handleViewMap = () => {

@@ -53,7 +53,7 @@ export default function DryCleaningNarnaul() {
               From silk sarees to designer sherwanis, we ensure zero shrinkage and vibrant color preservation.
             </p>
             <div className="flex flex-col sm:flex-row gap-6">
-              <Button onClick={() => navigate("/customer/register")}
+              <Button onClick={() => navigate("/customer/book")}
                 className="h-16 bg-indigo-600 hover:bg-indigo-700 text-white rounded-2xl font-black px-10 text-lg shadow-xl shadow-indigo-200">
                 Book Specialized Pickup <ChevronRight className="w-4 h-4 ml-2" />
               </Button>
@@ -163,7 +163,7 @@ export default function DryCleaningNarnaul() {
            <div className="absolute top-0 left-0 w-64 h-64 bg-indigo-600/20 rounded-full -ml-32 -mt-32 blur-3xl" />
            <h2 className="text-4xl md:text-5xl font-black mb-8 tracking-tight">Preserve Your Wardrobe Today</h2>
            <p className="text-gray-400 text-lg mb-12 max-w-xl mx-auto font-medium">Schedule a pickup and let Narnaul's fabric experts handle the rest.</p>
-           <Button onClick={() => navigate("/customer/register")}
+           <Button onClick={() => navigate("/customer/book")}
              className="h-20 bg-indigo-600 text-white hover:bg-indigo-700 rounded-3xl font-black px-12 text-xl shadow-2xl shadow-indigo-900/40">
              Book Pickup Now <ChevronRight className="w-5 h-5 ml-2" />
            </Button>

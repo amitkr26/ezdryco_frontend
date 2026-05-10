@@ -148,7 +148,7 @@ export function SmartCTA({
       window.open("tel:+919671869470");
     } else if (type === "primary" || type === "schedule" || type === "express") {
       trackBookingEvent("start");
-      navigate("/customer/register");
+      navigate("/customer/book");
     } else if (type === "secondary") {
       if (context === "pricing" || context === "hero") {
         navigate("/pricing");
